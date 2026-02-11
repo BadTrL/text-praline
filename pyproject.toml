@@ -1,0 +1,19 @@
+[project]
+name = "textpraline"
+version = "0.1.0"
+description = "TextPraline is a text normalization and refinement engine designed to prepare raw extracted content for reliable downstream processing. It cleans and stabilizes text coming from: PDF extractors , OCR pipelines, HTML scrapers. Praline removes structural noise and invisible corruption without altering meaning."
+authors = [
+    {name = "Sacha Cassereau"}
+]
+license = {text = "MIT"}
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "pytest (>=9.0.2,<10.0.0)",
+    "pdfminer-six (>=20260107,<20260108)"
+]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
