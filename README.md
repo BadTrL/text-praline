@@ -27,6 +27,7 @@ Its goal is simple:
 TextPraline does **not** rewrite content.  
 It stabilizes and refines it.
 
+Supported Python versions: 3.10+
 ---
 
 ## Why does this matter?
