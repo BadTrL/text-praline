@@ -4,7 +4,7 @@
 <h1 align="center">TextPraline 🍬</h1>
 
 <p align="center">
-TextPraline is the layer used after text extraction to "sweetify" the extracted lines.  
+TextPraline is the layer used after text extraction to "sweeten" the extracted lines.  
 Perfect before a RAG ingestion 😉
 </p>
 

@@ -1,6 +1,5 @@
 from __future__ import annotations
 import pathlib
-import logging
 import pytest
 from textpraline import praline
 from pdfminer.high_level import extract_text
@@ -14,7 +13,7 @@ def _extract_pdf_text(pdf_path: pathlib.Path) -> str:
     return pdfminer.extract_text(str(pdf_path)) or ""
 
 
-def ttest_praline_on_complex_scientific_pdf():
+def test_praline_on_complex_scientific_pdf():
     pdf_path = pathlib.Path("tests/corpus/docu_astro.pdf")
     if not pdf_path.exists():
         pytest.skip(f"Missing fixture: {pdf_path}. Put your PDF there.")
@@ -33,10 +32,7 @@ def ttest_praline_on_complex_scientific_pdf():
     assert "\u2060" not in cleaned  # word joiner
 
     # Control chars except \t \n \r
-    assert not any(
-        (ord(ch) < 32 and ch not in "\t\n\r")
-        for ch in cleaned
-    )
+    assert not any((ord(ch) < 32 and ch not in "\t\n\r") for ch in cleaned)
 
     # PUA range (BMP private use)
     assert not any(0xE000 <= ord(ch) <= 0xF8FF for ch in cleaned)
@@ -57,7 +53,8 @@ def ttest_praline_on_complex_scientific_pdf():
     # --- Idempotence (very important for a “standard”) ---
     assert cleaned == praline(cleaned)
 
-def test_output_clean_text():
+
+def ttest_output_clean_text():
     pdf_path = pathlib.Path("tests/corpus/docu_astro.pdf")
     raw = extract_text(str(pdf_path))
     output_path_raw = pathlib.Path("tests/corpus/docu_astro_extracted.txt")

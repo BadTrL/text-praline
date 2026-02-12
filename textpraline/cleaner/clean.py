@@ -66,6 +66,7 @@ CAPTION_HINT = re.compile(r"\b(fig\.?|figure|table)\b", re.IGNORECASE)
 # Report (optional)
 # ---------------------------------------------------------------------------
 
+
 @dataclass
 class PralineReport:
     """
@@ -76,6 +77,7 @@ class PralineReport:
     :param removed_toc_lines: Number of ToC-like dotted lines removed.
     :param normalized_extracted: Whether extraction normalization was applied.
     """
+
     input_len: int
     output_len: int
     removed_toc_lines: int = 0
@@ -84,12 +86,15 @@ class PralineReport:
     removed_repeated_lines: int = 0
     removed_boilerplate_lines: int = 0
 
+
 # ---------------------------------------------------------------------------
 # Extraction pollution detection & normalization
 # ---------------------------------------------------------------------------
 
 # Detect common "PDF extraction went wrong" non-characters / replacement chars
-RE_REPLACEMENT = re.compile(r"[\uFFFD\uFFFE]")  # � and ￾-like noncharacters (often seen in bad PDF text)
+RE_REPLACEMENT = re.compile(
+    r"[\uFFFD\uFFFE]"
+)  # � and ￾-like noncharacters (often seen in bad PDF text)
 
 
 def _looks_extraction_polluted(s: str) -> bool:
@@ -180,9 +185,11 @@ def _strip_extraction_artifacts(s: str) -> str:
 
     return s
 
+
 # ---------------------------------------------------------------------------
 # Generic PDF layout noise removal (block-based)
 # ---------------------------------------------------------------------------
+
 
 def _is_boilerplate_line(ln: str) -> bool:
     """
@@ -195,6 +202,7 @@ def _is_boilerplate_line(ln: str) -> bool:
     if not s:
         return False
     return any(p.match(s) for p in BOILERPLATE_PATTERNS)
+
 
 def _looks_like_single_char_line(ln: str) -> bool:
     s = ln.strip()
@@ -288,7 +296,10 @@ def _drop_layout_noise_blocks(
 
     return out, removed
 
-def _drop_repeated_lines(lines: List[str], *, min_count: int = 5) -> Tuple[List[str], int]:
+
+def _drop_repeated_lines(
+    lines: List[str], *, min_count: int = 5
+) -> Tuple[List[str], int]:
     """
     Drop exact repeated lines (header/footer-like), after light normalization.
     Conservative: only removes lines that repeat at least `min_count` times.
@@ -320,9 +331,11 @@ def _drop_repeated_lines(lines: List[str], *, min_count: int = 5) -> Tuple[List[
 
     return out, removed
 
+
 # ---------------------------------------------------------------------------
 # Public API
 # ---------------------------------------------------------------------------
+
 
 def clean_text(
     s: str,
@@ -359,12 +372,11 @@ def clean_text(
     report = PralineReport(input_len=len(s), output_len=0)
 
     if preserve_markdown_tables is None:
-        preserve_markdown_tables = (profile != "strict")
+        preserve_markdown_tables = profile != "strict"
 
     # 0) extraction normalization (only once)
-    do_norm = (
-        normalize_extracted is True
-        or (normalize_extracted == "auto" and _looks_extraction_polluted(s))
+    do_norm = normalize_extracted is True or (
+        normalize_extracted == "auto" and _looks_extraction_polluted(s)
     )
     if do_norm:
         s = _strip_extraction_artifacts(s)
@@ -401,7 +413,9 @@ def clean_text(
         report.removed_layout_noise_lines += removed
 
     # repeated lines (generic headers/footers)
-    do_rep = (drop_repeated_lines == "on") or (drop_repeated_lines == "auto" and do_norm)
+    do_rep = (drop_repeated_lines == "on") or (
+        drop_repeated_lines == "auto" and do_norm
+    )
     if do_rep:
         lines, removed = _drop_repeated_lines(lines, min_count=5)
         report.removed_repeated_lines += removed
@@ -480,7 +494,6 @@ def praline(
         drop_repeated_lines=drop_repeated_lines,
     )
     return (out, rep) if debug else out
-
 
 
 def clean_lines(lines: Iterable[str], **kwargs: Any) -> List[str]:

@@ -1,21 +1,21 @@
-import pytest
 import logging
 from textpraline import praline
 
 logging.basicConfig(level=logging.INFO)
 
+
 def test_praline_removes_basic_artifacts():
-    raw = "Hello\u00A0World\u200B\n\ufeffglyph<abc>"
+    raw = "Hello\u00a0World\u200b\n\ufeffglyph<abc>"
     cleaned = praline(raw)
 
     logging.info(f"result: {raw}")
 
-    assert "\u00A0" not in cleaned          # no NBSP
-    assert "\u200B" not in cleaned          # no zero-width
-    assert "\ufeff" not in cleaned          # no BOM
-    assert "glyph<" not in cleaned          # no glyph artefact
+    assert "\u00a0" not in cleaned  # no NBSP
+    assert "\u200b" not in cleaned  # no zero-width
+    assert "\ufeff" not in cleaned  # no BOM
+    assert "glyph<" not in cleaned  # no glyph artefact
     assert "Hello World" in cleaned
-    
+
 
 def test_praline_unicode_normalization():
     raw = "ﬁ"  # ligature
