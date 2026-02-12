@@ -1,0 +1,17 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest cache
+.pytest_cache/
+
+# Ruff cache
+.ruff_cache/
+
+# Mypy cache (si tu l'ajoutes plus tard)
+.mypy_cache/
+
+# Coverage (si tu ajoutes coverage)
+.coverage
+htmlcov/
