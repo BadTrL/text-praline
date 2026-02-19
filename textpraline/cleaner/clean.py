@@ -85,6 +85,7 @@ class PralineReport:
     removed_layout_noise_lines: int = 0
     removed_repeated_lines: int = 0
     removed_boilerplate_lines: int = 0
+    text_profile: Literal["clean_web", "pdf_like", "ocr_like", "unknown"] = "unknown"
 
 
 # ---------------------------------------------------------------------------
@@ -189,6 +190,87 @@ def _strip_extraction_artifacts(s: str) -> str:
 # ---------------------------------------------------------------------------
 # Generic PDF layout noise removal (block-based)
 # ---------------------------------------------------------------------------
+
+
+def detect_text_profile(
+    text,
+) -> Literal["clean_web", "pdf_like", "ocr_like", "unknown"]:
+    """
+    Heuristic detection of text extraction profile.
+
+    Returns:
+        - "clean_web"  : well-formed HTML/RSS extraction
+        - "pdf_like"   : typical PDF text extraction artefacts
+        - "ocr_like"   : OCR noise patterns
+        - "unknown"    : not enough signal
+    """
+
+    if not text or len(text) < 200:
+        return "unknown"
+
+    lines = text.splitlines()
+    total_lines = len(lines)
+
+    # --- BASIC METRICS ---
+    short_lines = [line for line in lines if 0 < len(line.strip()) < 40]
+    short_line_ratio = len(short_lines) / max(total_lines, 1)
+
+    avg_line_length = sum(len(line) for line in lines) / max(total_lines, 1)
+
+    # --- PDF ARTIFACTS ---
+    cid_count = len(re.findall(r"\(cid:\d+\)", text))
+    glyph_count = len(re.findall(r"glyph<[^>]+>", text))
+    pua_count = sum(
+        1
+        for c in text
+        if 0xE000 <= ord(c) <= 0xF8FF  # Private Use Area
+    )
+    page_markers = len(re.findall(r"Page\s+\d+(\s+of\s+\d+)?", text, re.IGNORECASE))
+
+    hyphen_line_breaks = len(re.findall(r"-\n[a-z]", text))
+
+    pdf_score = (
+        cid_count * 2
+        + glyph_count * 2
+        + pua_count * 0.5
+        + page_markers * 2
+        + hyphen_line_breaks * 1
+        + (short_line_ratio > 0.4) * 2
+        + (avg_line_length < 80) * 1
+    )
+
+    # --- OCR SIGNALS ---
+    weird_char_ratio = sum(
+        1 for c in text if not c.isprintable() and not c.isspace()
+    ) / len(text)
+
+    long_char_runs = len(re.findall(r"(.)\1{4,}", text))  # aaaaa / !!!!! etc.
+    broken_words = len(re.findall(r"\b[a-zA-Z]{1}\s[a-zA-Z]{1}\s[a-zA-Z]{1}\b", text))
+
+    ocr_score = weird_char_ratio * 100 + long_char_runs * 2 + broken_words * 1.5
+
+    # --- CLEAN WEB SIGNALS ---
+    long_paragraphs = len([line for line in lines if len(line.strip()) > 120])
+    punctuation_ratio = sum(1 for c in text if c in ".?!:,;") / len(text)
+
+    web_score = (
+        long_paragraphs * 1.5
+        + (punctuation_ratio > 0.01) * 2
+        - pdf_score * 0.5
+        - ocr_score * 0.5
+    )
+
+    # --- DECISION ---
+    if pdf_score > 5 and pdf_score > ocr_score:
+        return "pdf_like"
+
+    if ocr_score > 5 and ocr_score > pdf_score:
+        return "ocr_like"
+
+    if web_score > 5 and pdf_score < 3 and ocr_score < 3:
+        return "clean_web"
+
+    return "unknown"
 
 
 def _is_boilerplate_line(ln: str) -> bool:
@@ -374,9 +456,21 @@ def clean_text(
     if preserve_markdown_tables is None:
         preserve_markdown_tables = profile != "strict"
 
-    # 0) extraction normalization (only once)
+    # -----------------------------------------------------------------------
+    # 0) Detect text profile early to keep HTML/RSS safe by default.
+    # -----------------------------------------------------------------------
+    text_profile = detect_text_profile(s)
+
+    # If the text looks like clean web/RSS, avoid destructive heuristics unless
+    # the caller explicitly forces them.
+    web_safe = text_profile == "clean_web"
+
+    # -----------------------------------------------------------------------
+    # 1) Extraction normalization (only once)
+    # -----------------------------------------------------------------------
     do_norm = normalize_extracted is True or (
-        normalize_extracted == "auto" and _looks_extraction_polluted(s)
+        normalize_extracted == "auto"
+        and (text_profile in ("pdf_like", "ocr_like") or _looks_extraction_polluted(s))
     )
     if do_norm:
         s = _strip_extraction_artifacts(s)
@@ -385,20 +479,20 @@ def clean_text(
         s = s.translate(str.maketrans(TRANSLATE_MAP))
         s = unicodedata.normalize(normalize_form, s)
 
-    # 1) ensure requested normalization
+    # 2) ensure requested normalization
     s = unicodedata.normalize(normalize_form, s)
 
-    # 2) invariant guardrails
+    # 3) invariant guardrails
     s = RE_PUA.sub("", s)
     s = RE_CTRL.sub("", s)
     s = RE_ZERO_WIDTH.sub("", s)
 
-    # 3) line-level processing
+    # 4) line-level processing
     lines = s.splitlines()
 
     # boilerplate removal is only safe-ish when we are in “extracted/PDF-ish” mode
     if do_norm:
-        filtered = []
+        filtered: List[str] = []
         for ln in lines:
             if _is_boilerplate_line(ln):
                 report.removed_boilerplate_lines += 1
@@ -406,21 +500,29 @@ def clean_text(
             filtered.append(ln)
         lines = filtered
 
-    # layout-noise blocks (generic)
-    do_layout = (drop_layout_noise == "on") or (drop_layout_noise == "auto" and do_norm)
+    # -----------------------------------------------------------------------
+    # 5) Layout-noise blocks (generic)
+    #    - For clean web, keep this OFF unless explicitly forced "on".
+    # -----------------------------------------------------------------------
+    do_layout = (drop_layout_noise == "on") or (
+        drop_layout_noise == "auto" and do_norm and not web_safe
+    )
     if do_layout:
         lines, removed = _drop_layout_noise_blocks(lines)
         report.removed_layout_noise_lines += removed
 
-    # repeated lines (generic headers/footers)
+    # -----------------------------------------------------------------------
+    # 6) Repeated lines (generic headers/footers)
+    #    - For clean web, keep this OFF unless explicitly forced "on".
+    # -----------------------------------------------------------------------
     do_rep = (drop_repeated_lines == "on") or (
-        drop_repeated_lines == "auto" and do_norm
+        drop_repeated_lines == "auto" and do_norm and not web_safe
     )
     if do_rep:
         lines, removed = _drop_repeated_lines(lines, min_count=5)
         report.removed_repeated_lines += removed
 
-    # ToC dotted lines + list heads
+    # 7) ToC dotted lines + list heads
     bullet = "-" if profile == "markdown_safe" else "•"
     out_lines: List[str] = []
     removed_toc = 0
@@ -434,7 +536,7 @@ def clean_text(
     report.removed_toc_lines = removed_toc
     s = "\n".join(out_lines)
 
-    # 4) whitespace normalization
+    # 8) whitespace normalization
     if profile == "strict":
         s = re.sub(r"[ \t]+", " ", s)
         s = re.sub(r" ?\n ?", "\n", s)
@@ -449,7 +551,7 @@ def clean_text(
                 new_lines.append(re.sub(r"[ \t]+", " ", ln).rstrip())
         s = "\n".join(new_lines).strip("\n")
 
-    # 5) collapse giant blank gaps (keeps paragraphs)
+    # 9) collapse giant blank gaps (keeps paragraphs)
     if collapse_blank_lines:
         s = RE_BLANK_GAPS.sub("\n\n", s)
 

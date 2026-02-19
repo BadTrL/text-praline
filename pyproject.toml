@@ -7,7 +7,7 @@ authors = [
 ]
 license = {text = "MIT"}
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.10,<4.0"
 dependencies = [
     "pytest (>=9.0.2,<10.0.0)",
     "pdfminer-six (>=20260107,<20260108)"
@@ -22,5 +22,17 @@ dev = [
     "pytest (>=9.0.2,<10.0.0)",
     "ruff (>=0.15.0,<0.16.0)",
     "pdfminer-six (>=20260107,<20260108)",
-    "pre-commit (>=4.5.1,<5.0.0)"
+    "pre-commit (>=4.5.1,<5.0.0)",
+    "ipykernel (>=7.2.0,<8.0.0)"
+]
+rag-testing = [
+    "tqdm (>=4.67.3,<5.0.0)",
+    "chromadb (>=1.5.0,<2.0.0)",
+    "sentence-transformers (>=5.2.2,<6.0.0)",
+    "langchain-text-splitters (>=1.1.0,<2.0.0)",
+    "pymupdf (>=1.27.1,<2.0.0)",
+    "feedparser (>=6.0.12,<7.0.0)",
+    "trafilatura (>=2.0.0,<3.0.0)",
+    "beautifulsoup4 (>=4.14.3,<5.0.0)",
+    "lxml (>=6.0.2,<7.0.0)"
 ]

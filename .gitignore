@@ -15,3 +15,7 @@ __pycache__/
 # Coverage (si tu ajoutes coverage)
 .coverage
 htmlcov/
+
+#tests
+rag_testing/chroma_db/
+rag_testing/corpus/
