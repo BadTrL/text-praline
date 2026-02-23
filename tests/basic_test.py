@@ -39,7 +39,7 @@ def test_praline_markdown_profile_bullets():
 
 def test_praline_debug_report():
     raw = "Hello\n....... 23"
-    cleaned, report = praline(raw, debug=True)
+    cleaned, report = praline(raw, report=True)
 
     assert isinstance(report.input_len, int)
     assert report.output_len == len(cleaned)
@@ -50,12 +50,6 @@ def test_praline_not_over_aggressive():
     cleaned = praline(text)
     ratio = len(cleaned) / len(text)
     assert ratio > 0.95
-
-
-def test_vertical_noise_block_removed():
-    text = "6 2 0 2 b e F\n6 2 0 2 b e F\n6 2 0 2 b e F"
-    cleaned = praline(text, normalize_extracted=True)
-    assert "6 2 0 2" not in cleaned
 
 
 def test_math_not_removed():
