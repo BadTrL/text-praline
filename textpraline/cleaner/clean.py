@@ -10,11 +10,18 @@ from typing import Iterable, List, Literal, Tuple, Union, Any
 
 from .mappings import PUA_BULLETS, PUA_TRANSLATE_MAP, TRANSLATE_MAP
 
-__all__ = ["praline", "clean_text", "clean_lines", "PralineReport"]
+__all__ = [
+    "praline",
+    "clean_text",
+    "clean_lines",
+    "PralineReport",
+    "detect_text_profile",
+]
 
 Profile = Literal["safe", "strict", "markdown_safe"]
 NormalizeExtracted = Literal[False, True, "auto"]
 Toggle = Literal["off", "on", "auto"]
+ReportMode = Literal[False, True, "detail"]
 
 # ---------------------------------------------------------------------------
 # Pre-compiled regexes
@@ -86,6 +93,7 @@ class PralineReport:
     removed_repeated_lines: int = 0
     removed_boilerplate_lines: int = 0
     text_profile: Literal["clean_web", "pdf_like", "ocr_like", "unknown"] = "unknown"
+    detail_enabled: bool = False
 
 
 # ---------------------------------------------------------------------------
@@ -193,7 +201,7 @@ def _strip_extraction_artifacts(s: str) -> str:
 
 
 def detect_text_profile(
-    text,
+    text: str,
 ) -> Literal["clean_web", "pdf_like", "ocr_like", "unknown"]:
     """
     Heuristic detection of text extraction profile.
@@ -204,29 +212,20 @@ def detect_text_profile(
         - "ocr_like"   : OCR noise patterns
         - "unknown"    : not enough signal
     """
-
     if not text or len(text) < 200:
         return "unknown"
 
     lines = text.splitlines()
     total_lines = len(lines)
 
-    # --- BASIC METRICS ---
     short_lines = [line for line in lines if 0 < len(line.strip()) < 40]
     short_line_ratio = len(short_lines) / max(total_lines, 1)
-
     avg_line_length = sum(len(line) for line in lines) / max(total_lines, 1)
 
-    # --- PDF ARTIFACTS ---
     cid_count = len(re.findall(r"\(cid:\d+\)", text))
     glyph_count = len(re.findall(r"glyph<[^>]+>", text))
-    pua_count = sum(
-        1
-        for c in text
-        if 0xE000 <= ord(c) <= 0xF8FF  # Private Use Area
-    )
+    pua_count = sum(1 for c in text if 0xE000 <= ord(c) <= 0xF8FF)
     page_markers = len(re.findall(r"Page\s+\d+(\s+of\s+\d+)?", text, re.IGNORECASE))
-
     hyphen_line_breaks = len(re.findall(r"-\n[a-z]", text))
 
     pdf_score = (
@@ -239,17 +238,14 @@ def detect_text_profile(
         + (avg_line_length < 80) * 1
     )
 
-    # --- OCR SIGNALS ---
     weird_char_ratio = sum(
-        1 for c in text if not c.isprintable() and not c.isspace()
+        1 for c in text if (not c.isprintable()) and (not c.isspace())
     ) / len(text)
-
-    long_char_runs = len(re.findall(r"(.)\1{4,}", text))  # aaaaa / !!!!! etc.
+    long_char_runs = len(re.findall(r"(.)\1{4,}", text))
     broken_words = len(re.findall(r"\b[a-zA-Z]{1}\s[a-zA-Z]{1}\s[a-zA-Z]{1}\b", text))
 
     ocr_score = weird_char_ratio * 100 + long_char_runs * 2 + broken_words * 1.5
 
-    # --- CLEAN WEB SIGNALS ---
     long_paragraphs = len([line for line in lines if len(line.strip()) > 120])
     punctuation_ratio = sum(1 for c in text if c in ".?!:,;") / len(text)
 
@@ -260,16 +256,12 @@ def detect_text_profile(
         - ocr_score * 0.5
     )
 
-    # --- DECISION ---
     if pdf_score > 5 and pdf_score > ocr_score:
         return "pdf_like"
-
     if ocr_score > 5 and ocr_score > pdf_score:
         return "ocr_like"
-
     if web_score > 5 and pdf_score < 3 and ocr_score < 3:
         return "clean_web"
-
     return "unknown"
 
 
@@ -414,9 +406,148 @@ def _drop_repeated_lines(
     return out, removed
 
 
-# ---------------------------------------------------------------------------
-# Public API
-# ---------------------------------------------------------------------------
+def _pass_detect_profile(s: str, rep: PralineReport) -> Tuple[str, bool]:
+    """
+    Detect profile and return (text_profile, web_safe).
+    """
+    text_profile = detect_text_profile(s)
+    rep.text_profile = text_profile
+    return text_profile, (text_profile == "clean_web")
+
+
+def _pass_extraction_normalize(
+    s: str,
+    rep: PralineReport,
+    *,
+    normalize_extracted: NormalizeExtracted,
+    normalize_form: str,
+    text_profile: Literal["clean_web", "pdf_like", "ocr_like", "unknown"],
+) -> Tuple[str, bool]:
+    """
+    Normalize extractor artefacts if needed. Returns (text, do_norm).
+    """
+    do_norm = normalize_extracted is True or (
+        normalize_extracted == "auto"
+        and (text_profile in ("pdf_like", "ocr_like") or _looks_extraction_polluted(s))
+    )
+    if do_norm:
+        s = _strip_extraction_artifacts(s)
+        rep.normalized_extracted = True
+    else:
+        s = s.translate(str.maketrans(TRANSLATE_MAP))
+        s = unicodedata.normalize(normalize_form, s)
+
+    # ensure requested normalization (always)
+    s = unicodedata.normalize(normalize_form, s)
+    return s, do_norm
+
+
+def _pass_invariant_guardrails(s: str) -> str:
+    """
+    Always-safe removals (no semantics changes).
+    """
+    s = RE_PUA.sub("", s)
+    s = RE_CTRL.sub("", s)
+    s = RE_ZERO_WIDTH.sub("", s)
+    return s
+
+
+def _pass_drop_boilerplate(
+    lines: List[str], rep: PralineReport, *, enabled: bool
+) -> List[str]:
+    """
+    Drop publisher/arXiv boilerplate lines (only when enabled).
+    """
+    if not enabled:
+        return lines
+
+    out: List[str] = []
+    for ln in lines:
+        if _is_boilerplate_line(ln):
+            rep.removed_boilerplate_lines += 1
+            continue
+        out.append(ln)
+    return out
+
+
+def _pass_drop_layout_noise(
+    lines: List[str],
+    rep: PralineReport,
+    *,
+    enabled: bool,
+) -> List[str]:
+    """
+    Drop PDF/OCR layout noise blocks (only when enabled).
+    """
+    if not enabled:
+        return lines
+    lines, removed = _drop_layout_noise_blocks(lines)
+    rep.removed_layout_noise_lines += removed
+    return lines
+
+
+def _pass_toc_and_bullets(
+    lines: List[str],
+    rep: PralineReport,
+    *,
+    profile: Profile,
+) -> List[str]:
+    """
+    Remove ToC dotted lines (safe/strict only) and normalize list heads.
+    """
+    bullet = "-" if profile == "markdown_safe" else "•"
+    out_lines: List[str] = []
+    removed_toc = 0
+
+    for ln in lines:
+        if profile in ("safe", "strict") and RE_TOC_LINE.search(ln.strip()):
+            removed_toc += 1
+            continue
+        out_lines.append(RE_LIST_HEAD.sub(f"{bullet} ", ln))
+
+    rep.removed_toc_lines = removed_toc
+    return out_lines
+
+
+def _pass_whitespace(
+    s: str,
+    *,
+    profile: Profile,
+    preserve_markdown_tables: bool,
+) -> str:
+    """
+    Normalize whitespace according to profile.
+    """
+    if profile == "strict":
+        s = re.sub(r"[ \t]+", " ", s)
+        s = re.sub(r" ?\n ?", "\n", s)
+        return s.strip()
+
+    new_lines: List[str] = []
+    for ln in s.splitlines():
+        is_table = ln.lstrip().startswith("|") and ("|" in ln.lstrip()[1:])
+        if preserve_markdown_tables and is_table:
+            new_lines.append(ln.rstrip())
+        else:
+            new_lines.append(re.sub(r"[ \t]+", " ", ln).rstrip())
+    return "\n".join(new_lines).strip("\n")
+
+
+def _pass_collapse_blank_gaps(s: str, *, enabled: bool) -> str:
+    if not enabled:
+        return s
+    return RE_BLANK_GAPS.sub("\n\n", s)
+
+
+def _pass_final_guardrails(s: str) -> str:
+    s = RE_PUA.sub("", s)
+    s = RE_CTRL.sub("", s)
+    s = RE_ZERO_WIDTH.sub("", s)
+    s = RE_REPLACEMENT.sub("", s)
+    return s
+
+
+# --- clean_text ------------------------------------------------
 
 
 def clean_text(
@@ -428,164 +559,99 @@ def clean_text(
     preserve_markdown_tables: bool | None = None,
     collapse_blank_lines: bool = True,
     drop_layout_noise: Toggle = "auto",
-    drop_repeated_lines: Toggle = "auto",
+    drop_repeated_lines: Toggle = "off",  # IMPORTANT: keep OFF by default
+    report: ReportMode = False,
 ) -> Tuple[str, PralineReport]:
     """
     Clean a text string for reliable ingestion (chunking, indexing, RAG).
 
-    Profiles:
-    - ``safe``: preserve indentation; keep canonical bullet ``•``.
-    - ``markdown_safe``: prefer Markdown-friendly list bullets ``-``.
-    - ``strict``: aggressive whitespace collapsing.
-
-    :param s: Input text.
-    :param profile: Cleaning profile.
-    :param normalize_extracted: ``False``/``True``/``"auto"`` for extractor cleanup.
-    :param normalize_form: Unicode normalization form, default ``"NFKC"``.
-    :param preserve_markdown_tables: Preserve Markdown table spacing (defaults by profile).
-    :param collapse_blank_lines: Collapse ``\\n{3,}`` into ``\\n\\n``.
-    :param drop_layout_noise: ``off|on|auto`` remove layout-noise blocks (PDF/OCR).
-    :param drop_repeated_lines: ``off|on|auto`` remove repeated header/footer-like lines.
-    :returns: ``(cleaned_text, report)``.
+    :param report: ``False|True|"detail"`` controls report enrichment.
+                  clean_text ALWAYS returns (text, report).
+                  (praline() can hide the report for convenience.)
     """
     if not s:
-        return s, PralineReport(input_len=0, output_len=0)
+        rep = PralineReport(input_len=0, output_len=0)
+        rep.detail_enabled = report == "detail"
+        return s, rep
 
-    report = PralineReport(input_len=len(s), output_len=0)
+    rep = PralineReport(input_len=len(s), output_len=0)
+    rep.detail_enabled = report == "detail"
 
     if preserve_markdown_tables is None:
         preserve_markdown_tables = profile != "strict"
 
-    # -----------------------------------------------------------------------
-    # 0) Detect text profile early to keep HTML/RSS safe by default.
-    # -----------------------------------------------------------------------
-    text_profile = detect_text_profile(s)
+    # 0) profile detection
+    text_profile, web_safe = _pass_detect_profile(s, rep)
 
-    # If the text looks like clean web/RSS, avoid destructive heuristics unless
-    # the caller explicitly forces them.
-    web_safe = text_profile == "clean_web"
-
-    # -----------------------------------------------------------------------
-    # 1) Extraction normalization (only once)
-    # -----------------------------------------------------------------------
-    do_norm = normalize_extracted is True or (
-        normalize_extracted == "auto"
-        and (text_profile in ("pdf_like", "ocr_like") or _looks_extraction_polluted(s))
+    # 1) extraction normalization (+ unicode normalize)
+    s, do_norm = _pass_extraction_normalize(
+        s,
+        rep,
+        normalize_extracted=normalize_extracted,
+        normalize_form=normalize_form,
+        text_profile=text_profile,
     )
-    if do_norm:
-        s = _strip_extraction_artifacts(s)
-        report.normalized_extracted = True
-    else:
-        s = s.translate(str.maketrans(TRANSLATE_MAP))
-        s = unicodedata.normalize(normalize_form, s)
 
-    # 2) ensure requested normalization
-    s = unicodedata.normalize(normalize_form, s)
+    # 2) invariant guardrails
+    s = _pass_invariant_guardrails(s)
 
-    # 3) invariant guardrails
-    s = RE_PUA.sub("", s)
-    s = RE_CTRL.sub("", s)
-    s = RE_ZERO_WIDTH.sub("", s)
-
-    # 4) line-level processing
+    # 3) line-level passes
     lines = s.splitlines()
 
-    # boilerplate removal is only safe-ish when we are in “extracted/PDF-ish” mode
-    if do_norm:
-        filtered: List[str] = []
-        for ln in lines:
-            if _is_boilerplate_line(ln):
-                report.removed_boilerplate_lines += 1
-                continue
-            filtered.append(ln)
-        lines = filtered
+    # Boilerplate removal only when extracted/PDF-ish
+    lines = _pass_drop_boilerplate(lines, rep, enabled=do_norm)
 
-    # -----------------------------------------------------------------------
-    # 5) Layout-noise blocks (generic)
-    #    - For clean web, keep this OFF unless explicitly forced "on".
-    # -----------------------------------------------------------------------
-    do_layout = (drop_layout_noise == "on") or (
+    # Layout-noise: OFF for clean web unless forced
+    layout_enabled = (drop_layout_noise == "on") or (
         drop_layout_noise == "auto" and do_norm and not web_safe
     )
-    if do_layout:
-        lines, removed = _drop_layout_noise_blocks(lines)
-        report.removed_layout_noise_lines += removed
+    lines = _pass_drop_layout_noise(lines, rep, enabled=layout_enabled)
 
-    # -----------------------------------------------------------------------
-    # 6) Repeated lines (generic headers/footers)
-    #    - For clean web, keep this OFF unless explicitly forced "on".
-    # -----------------------------------------------------------------------
-    do_rep = (drop_repeated_lines == "on") or (
-        drop_repeated_lines == "auto" and do_norm and not web_safe
-    )
-    if do_rep:
+    # Repeated lines: dangerous without page-awareness -> only if forced ON
+    if drop_repeated_lines == "on":
         lines, removed = _drop_repeated_lines(lines, min_count=5)
-        report.removed_repeated_lines += removed
+        rep.removed_repeated_lines += removed
+    # if "auto" or "off": do nothing
 
-    # 7) ToC dotted lines + list heads
-    bullet = "-" if profile == "markdown_safe" else "•"
-    out_lines: List[str] = []
-    removed_toc = 0
+    # ToC dotted lines + bullets normalization
+    lines = _pass_toc_and_bullets(lines, rep, profile=profile)
+    s = "\n".join(lines)
 
-    for ln in lines:
-        if profile in ("safe", "strict") and RE_TOC_LINE.search(ln.strip()):
-            removed_toc += 1
-            continue
-        out_lines.append(RE_LIST_HEAD.sub(f"{bullet} ", ln))
+    # 4) whitespace normalization
+    s = _pass_whitespace(
+        s,
+        profile=profile,
+        preserve_markdown_tables=preserve_markdown_tables,
+    )
 
-    report.removed_toc_lines = removed_toc
-    s = "\n".join(out_lines)
+    # 5) collapse blank gaps
+    s = _pass_collapse_blank_gaps(s, enabled=collapse_blank_lines)
 
-    # 8) whitespace normalization
-    if profile == "strict":
-        s = re.sub(r"[ \t]+", " ", s)
-        s = re.sub(r" ?\n ?", "\n", s)
-        s = s.strip()
-    else:
-        new_lines: List[str] = []
-        for ln in s.splitlines():
-            is_table = ln.lstrip().startswith("|") and ("|" in ln.lstrip()[1:])
-            if preserve_markdown_tables and is_table:
-                new_lines.append(ln.rstrip())
-            else:
-                new_lines.append(re.sub(r"[ \t]+", " ", ln).rstrip())
-        s = "\n".join(new_lines).strip("\n")
+    # 6) final guardrails
+    s = _pass_final_guardrails(s)
 
-    # 9) collapse giant blank gaps (keeps paragraphs)
-    if collapse_blank_lines:
-        s = RE_BLANK_GAPS.sub("\n\n", s)
+    rep.output_len = len(s)
+    return s, rep
 
-    # final guardrails
-    s = RE_PUA.sub("", s)
-    s = RE_CTRL.sub("", s)
-    s = RE_ZERO_WIDTH.sub("", s)
-    s = RE_REPLACEMENT.sub("", s)
 
-    report.output_len = len(s)
-    return s, report
+# --- praline ----------------------------------------------------
 
 
 def praline(
     text: str,
     *,
     profile: Profile = "safe",
-    debug: bool = False,
     normalize_extracted: NormalizeExtracted = "auto",
     collapse_blank_lines: bool = True,
     drop_layout_noise: Toggle = "auto",
-    drop_repeated_lines: Toggle = "auto",
+    drop_repeated_lines: Toggle = "off",
+    report: ReportMode = False,
 ) -> Union[str, Tuple[str, PralineReport]]:
     """
     One-shot entrypoint: refine any text to be ingestion-ready.
 
-    :param text: Input text.
-    :param profile: ``safe|markdown_safe|strict``.
-    :param debug: If True, return ``(text, report)``.
-    :param normalize_extracted: ``False|True|auto``.
-    :param collapse_blank_lines: Collapse ``\\n{3,}`` into ``\\n\\n``.
-    :param drop_layout_noise: ``off|on|auto``.
-    :param drop_repeated_lines: ``off|on|auto``.
-    :returns: Cleaned text (or ``(text, report)`` if debug=True).
+    - report=False  -> returns str
+    - report=True/"detail" -> returns (str, PralineReport)
     """
     out, rep = clean_text(
         text,
@@ -594,8 +660,9 @@ def praline(
         collapse_blank_lines=collapse_blank_lines,
         drop_layout_noise=drop_layout_noise,
         drop_repeated_lines=drop_repeated_lines,
+        report=report,
     )
-    return (out, rep) if debug else out
+    return (out, rep) if report in (True, "detail") else out
 
 
 def clean_lines(lines: Iterable[str], **kwargs: Any) -> List[str]:
