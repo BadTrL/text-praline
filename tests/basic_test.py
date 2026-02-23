@@ -39,7 +39,20 @@ def test_praline_markdown_profile_bullets():
 
 def test_praline_debug_report():
     raw = "Hello\n....... 23"
-    cleaned, report = praline(raw, debug=True)
+    cleaned, report = praline(raw, report=True)
 
     assert isinstance(report.input_len, int)
     assert report.output_len == len(cleaned)
+
+
+def test_praline_not_over_aggressive():
+    text = "A normal scientific paragraph " * 200
+    cleaned = praline(text)
+    ratio = len(cleaned) / len(text)
+    assert ratio > 0.95
+
+
+def test_math_not_removed():
+    text = "The equation is E = mc^2."
+    cleaned = praline(text)
+    assert "E = mc^2" in cleaned

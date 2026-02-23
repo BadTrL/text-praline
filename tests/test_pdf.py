@@ -2,7 +2,6 @@ from __future__ import annotations
 import pathlib
 import pytest
 from textpraline import praline
-from pdfminer.high_level import extract_text
 
 
 def _extract_pdf_text(pdf_path: pathlib.Path) -> str:
@@ -52,17 +51,3 @@ def test_praline_on_complex_scientific_pdf():
 
     # --- Idempotence (very important for a “standard”) ---
     assert cleaned == praline(cleaned)
-
-
-def ttest_output_clean_text():
-    pdf_path = pathlib.Path("tests/corpus/docu_astro.pdf")
-    raw = extract_text(str(pdf_path))
-    output_path_raw = pathlib.Path("tests/corpus/docu_astro_extracted.txt")
-    output_path_raw.write_text(raw, encoding="utf-8")
-
-    cleaned = praline(raw)
-
-    output_path = pathlib.Path("tests/corpus/docu_astro_cleaned.txt")
-    output_path.write_text(cleaned, encoding="utf-8")
-
-    print("Cleaned file written to:", output_path)

@@ -1,0 +1,2709 @@
+Astronomy & Astrophysics manuscript no. aanda
+February 10, 2026
+
+©ESO 2026
+
+6
+
+b
+e
+F
+6
+
+]
+
+O
+C
+h
+p
+o
+t
+s
+a
+[
+
+v
+4
+7
+6
+:
+v
+i
+X
+a
+
+AMICO galaxy clusters in KiDS-1000: Splashback radius from weak
+lensing and cluster-galaxy correlation function
+
+G. F. Lesci1, 2, C. Giocoli1, 2, 3, F. Marulli1, 2, 3, M. Romanello1, 2, L. Moscardini1, 2, 3, M. Sereno2, 3, M. Maturi4, 5,
+M. Radovich6, G. Castignani2, H. Hildebrandt8, L. Ingoglia1, 7, and E. Puddu9
+
+1 Dipartimento di Fisica e Astronomia "Augusto Righi" - Alma Mater Studiorum Università di Bologna, via Piero Gobetti 93/2,
+
+I-40129 Bologna, Italy
+
+2 INAF - Osservatorio di Astrofisica e Scienza dello Spazio di Bologna, via Piero Gobetti 93/3, I-40129 Bologna, Italy
+3 INFN - Sezione di Bologna, viale Berti Pichat 6/2, I-40127 Bologna, Italy
+4 Zentrum für Astronomie, Universität Heidelberg, Philosophenweg 12, D-69120 Heidelberg, Germany
+5 ITP, Universität Heidelberg, Philosophenweg 16, 69120 Heidelberg, Germany
+6 INAF - Osservatorio Astronomico di Padova, vicolo dell'Osservatorio 5, I-35122 Padova, Italy
+7 INAF - Istituto di Radioastronomia, Via Piero Gobetti 101, 40129 Bologna, Italy
+8 Ruhr University Bochum, Faculty of Physics and Astronomy, Astronomical Institute (AIRUB), German Centre for Cosmological
+
+Lensing, 44780 Bochum, Germany
+
+9 INAF - Osservatorio Astronomico di Capodimonte, Salita Moiariello 16, Napoli 80131, Italy
+
+Received -; accepted -
+
+ABSTRACT
+
+Aims. We present the splashback radius analysis of the Adaptive Matched Identifier of Clustered Objects (AMICO) galaxy cluster
+sample in the fourth data release of the Kilo Degree Survey (KiDS). The sample contains 9049 rich galaxy clusters within z ∈ [0.1, 0.8],
+with shear measurements available for 8730 of them.
+Methods. We measure and model the stacked reduced shear, gt, and the cluster-galaxy correlation function, wcg, in bins of observed
+intrinsic richness, λ∗, and redshift, z. Building on the methods employed in recent cosmological analyses, we model the average
+splashback radius, rsp, of the underlying dark matter halo distribution, accounting for the known systematic uncertainties affecting
+measurements and theoretical models.
+Results. By modelling gt and wcg separately, in the cluster-centric radial range R ∈ [0.4, 5] h−1Mpc, we constrain rsp, the mass
+accretion rate, Γ, and the relation between Rsp ≡ rsp/r200m and the peak height, ν200m, over the mass range M200m ∈ [0.4, 20] 1014h−1M⊙.
+The two probes provide consistent results that also agree with Λ-cold dark matter model predictions. Our Rsp constraints are consistent
+with those from previous observations. For gt and wcg, we achieve a precision of 14% and 10% per cluster stack, respectively.
+The higher precision of wcg, enabled by its combination with weak-lensing constraints on the mass-richness relation, highlights the
+complementarity of lensing and clustering in measuring rsp and constraining the properties of the infalling material region.
+
+Key words. clusters - Galaxies: clusters: general - Galaxies: kinematics and dynamics - Cosmology: observations
+
+1. Introduction
+
+The mass profiles of dark matter haloes have been exten-
+sively investigated using N-body simulations (see e.g. Einasto
+1965; Navarro, Frenk, & White 1997; Baltz, Marshall, & Oguri
+2009), establishing a robust theoretical foundation for interpret-
+ing galaxy cluster observations. Precise measurements of the in-
+ner and virialised regions of clusters not only support cosmo-
+logical analyses based on cluster statistics (Planck Collaboration
+XXIV 2016; Costanzi et al. 2019; Marulli et al. 2021; Romanello
+et al. 2024; Seppi et al. 2024; Ghirardini et al. 2024; Lesci
+et al. 2025), but also enable tests of gravity theories (Pizzuti
+et al. 2017; Cardone et al. 2021; Mitchell et al. 2021; Rosselli
+et al. 2023) and constraints on dark matter self-interactions (Pe-
+ter et al. 2013; Robertson et al. 2019; Eckert et al. 2022; Bhat-
+tacharyya et al. 2022; Despali et al. 2025). In addition, mea-
+surements in the outer halo regime, commonly referred to as
+the two-halo region and dominant beyond 2-5 Mpc from clus-
+
+Send offprint requests to: G. F. Lesci
+e-mail: giorgio.lesci2@unibo.it
+
+ter centres (Tinker et al. 2005), offer a complementary route to
+constrain cosmological parameters and cluster masses (Covone
+et al. 2014; Sereno et al. 2018; Giocoli et al. 2021; Ingoglia et al.
+2022; Eltvedt et al. 2024).
+
+In the transition between the virialised region and the two-
+halo regime, a sharp steepening in the density profile is expected.
+This feature, located in the proximity of the splashback radius,
+rsp, was initially predicted from analytical models of spheri-
+cal secondary collapse by Fillmore & Goldreich (1984) and
+Bertschinger (1985), and then robustly identified in dark mat-
+ter simulations (Diemer & Kravtsov 2014; Adhikari et al. 2014;
+More et al. 2015). The splashback radius marks the apocentre of
+the first orbit of recently accreted material and, in turn, it strongly
+depends on the mass accretion rate, Γ. At fixed mass, haloes
+with higher Γ exhibit smaller rsp due to the deepening of the
+gravitational potential well during the orbit of infalling material.
+More massive subhaloes also tend to have a smaller orbit apoc-
+entre than the less massive ones, an effect attributed to dynami-
+cal friction (Diemer et al. 2017; Chang et al. 2018), which slows
+down satellites by dissipating kinetic energy, thereby bringing
+
+them deeper into the potential well. Unlike halo concentration,
+the location of rsp is more sensitive to recent accretion (within
+the last crossing time) than to the entire assembly history (Shin
+& Diemer 2023). However, the depth and width of the associ-
+ated density steepening are strongly influenced by the full halo
+assembly history, providing complementary information on the
+location of the splashback radius (Yu et al. 2025).
+
+As rsp delineates a boundary between first-infalling matter
+and matter that has completed at least one passage through the
+central region of the halo, the mass enclosed within rsp comprises
+all material accreted by a given redshift, z. Therefore, this mass
+definition remains unaffected by pseudo-evolution (More et al.
+2015) and can potentially lead to the derivation of universal halo
+mass function models (Diemer 2020b; Ryu & Lee 2021, 2022).
+In fact, recent studies highlight the distinction between orbiting
+and infalling particles as the key factor in the definition of a halo
+(see Vladimir et al. 2025, and references therein). Furthermore,
+rsp has been shown to correlate with fundamental cosmological
+parameters, such as the matter density parameter at z = 0, Ωm,
+and the square root of the mass variance on a scale of 8 h−1Mpc
+at z = 0, σ8 (Diemer et al. 2017; Haggar et al. 2024; Mpetha
+et al. 2024).
+
+It is critical to note that the physical origin of rsp lies in the
+dynamics of halo particles. Diemer (2017, 2020a) showed that
+the radius of the steepest slope, which is directly observable in
+the mass density profiles, is a scattered proxy of rsp (see also
+Sun et al. 2025). This occurs because the apocentres are dis-
+tributed across a wide radial range due to non-spherical halo
+shapes, complex accretion histories, and gravitational interac-
+tions with neighbouring haloes. Alternative halo boundary defi-
+nitions have been proposed in the literature, such as the depletion
+radius (Fong & Han 2021; Zhou & Han 2023), which is about 2
+times larger than rsp and corresponds to the scale above which
+the matter density decreases with time. Pizzardo et al. (2024)
+demonstrated that the inflection point in the radial velocity pro-
+file of cluster galaxies agrees with rsp within 1σ, establishing
+an additional connection between the splashback radius and the
+inner boundary of the cluster infall region. García et al. (2023)
+and Salazar et al. (2025) showed that a clear truncation radius is
+apparent in the halo-matter correlation function, when particles
+are classified as bound or infalling based on their phase-space
+trajectories and accretion history.
+
+In this work, following standard nomenclature in the liter-
+ature, we define the radius of steepest slope as the splashback
+radius. We constrained the splashback radii of the galaxy clus-
+ters detected with the Adaptive Matched Identifier of Clustered
+Objects (AMICO, Bellagamba et al. 2018; Maturi et al. 2019)
+in the fourth data release of the Kilo Degree Survey (KiDS-
+1000, Kuijken et al. 2019). The cluster sample used in this work
+comprises 8730 rich clusters, spanning a total mass range of
+M200m ∈ [0.4, 20] 1014h−1M⊙ and extending up to a redshift
+z = 0.8. We measured and modelled the stacked weak-lensing
+profiles and cluster-galaxy correlation function of ensembles of
+clusters, constraining the relation between the peak height, ν200m,
+and the normalised splashback radius, Rsp ≡ rsp/r200m, where
+r200m is the radius enclosing a mass M200m, such that the corre-
+sponding mean density is 200 times the mean density of the Uni-
+verse at the halo redshift. We also derived the mass accretion rate
+as a function of mass and redshift. Our results are competitive, in
+terms of statistical uncertainties, with those from previous anal-
+yses of observed cluster samples (More et al. 2016; Baxter et al.
+2017; Umetsu & Diemer 2017; Chang et al. 2018; Contigiani
+et al. 2019; Zürcher & More 2019; Shin et al. 2019; Murata
+et al. 2020; Bianconi et al. 2021; Shin et al. 2021; Rana et al.
+
+2023; Joshi et al. 2025). Compared to the analogous analysis by
+Giocoli et al. (2024), based on AMICO detections in the third
+data release of KiDS (KiDS-DR3, de Jong et al. 2017), we em-
+ployed more conservative galaxy and cluster selections, and used
+a more extensive modelling of systematic uncertainties. Never-
+theless, we achieve a comparable precision on the splashback
+radius to Giocoli et al. (2024), since the survey effective area is
+more than doubled compared to KiDS-DR3, and the cluster sam-
+ple extends up to larger redshifts.
+
+The paper is organised as follows. In Sect. 2 we present the
+galaxy cluster and shear samples, while in Sect. 3 the measure-
+ments of stacked weak-lensing profiles and cluster-galaxy corre-
+lation function are presented. In Sect. 4, we outline the theoreti-
+cal framework, likelihood function, and prior distributions used
+in this work. We present our results in Sect. 5 and our conclu-
+sions in Sect. 6.
+
+In this work, we adopted a concordance flat Λ cold dark mat-
+ter (ΛCDM) cosmological model. The base 10 logarithm is re-
+ferred to as log, while ln represents the natural logarithm. The
+statistical analyses presented in this paper were performed using
+the CosmoBolognaLib1 (CBL, Marulli et al. 2016), a set of free
+software C++/Python numerical libraries for cosmological cal-
+culations. The linear matter power spectrum is computed with
+CAMB2 (Lewis & Challinor 2011).
+
+2. Data set
+
+In our analysis we used KiDS-1000 data (Kuijken et al. 2019),
+which are based on imaging obtained with the OmegaCAM
+wide-field camera (Kuijken 2011), operating on the VLT Sur-
+vey Telescope (VST, Capaccioli & Schipani 2011). The KiDS-
+1000 release comprises 1006 square-degree tiles, each spanning
+roughly 1 deg2. It includes 2 arcsecond aperture photometry in
+the u, g, r, and i optical bands, with 5σ depth limits of 24.23,
+25.12, 25.02, and 23.68 magnitudes, respectively. Complemen-
+tary near-infrared photometry in the Z, Y, J, H, and Ks bands is
+also provided by the VISTA Kilo-degree INfrared Galaxy survey
+(VIKING, Edge et al. 2013; Sutherland et al. 2015), which fully
+overlaps the KiDS footprint.
+
+The galaxy cluster sample analysed in this work originates
+from the AMICO KiDS-1000 catalogue (Maturi et al. 2025, M25
+hereafter), constructed by applying the AMICO algorithm (Bel-
+lagamba et al. 2018; Maturi et al. 2019) to KiDS-1000 photo-
+metric data. AMICO uses an optimal matched filter and is one
+of the official cluster-finding tools of the Euclid mission (Eu-
+clid Collaboration: Adam et al. 2019). The catalogue excludes
+regions affected by image artefacts and photometric issues, re-
+sulting in a clean survey area of 839 deg2, with cluster detec-
+tions up to z = 0.9. Following Lesci et al. (2025, L25 hereafter),
+we restricted our analysis to clusters with S/N > 3.5 and red-
+shifts z ∈ [0.1, 0.8], yielding 22 396 detections. Additional cuts
+in the cluster mass proxy, namely the intrinsic richness λ∗ (see
+M25), yield a final cluster sample of 8730 objects, as discussed
+in Sect. 3. These selections optimise the trade-off between fit
+quality and sample size (L25). Cluster redshifts have been cor-
+rected for the bias identified by M25, based on a comparison
+with spectroscopic redshifts available within the KiDS data set
+(collectively referred to as KiDZ, van den Busch et al. 2020,
+2022). These spectroscopic redshifts come from the Galaxy and
+Mass Assembly survey data release 4 (GAMA-DR4, Driver et al.
+2011; Liske et al. 2015; Driver et al. 2022), the Sloan Digital Sky
+
+1 https://gitlab.com/federicomarulli/CosmoBolognaLib/
+2 https://camb.info/
+
+Fig. 1. Left panel: Cluster photo-z distributions as measured by AMICO (hatched red) and unbiased using a reference spectroscopic sample (blue).
+Middle panel: Observed photo-z (hatched grey) and SOM-reconstructed (purple) redshift distributions of the full galaxy sample. Right panel:
+examples of SOM-reconstructed background galaxy redshift distributions, given a cluster redshift of z = 0.125 (cyan), z = 0.425 (hatched black),
+z = 0.725 (orange), derived by using the background selections by L25.
+
+Survey (SDSS, Alam et al. 2015), and the 2-degree Field Lens-
+ing Survey (2dFLens, Blake et al. 2016). Each AMICO cluster
+has been assigned a bias-corrected redshift, with a resulting pre-
+cision of σz/(1 + z) = 0.014. The left panel of Fig. 1 displays the
+comparison of measured and debiased AMICO cluster redshift
+distributions.
+
+As in Kuijken et al. (2019), M25 employed the Bayesian
+Photometric Redshift (BPZ, Benítez 2000) code to estimate
+galaxy photometric redshifts for cluster detection. The prior on
+redshift probabilities used in Kuijken et al. (2019) was opti-
+mised for the weak-lensing analysis, reducing uncertainties and
+catastrophic outliers for faint, high-redshift galaxies. However,
+it introduced a significant bias for bright, low-redshift galaxies,
+which are important for cluster detection. For this reason, M25
+adopted instead the redshift prior used in the KiDS-DR3 analysis
+(de Jong et al. 2017). This choice results in a galaxy photometric
+redshift (photo-z) uncertainty of σz,g/(1 + z) = 0.074 for galaxies
+with r < 23, consistent with the findings of Kuijken et al. (2019).
+In the present work, we used photometric redshifts derived fol-
+lowing this approach.
+
+To measure the weak-lensing profiles of AMICO galaxy
+clusters, we utilised the KiDS-1000 gold shear catalogue
+(Wright et al. 2020; Hildebrandt et al. 2021; Giblin et al. 2021).
+This data set contains approximately 21 million galaxies across
+an effective area of 777 deg2, with a weighted effective num-
+ber density of ngold
+eff = 6.17 arcmin−2. Shape measurements are
+based on the deep KiDS r-band imaging, and shear estimates are
+derived by employing the lensfit algorithm (Miller et al. 2007;
+Fenech Conti et al. 2017). Following Hildebrandt et al. (2021),
+we considere galaxies having redshift in the range zg ∈ [0.1, 1.2].
+We used the same galaxy catalogue to measure the cluster-galaxy
+correlation function (Sect. 3.2). To ensure spatial matching, we
+restricted the cluster sample to the footprint of the galaxy sam-
+ple, since the latter has a smaller effective area. For correlation
+function measurements, we also applied the r < 24 magnitude
+cut, corresponding to the depth of the shallowest survey tile, to
+ensure homogeneity of the angular galaxy distribution (follow-
+ing M25).
+
+Following Hildebrandt et al. (2021), we reconstructed galaxy
+redshift distributions using self-organising maps (SOM; Koho-
+nen 1982; Wright et al. 2020). We did not use the galaxy red-
+shift distributions from Hildebrandt et al. (2021), as our anal-
+ysis adopts a different photo-z estimation method and a differ-
+ent binning strategy. Instead, we applied SOM to the spectro-
+scopic sample from van den Busch et al. (2022) and extended
+by Wright et al. (2024), comprising 93 224 galaxies. While M25
+
+used a different method to estimate the unbiased cluster redshift
+distribution compared to the SOM-based approach we applied
+to galaxies, we do not expect this to introduce systematics. In-
+deed, as discussed in the following, our analysis accounts for
+the statistical uncertainties of both the galaxy and cluster red-
+shift distributions. We employed the SOM algorithm introduced
+by Wright et al. (2020) and subsequently implemented by Hilde-
+brandt et al. (2021) for KiDS-1000 redshift distribution calibra-
+tion, based on the kohonen code (Wehrens & Buydens 2007;
+Wehrens & Kruisselbrink 2018). Following Wright et al. (2020)
+and L25, we provided the SOM algorithm with photometric data
+from all 9 KiDS and VIKING bands, including their full colour
+space combinations. The SOM architecture employs a toroidal
+topology with a 50×50 hexagonal grid. The middle panel in Fig.
+1 shows the observed distribution of the full galaxy sample as
+a function of galaxy redshift, zg, along with the correspond-
+ing SOM-reconstructed distribution. The latter was employed
+in the cluster-galaxy correlation function modelling. The right
+panel of Fig. 1 displays three representative SOM-reconstructed
+background galaxy redshift distributions, each conditioned on
+a different cluster redshift. These distributions are measured in
+cluster redshift bins having a width of δz = 0.05 and spanning
+the full sample range, based on a combination of colour and
+photo-z background selections (for details, we refer to L25). We
+used these reconstructed background redshift distributions in the
+weak-lensing modelling.
+
+3. Measurements
+
+In this section, we present the measurements of stacked cluster
+lensing (Sect. 3.1) and cluster-galaxy correlation function (Sect.
+3.2). The lensing measurement pipeline follows that of L25, who
+carried out the mass calibration of the cluster sample analysed in
+this work. The properties of the cluster subsamples are reported
+in Table 1. As shown in Fig. 2 of L25, these cluster subsam-
+ples have a purity ranging from 97% to 100%. Consistent with
+L25, for all profile measurements we adopted a flat ΛCDM cos-
+mology with a Hubble constant of H0 = 70 km s−1 Mpc−1 and
+Ωm = 0.3. Throughout this paper, we considered different Ωm
+values to model our measurements. For the mass probe measure-
+ments considered in this work, cosmological dependence arises
+solely from the conversion to cluster-centric physical distances.
+As discussed in Sect. 4.4, we modelled the geometric distortions
+introduced by these assumptions.
+
+0.20.40.6z0.00.51.01.52.02.5n(z)AMICOphoto-zsDebiasedphoto-zs0.00.51.01.5zg0.000.250.500.751.001.251.50n(zg)Galaxy photo-zsReconstructed0.00.51.01.5zg0.00.51.01.52.0n(zg|z)z=0.125z=0.425z=0.725A&A proofs: manuscript no. aanda
+
+Table 1. Properties of the cluster subsamples and main results.
+
+zob range
+
+λ∗
+ob range
+
+N
+
+Median zob Median λ∗
+ob
+
+[0.10, 0.30)
+[0.10, 0.30)
+[0.10, 0.30)
+
+[0.30, 0.45)
+[0.30, 0.45)
+[0.30, 0.45)
+
+[0.45, 0.80]
+[0.45, 0.80]
+[0.45, 0.80]
+
+[20, 40)
+[40, 65)
+[65, 210]
+
+[25, 40)
+[40, 65)
+[65, 210]
+
+[30, 45)
+[45, 60)
+[60, 210]
+
+1411
+255
+47
+
+1536
+525
+90
+
+3616
+930
+320
+
+0.24
+0.25
+0.25
+
+0.38
+0.38
+0.38
+
+0.64
+0.63
+0.61
+
+25
+46
+78
+
+30
+46
+76
+
+35
+50
+68
+
+⟨Mgt
+
+200m⟩
+
+0.70+0.07
+−0.06
+1.96+0.11
+−0.12
+4.63+0.36
+−0.37
+0.83+0.07
+−0.06
+1.82+0.10
+−0.10
+4.23+0.32
+−0.31
+0.98+0.09
+−0.08
+1.76+0.13
+3.22+0.27
+−0.27
+
+⟨rgt
+sp⟩
+
+⟨rwcg
+sp ⟩
+
+⟨Rgt
+sp⟩
+
+⟨Rwcg
+sp ⟩
+
+⟨Γgt ⟩
+
+⟨Γwcg ⟩
+
+0.98+0.13
+−0.13
+1.36+0.20
+−0.18
+1.79+0.28
+−0.25
+0.93+0.14
+−0.12
+1.19+0.18
+−0.16
+1.54+0.24
+−0.21
+0.83+0.13
+−0.11
+1.00+0.15
+1.20+0.19
+−0.17
+
+0.88+0.09
+−0.07
+1.22+0.12
+1.59+0.16
+−0.12
+0.84+0.08
+−0.06
+1.08+0.10
+−0.08
+1.39+0.14
+−0.11
+0.77+0.07
+−0.06
+0.92+0.09
+−0.07
+1.10+0.11
+
+1.08+0.15
+1.06+0.15
+−0.13
+1.04+0.15
+−0.13
+1.08+0.15
+1.07+0.16
+1.05+0.16
+1.08+0.16
+1.07+0.16
+1.05+0.16
+
+0.97+0.09
+0.96+0.09
+0.94+0.09
+0.99+0.10
+0.97+0.10
+0.95+0.10
+0.99+0.10
+−0.10
+0.98+0.10
+−0.10
+0.96+0.10
+
+2.08+1.11
+−0.90
+2.20+1.16
+−0.93
+2.34+1.22
+−0.97
+2.30+1.19
+−0.95
+2.41+1.23
+−0.99
+2.57+1.30
+−1.03
+2.75+1.39
+−1.05
+2.84+1.43
+−1.09
+2.93+1.49
+−1.12
+
+2.97+0.97
+−0.77
+3.08+0.98
+−0.79
+3.27+1.04
+−0.83
+3.11+0.99
+−0.79
+3.22+1.04
+−0.83
+3.44+1.13
+−0.86
+3.55+1.18
+−0.89
+3.66+1.24
+−0.91
+3.82+1.30
+−0.96
+
+Notes. The bins of observed cluster photo-z, zob, and intrinsic richness, λ∗
+ob, are shown in the first and second columns, respectively. The third
+column lists the number of clusters used for the measurements, while the fourth and fifth columns report the median cluster redshift and richness,
+respectively. In the subsequent columns, we show the posteriors on the mean mass, ⟨Mgt
+200m⟩ (in units of 1014h−1M⊙), splashback radius, ⟨rsp⟩ (in
+h−1Mpc), normalised splashback radius, ⟨Rsp⟩ ≡ ⟨rsp/r200m⟩, and mass accretion rate, ⟨Γ⟩. The latter is dimensionless (see Eq. 45). The gt and wcg
+superscripts represent the results from weak lensing and cluster-galaxy correlation function, respectively.
+
+3.1. Stacked weak-lensing profiles
+
+The tangential shear, γt, is related to the excess surface density,
+∆Σt, through the following relation (see e.g. Sheldon et al. 2004):
+
+∆Σt(R) = Σ(< R) − Σ(R) = Σcritγt(R),
+where Σ(R) denotes the surface mass density at radius R, Σ(< R)
+is its mean enclosed within the radius R, and Σcrit is the critical
+surface density, which is expressed as (Bartelmann & Schneider
+2001)
+
+(1)
+
+Σcrit ≡
+
+c2
+4πG
+
+Ds
+DlDls
+
+(2)
+
+where c is the speed of light, G is Newton's gravitational con-
+stant, while Ds, Dl, and Dls are the observer-source, observer-
+lens, and lens-source angular diameter distances, respectively.
+
+The weak-lensing observable linked to galaxy ellipticities is
+the reduced shear, namely g = γ/(1 − κ), where κ ≡ Σ/Σcrit is
+the convergence (Schneider & Seitz 1995). We estimated the re-
+duced tangential shear profile, gt, of a cluster labelled as k as (see
+e.g. Viola et al. 2015):
+
+(3)
+
+gt,k(R j) =
+
+i∈ j wi et,i
+
+i∈ j wi
+
+1 + M j
+
+where et,i is the tangential component of the ellipticity of the ith
+background galaxy, j is the radial annulus index, with an asso-
+ciated average projected radius R j, corresponding to the central
+value of the radial bin. The impact of this radial point definition
+on our results is expected to be negligible. Indeed, L25 demon-
+strated that for our sample, alternative estimates of the effective
+radius differ from R j by only 0.1%. In addition, wi is the statisti-
+cal weight assigned to the measure of the source ellipticity of the
+ith background galaxy (Sheldon et al. 2004), while M j denotes
+the average multiplicative shear bias, defined as
+
+M j =
+
+i∈ j wi mi
+
+i∈ j wi
+
+(4)
+
+where mi is the multiplicative shear bias of the ith background
+galaxy. Following L25, for each background source we draw a
+
+value of m from a uniform distribution in the range [−2σm, 2σm],
+where σm = 0.02 corresponds to the largest 1σ interval of the
+m distributions obtained by Giblin et al. (2021). We used this
+approximation because the m estimates by Giblin et al. (2021)
+were derived from redshift distributions that do not correspond
+to those considered in this work. The statistical uncertainty on m,
+σm, is propagated into the final results by including it in the co-
+variance matrix (see Sect. 4.6). We neglected the shear additive
+bias term, because Giblin et al. (2021) constrained it to be 10−4,
+which is an order of magnitude smaller than our stacked gt uncer-
+tainties. The background galaxy samples are defined through the
+combination of the photo-z and colour selections defined in L25.
+In the modelling described in Sect. 4, we used the background
+redshift distributions reconstructed through SOM, as described
+in Sect. 2.
+
+The stacked reduced shear profile in the pth bin of observed
+ob,p, and in the qth bin of observed cluster
+
+intrinsic richness, ∆λ∗
+redshift, ∆zob,q, is expressed as
+
+gt(R j, ∆λ∗
+
+ob,p, ∆zob,q) =
+
+k∈∆λ∗
+
+ob,p,∆zob,q Wk, j gt,k(R j)
+ob,p,∆zob,q Wk, j
+k∈∆λ∗
+
+(5)
+
+where gt,k is given by Eq. (3), k runs over all clusters falling in
+the bins of λ∗ and z, while Wk, j is the total weight for the jth
+radial bin of the kth cluster, estimated as
+Wk, j =
+
+wi ,
+
+(6)
+
+i∈ j
+
+where i runs over the background galaxies in the jth radial bin.
+We used the same λ∗ and z bins as L25, shown in Table 1. This
+λ∗ and z selection yields a sample of 9049 clusters, which re-
+duce to 8730 due to the smaller area covered by the shear sam-
+ple compared to the cluster sample (see Sect. 2). We adopted the
+same minimum cluster-centric projected distance of 400 h−1kpc
+as L25, but extended the maximum radius to 5 h−1Mpc in order
+to include measurements of the infalling region of galaxy clus-
+ters. Ten logarithmically spaced radial bins are used.
+
+The bootstrap-estimated covariance matrix for each stacked
+gt(R) measurement derives from 10 000 resamplings of the
+cluster profiles within the stack. This covariance estimate in-
+corporates the intrinsic scatter in the observable-mass and
+
+concentration-mass relations, along with miscentring effects and
+the contribution from the large-scale structure, though it does not
+account for the covariance due to background galaxies shared be-
+tween clusters. However, as demonstrated by McClintock et al.
+(2019), for Stage-III surveys such shared-source contributions
+remain subdominant to shape noise and large-scale structure ef-
+fects. Finally, we neglected the covariance across different red-
+shift and richness bins, as its impact has been shown to be negli-
+gible in Stage-III surveys (McClintock et al. 2019).
+
+3.2. Cluster-galaxy correlation function
+
+The projected cluster-galaxy correlation function, denoted as
+wcg, in the pth bin of intrinsic richness, ∆λ∗
+ob,p, and in the qth bin
+of cluster redshift, ∆zob,q, is measured using the Landy-Szalay
+estimator (Landy & Szalay 1993), expressed as follows:
+
+wcg(R j, ∆λ∗
+
+ob,p, ∆zob,q) =
+
+DcDg(R j) − DcRg(R j) − RcDg(R j)
+RcRg(R j)
+
++1 .
+
+(7)
+
+Compared to the Davis-Peebles estimator (Davis & Peebles
+1983), Eq. (7) reduces variance and edge effects. In Eq. (7), R j
+is the central point of the jth radial annulus, while DcDg(R j),
+DcRg(R j), RcDg(R j), and RcRg(R j) are the normalised data clus-
+ter - data galaxy, data cluster - random galaxy, random cluster -
+data galaxy, random cluster - random galaxy pairs, respectively.
+In Eq. (7), we adopted the same R j points used for weak-lensing
+measurements.
+
+To measure wcg, we used the complete KiDS-1000 gold shear
+catalogue, imposing the magnitude cut r < 24 (see Sect. 2). As
+this cut corresponds to the depth of the shallowest tile, it ensures
+a homogeneous angular galaxy distribution. Furthermore, in Eq.
+(7), for each cluster we include all galaxies at a projected sepa-
+ration R j along the line of sight. As a result the wcg estimator is
+independent of cluster membership modelling. The wcg model is
+defined consistently with this approach (see Sect. 4.3).
+
+We constructed random cluster and random galaxy samples
+80 times larger than the observed ones. The extraction of ran-
+dom (R.A., Dec) pairs accounts for the KiDS survey angular
+mask. We assigned random cluster redshifts by reshuffling the
+observed mean redshifts, which were subsequently used to de-
+fine cluster-centric radial bins. For the random galaxy sample,
+no redshift information is required since galaxy redshifts do not
+enter the wcg estimator (Eq. 7). The adopted cluster λ∗, z, and
+R bins are those used for the weak-lensing measurements pre-
+sented in Sect. 3.1. Jackknife resampling was used to estimate
+the covariance matrix, with KiDS tiles defining the resampling
+regions. As in Sect. 3.1, we neglected the correlation between λ∗
+and z bins.
+
+4. Modelling
+
+4.1. 3D model for individual haloes
+
+This section presents the theoretical description of individual
+three-dimensional (3D) mass profiles. The models for gt and wcg
+are presented in Sects. 4.2 and 4.3, respectively, while the corre-
+sponding expected values for ensembles of clusters are detailed
+in Sect. 4.4. For single clusters, we characterised the 3D mass
+distribution using a Diemer & Kravtsov (2014, DK14) profile,
+commonly adopted to model observational data (Baxter et al.
+2017; Rana et al. 2023; Giocoli et al. 2024; Joshi et al. 2025).
+
+The corresponding excess 3D density profile is expressed as fol-
+lows:
+
+∆ρ(r) = ρs exp
+
+−
+
+α
+
+α
+
+rs
+
+− 1
+
+ftrans + ρouter ,
+
+where
+
+ftrans =
+
+1 +
+
+rt
+
+β− γ
+
+β
+
+ρouter = ρm be
+
+5r200m
+
+−se
+
+(8)
+
+(9)
+
+(10)
+
+Equation (8) an Einasto (1965) profile multiplied by the transi-
+tion factor, ftrans. Here, the dependency of ∆ρ on M200m and z is
+not explicitly shown for brevity. In Eq. (8), ρs is the characteristic
+density and rs is the scale radius, expressed as rs = r200m/c200m,
+where c200m is the halo concentration. As detailed in Sect. 4.4,
+we modelled c200m via a log-linear scaling relation with M200m
+and redshift, with the amplitude empirically constrained by our
+data. For the inner slope of the Einasto profile, we assumed α =
+0.155 + 0.0095ν2
+c(z)/σ2(Mvir)
+vir (Gao et al. 2008). Here, ν2
+represents the peak height of the virial halo mass, namely Mvir,
+while δc(z) is the linear theory critical overdensity required for
+spherical collapse divided by the growth factor, and σ2(Mvir)
+is the mass variance. For the virial overdensity definition, we
+adopted the fitting function by Bryan & Norman (1998). To be
+consistent with the α definition by Gao et al. (2008), we con-
+verted M200m into Mvir assuming a Navarro, Frenk, & White
+(1997, NFW) profile. Furthermore, we note that by treating c200m
+as a free parameter, any possible systematic errors arising from
+the assumptions on α are mitigated.
+
+= δ2
+
+vir
+
+The Einasto profile in Eq. (8) is multiplied by a transition fac-
+tor, ftrans (defined in Eq. 9), which smoothly connects the inner
+halo component to the external large-scale term, namely ρouter
+(defined in Eq. 10). The transition factor depends on the trunca-
+tion radius, rt = Ftr200m, where Ft is the truncation factor, on
+β, defining the sharpness of the transition from the 1-halo to the
+outer profile, and on γ, describing the steepness of the profile at
+r ∼ r200m. We expressed γ as γ = γ0νvir, following DK14. Fur-
+thermore, as discussed in Sect. 4.6, we assumed Gaussian priors
+on Ft, β, and γ0.
+
+Equation (10) models the matter density distribution at r >
+r200m, and it is expressed as a power-law multiplying the mean
+background density of the Universe, ρm. Following the DK14
+prescription, we defined the pivot radius as 5 times r200m. The
+parameters be and se characterise the amplitude and slope of the
+outer profile, respectively, and are treated as free parameters in
+our analysis. In simulations, both the bias parameter, be, and the
+slope, se, exhibit a mild dependence on the peak height (Diemer
+& Kravtsov 2014). While se shows only a weak redshift evolu-
+tion, this dependence is somewhat stronger for be. Thus, in our
+modelling, we allowed be to vary as a function of redshift, as-
+suming the following expression:
+
+be = be,0
+
+1 + z
+1 + zpiv
+
+be,z
+
+(11)
+
+where zpiv = 0.4. We note that, differently from the DK14
+functional form, Eq. (10) does not include ρm as an additive
+term. In fact, the mass profile probes considered in this study,
+namely weak lensing and correlation function, measure the
+excess of mass compared to the background. On the other hand,
+as detailed in Sect. 4.5, the ρm contribution is considered in the
+
+computation of the splashback radius. The six free parameters
+describing the halo profiles (Ft, β, γ0, be,0, be,z, and se) are
+summarised in the top part of Table 2.
+
+4.2. gt model for individual haloes
+
+The tangential reduced shear component of a halo, gt, is ex-
+pressed as (Seitz & Schneider 1997)
+
+gt(R, M, z) =
+
+∆Σt(R, M, z) ⟨Σ−1
+
+crit(z)⟩
+crit(z)⟩−1 ⟨Σ−2
+
+crit(z)⟩
+
+1 − Σ(R, M, z) ⟨Σ−1
+
+(12)
+
+where R is the projected radius, Σ is the surface mass density,
+obtained by integrating Eq. (8) as
+
+galaxy at zg and a cluster at z, given a projected cluster-centric
+distance R, expressed as follows:
+
+f (R, zg, z) =
+
+R2 +
+
+ χ(zg) − χ(z)
+1 + z
+
+(18)
+
+where χ is the comoving distance. Furthermore, bg in Eq. (17)
+is the galaxy bias, treated as independent of R (see Appendix
+B). As discussed in Sects. 4.4 and 4.6, we did not model the
+bg dependence on the true halo mass and redshift. Instead, for
+each stack of clusters defined in bins of observed intrinsic rich-
+ness λ∗
+ob and cluster redshift zob, we introduced the average bias
+⟨bg(∆λ∗
+ob, ∆zob)⟩ as a free parameter. We did not model miscen-
+tring in Eq. (17) because it primarily affects mass estimates.
+Since we adopted the mass posteriors from the gt analysis as pri-
+ors for the wcg modelling (see Sect. 4.6), this effect is inherently
+accounted for in our approach.
+
+Σ(R, M, z) = 2
+
+Rmax
+
+dχ ∆ρ
+
+R2 + χ2, M, z
+
+(13)
+
+4.4. Expected values for stacks of clusters
+
+where we set Rmax = 40 h−1Mpc (following More et al. 2016;
+Baxter et al. 2017; Shin et al. 2019). In Eq. (12), ∆Σt is the excess
+surface mass density, having the expression
+
+∆Σt(R) = 2
+R2
+
+R
+
+dr r Σ(r) − Σ(R) .
+
+In Eq. (12), ⟨Σ−η
+crit
+
+⟩ is defined as
+
+⟨Σ−η
+
+crit(z)⟩ =
+
+zg>z
+
+dzg Σ−η
+
+crit(zg, z) n(zg | z) ,
+
+(14)
+
+(15)
+
+where η = 1, 2, Σcrit is given by Eq. (2), zg is the galaxy redshift,
+while n(zg | z) is the normalised true background redshift distri-
+bution given a cluster redshift z, reconstructed through SOM
+(Sect. 2). We remark that Eq. (12) describes the reduced shear
+profiles of perfectly centred cluster detections. The total reduced
+shear includes the contribution by miscentred clusters and is ex-
+pressed as follows:
+
+gt,tot = (1 − foff) gt + foff gt,off ,
+
+(16)
+
+where foff is the fraction of miscentred clusters, gt is given by
+Eq. (12), while gt,off is the miscentred tangential reduced shear,
+whose derivation is detailed in Appendix A.
+
+4.3. wcg model for individual haloes
+
+We express the 2D cluster-galaxy correlation function as follows
+(see Appendix B for its derivation):
+
+wcg(R, M, z) =
+
+⟨bg(M, z)⟩
+ρm(z)
+
+dzg ∆ρ
+
+f (R, zg, z), M, z
+
+n(zg) ,
+
+(17)
+
+where ∆ρ is the DK14 profile (Eq. 8), while n(zg) is the nor-
+malised galaxy redshift distribution, reconstructed through SOM
+and shown in the middle panel of Fig. 1 (see also Sect. 2). For
+the integration in Eq. (17), we interpolated the discretised inte-
+grand. In Eq. (17), f (R, zg, z) is the physical distance between a
+
+The expected value of the stacked reduced shear in a bin of ob-
+served intrinsic richness, ∆λ∗
+ob, and redshift, ∆zob, is expressed
+as
+
+⟨gt(Rtest, ∆λ∗
+
+ob, ∆zob)⟩ =
+
+Pcl(∆λ∗
+
+ob, ∆zob) ⟨Pbkg(∆zob)⟩
+
+dztr
+
+d2V
+dztrdΩ
+
+dM gt,tot(Rtest, M, ztr) S(M, ztr, ∆λ∗
+
+ob, ∆zob) ,
+
+(19)
+
+where Pcl is the cluster sample purity, based on the Selection
+Function extrActor (SinFoniA, Maturi et al. 2019, 2025) mock
+catalogues, while Pbkg is the purity of the background galaxy
+sample, derived through SOM. For details on these purity pa-
+rameters, we refer to L25. In Eq. (19), ztr is the true redshift, V
+is the co-moving volume, dΩ is the solid angle element, M is the
+true mass, while gt,tot is given by Eq. (16) and, in order to model
+geometric distortions, it is computed at the test radius Rtest,
+
+Rtest = θDtest
+
+l
+
+= Rfid Dtest
+l
+Dfid
+l
+
+(20)
+
+Here, θ is the angular separation from the cluster centre, Rfid is
+the projected radius in the fiducial cosmology adopted for mea-
+surements (Sect. 3), while Dfid
+are the angular diameter
+distances in the fiducial and test cosmologies, respectively. The
+last factor in the integrand of Eq. (19) has the following expres-
+sion:
+
+l and Dtest
+
+l
+
+S(M, ztr, ∆λ∗
+
+ob, ∆zob) = dn(M, ztr)
+
+dM
+
+BHMF(M)
+
+dzob P(zob|ztr) ×
+
+∆zob
+
+dλ∗
+
+tr Ccl(λ∗
+
+tr, ztr) P(λ∗
+
+tr|M, ztr)
+
+dλ∗
+
+ob P(λ∗
+
+ob|λ∗
+
+tr, ztr) ,
+
+∆λ∗
+ob
+
+(21)
+
+where dn(M, ztr)/dM is the halo mass function, for which we
+adopt the model by Tinker et al. (2008), while BHMF(M) is
+the halo mass function bias. Following Costanzi et al. (2019),
+BHMF(M) is expressed as
+
+BHMF(M) = s log
+
+M
+M∗
+
++ q ,
+
+(22)
+
+Table 2. Free base parameters considered in the analysis. Derived parameters, such as rsp, are not reported.
+
+Parameter
+
+Description
+
+gt prior
+
+wcg prior
+
+gt posterior wcg posterior
+
+Ft
+β
+γ0
+be,0
+be,z
+se
+foff
+σoff
+A
+B
+C
+σintr
+log c0
+(s, q)
+log bg,0
+bg,λ∗
+bg,z
+
+Truncation factor of the 1-halo profile
+Sharpness of the transition from 1-halo to two-halo
+Steepness of the profile at r ∼ r200m
+Normalisation of the outer profile's amplitude
+Redshift evolution of the outer profile's amplitude
+Slope of the outer profile
+Fraction of miscentred clusters
+Miscentring scale (in h−1Mpc)
+Amplitude of the log λ∗ − log M200m relation
+Slope of the log λ∗ − log M200m relation
+Redshift evolution of the log λ∗ − log M200m relation
+Intrinsic scatter of the log λ∗ − log M200m relation
+Amplitude of the log c200m − log M200m relation
+Parameters of the mass function correction factor
+Logarithmic amplitude of the galaxy bias function
+λ∗ evolution of the galaxy bias function
+z evolution of the galaxy bias function
+
+N(1.495, 0.3) N(1.495, 0.3)
+
+N(4, 1.6)
+N(4, 1.6)
+[0.5, 4]
+[−1, 1]
+[0.5, 2]
+N(0.3, 0.1)
+[0, 0.5]
+[-2, 2]
+[0, 3]
+[-3, 3]
+[0.01, 0.5]
+[0, 1.3]
+
+N(4, 1.6)
+N(4, 1.6)
+[0.5, 4]
+[−1, 1]
+[0.5, 2]
+gt posterior
+gt posterior
+gt posterior
+gt posterior
+[0, 1.3]
+
+N(μHMF, CHMF) N(μHMF, CHMF)
+
+[-3, 1]
+[-2, 2]
+[-2, 2]
+
+1.40+0.29
+−0.22
+0.21+0.11
+−0.11
+−0.27+0.03
+−0.05
+0.59+0.06
+−0.05
+0.28+0.29
+−0.30
+0.07+0.04
+−0.03
+0.68+0.17
+−0.19
+
+1.51+0.25
+−0.21
+3.35+0.94
+−1.01
+1.97+0.23
+−0.19
+1.461+0.052
+−0.046
+0.82+0.19
+−0.29
+0.068+0.062
+−0.067
+−0.10+0.11
+−0.11
+0.31+0.35
+−0.33
+
+Notes. In the first and second columns we list the symbols and descriptions of the parameters, respectively. The third and fourth columns report
+the parameter priors adopted for the modelling of gt and wcg, respectively. Here, a range represents a uniform prior, while N(μ, σ) stands for a
+Gaussian prior with mean μ and standard deviation σ. In the last two columns, we show the median values of the 1D marginalised posteriors, along
+with the 16th and 84th percentiles. The posterior is not reported in cases where it closely aligns with the prior.
+
+where M∗ is expressed in h−1M⊙ and log M∗ = 13.8, q and s
+are free parameters of the model (see Sect. 4.6). In Eq. (21), zob,
+ob, and λ∗
+λ∗
+tr are the observed redshift, observed intrinsic rich-
+ness, and true intrinsic richness, respectively. P(zob|ztr) is a Gaus-
+sian probability density function with mean corresponding to ztr
+and a standard deviation of 0.014(1 + ztr) (see Sect. 2), while
+ob|λ∗
+P(λ∗
+tr, ztr) is a Gaussian whose mean is expressed as
+μλ∗ = λ∗
+tr
+
+tr (Aμ + Bμ ztr)] ,
+
+tr exp[−λ∗
+
++ λ∗
+
+(23)
+
+tr) .
+
+tr exp(−Bσλ∗
+
+while its standard deviation has the form
+σλ∗ = Aσλ∗
+(24)
+In Eqs. (23) and (24), Aμ = 0.198, Bμ = −0.179, Aσ = 0.320,
+and Bσ = 0.011. We refer to L25 for details on the derivation
+tr, ztr), its coefficients, and of the cluster sample com-
+of P(λ∗
+pleteness, Ccl, appearing in Eq. (21) and based on SinFoniA. The
+probability density distribution P(λ∗
+tr|M, ztr) follows a log-normal
+form, with its mean determined by the log λ∗ − log M200m scaling
+relation and its dispersion set by the intrinsic scatter σintr:
+
+ob|λ∗
+
+P(λ∗
+
+tr|M, ztr) =
+
+√
+ln(10)λ∗
+tr
+
+2πσintr
+
+−
+
+exp
+
+[log λ∗
+
+tr − μ(M, ztr)]2
+2σ2
+
+intr
+
+(25)
+
+Here, μ(M, ztr) is the mean of the distribution, expressed as
+
++ C log
+
+μ(M, ztr) = A + B log
+
+M
+Mpiv
+= 50 are the red-
+where Mpiv = 1014h−1 M⊙, zpiv = 0.4, and λ∗
+piv
+shift, mass, and intrinsic richness pivots, respectively. The penul-
+timate term in Eq. (26), including the Hubble function H(z),
+
+H(ztr)
+H(zpiv)
+
++ log λ∗
+
+(26)
+
+piv ,
+
+captures deviations from the predictions from the self-similar
+growth scenario (Sereno & Ettori 2015a). As described in Sect.
+4.6, A, B, C, and σintr in Eqs. (25) and (26) are treated as free pa-
+rameters in our modelling (see also Table 2). Lastly, in Eq. (19),
+ob, ∆zob)⟩ is the expected density of observed haloes and
+has the form
+
+ob, ∆zob)⟩ =
+
+dztr
+
+d2V
+dztrdΩ
+
+dM S(M, ztr, ∆λ∗
+
+ob, ∆zob) .
+
+(27)
+
+The expected cluster-galaxy correlation function in the bins ∆λ∗
+ob
+and ∆zob is expressed as
+
+⟨wcg(Rtest, ∆λ∗
+
+ob, ∆zob)⟩ = −I(∆λ∗
+
+ob, ∆zob) +
+
+⟨bg(∆λ∗
+
+dztr
+
+d2V
+dztrdΩ
+
+dM ˆwcg(Rtest, M, ztr) S(M, ztr, ∆λ∗
+
+ob, ∆zob) ,
+
+(28)
+
+where ⟨bg⟩ is the average galaxy bias, which follows the relation
+
+⟨bg(∆λ∗
+
+ob, ∆zob)⟩ = bg,0
+
+ ̄λ∗
+ob
+λ∗
+piv
+
+bg,λ∗
+
+bg,z
+
+1 + ̄zob
+1 + zpiv
+
+(29)
+
+Here, λ∗
+piv and zpiv are the pivot values adopted also in Eq. (26),
+ob and ∆zob,
+ob and ̄zob are the median values within ∆λ∗
+while ̄λ∗
+respectively, listed in Table 1. By modelling the cluster stacks
+
+separately, we verified that Eq. (29) describes well the mass
+proxy and redshift dependence of bg. In Eq. (28), ˆwcg is the
+cluster-galaxy correlation function in Eq. (17) where we impose
+⟨bg(M, z)⟩ = 1, and I is the integral constraint, expressed as
+(Roche & Eales 1999; Adelberger et al. 2005; Coupon et al.
+2012):
+
+I(∆λ∗
+
+ob, ∆zob) = ⟨bg(∆λ∗
+
+ob, ∆zob)⟩ ×
+j RcRg(R j|∆zob) ⟨ ̃wcg(R j, ∆λ∗
+
+j RcRg(R j|∆zob)
+
+(30)
+
+where RcRg is the normalised number of random cluster - ran-
+dom galaxy pairs, where random redshifts follow the observed
+distribution within the bin ∆zob. Moreover, ⟨ ̃wcg⟩ is obtained by
+imposing I(∆λ∗
+ob, ∆zob) = 0 in Eq. (28), while j runs over the
+number of cluster-centric radial bins. Here, the minimum radial
+scale considered is 400 h−1kpc, matching the one adopted for the
+measurements (Sect. 3). The radial upper limit considered in Eq.
+(30) is derived as
+
+Rlim(z) = Dl(z) θlim ,
+
+(31)
+
+where Dl is the angular diameter distance, computed at the me-
+dian cluster redshifts listed in Table 1, while θlim represents the
+angular extension of the smallest side of the KiDS angular mask.
+We remark that KiDS is divided into two stripes, with θlim = 8.5
+deg on average (Kuijken et al. 2019). We adopted this θlim value
+in Eq. (31), which yields Rlim ≃ 70 h−1Mpc for zob ∈ [0.1, 0.3),
+Rlim ≃ 110 h−1Mpc for zob ∈ [0.3, 0.45), and Rlim ≃ 150 h−1Mpc
+for zob ∈ [0.45, 0.8]. Assuming the best-fit parameters of the wcg
+modelling in Eq. (30), we find that I(∆λ∗
+ob, ∆zob) ≃ 10−2 in all
+cluster stacks. This is the same order of magnitude as the wcg
+measurements at large radii and low-to-intermediate redshifts
+(see Fig. 2).
+
+In the reduced shear and correlation function models appear-
+ing in Eqs. (19) and (28), we assumed the following log-linear
+model for the c200m − M200m relation:
+
+log c200m = log c0 + cM log
+
+M
+Mpiv
+
++ cz log
+
+1 + ztr
+1 + zpiv
+
+(32)
+
+(34)
+
+(35)
+
+is expressed as
+
+⟨Rsp(∆λ∗
+
+ob,∆zob)⟩ ≡
+
+dztr
+
+ rsp
+r200m
+
+d2V
+dztrdΩ
+
+(∆λ∗
+
+ob, ∆zob)
+
+dM Rsp(M, ztr) S(M, ztr, ∆λ∗
+
+ob, ∆zob)
+
+where
+
+Rsp(M, ztr) =
+
+rsp(M, ztr)
+r200m(M, ztr)
+
+Here, we define the splashback radius of a halo as
+
+(36)
+
+rsp(M, ztr) ≡ min
+
+d log ∆ρ(r, M, ztr) + ρm(ztr)
+d log r
+where ∆ρ(r, M, ztr) is given by Eq. (8). Equation (36) does not
+include the contribution by halo miscentring, as it affects scales
+much smaller than rsp and can be therefore neglected. We eval-
+uate Eq. (34) at each step of the Markov chain Monte Carlo
+(MCMC). By replacing Rsp(M, ztr) in Eq. (34) with ν200m(M, ztr),
+rsp(M, ztr), or M200m, we derived the expected value of ν200m (ap-
+pearing in Eq. 33), rsp, or M200m, respectively, in bins of λ∗
+ob and
+zob.
+
+We emphasise that Eq. (34) removes any dependence on the
+radial binning scheme. While stacking clusters as a function
+of r/r200m could in principle enhance the signal-to-noise of rsp
+(Diemer & Kravtsov 2014), this approach is compromised for
+observational data due to noisy r200m estimates. Equation (34)
+solves this issue, as it models the average profile of a recon-
+structed population of dark matter haloes. Conversely, in sim-
+ulations, average profiles of cluster ensembles are modelled as a
+single profile, thanks to the reduced scatter on r200m.
+
+4.6. Likelihood and priors
+
+In this work, we analysed gt and wcg separately to compare two
+independent estimates of rsp. For both these probes, we per-
+formed a joint Bayesian analysis of all the cluster stacks, by
+means of an MCMC algorithm. The likelihood function of a
+probe is expressed as
+
+where Mpiv and zpiv are the same as those assumed in Eq. (26). As
+discussed in Sect. 4.6, log c0 is a free parameter in the analysis,
+while cM and cz are fixed to the fiducial values by Duffy et al.
+(2008).
+
+L =
+
+Nλ∗
+
+Nz
+
+i=1
+
+j=1
+
+Li j ,
+
+(37)
+
+4.5. Splashback radius estimator
+
+where Nλ∗ and Nz are the numbers of cluster intrinsic richness
+and redshift bins used for the stacked measurements, respec-
+tively, while Li j is a Gaussian likelihood function defined as
+
+The main goal of this study consists in constraining the following
+relation (introduced by More et al. 2015):
+
+Li j ∝ exp(−χ2
+
+i j/2) ,
+
+⟨Rsp(∆λ∗
+
+ob, ∆zob)⟩ = Asp
+
+1 + Bsp exp
+
+−
+
+⟨ν200m(∆λ∗
+2.44
+
+(33)
+
+with
+
+χ2
+i j
+
+NR
+
+NR
+
+k=1
+
+l=1
+
+Oi jk − Mi jk
+
+C−1
+
+Oi jl − Mi jl
+
+(38)
+
+(39)
+
+where Asp and Bsp are free parameters, while ⟨Rsp⟩ and ⟨ν200m⟩
+are the average normalised splashback radius and the average
+peak height, respectively. In our analysis, we derive ⟨Rsp⟩ and
+⟨ν200m⟩ posteriors and constrain Asp and Bsp. Specifically, ⟨Rsp⟩
+
+Here, Oi jk is either the stacked weak-lensing (Eq. 5) or the
+cluster-galaxy correlation (Eq. 7) measurement, while Mi jk is
+the corresponding model, namely Eq. (19) or Eq. (28), respec-
+tively. The indices k and l run over the number of radial bins,
+NR, and C−1
+i jkl is the inverse of the covariance matrix. Following
+
+Fig. 2. Measurements of gt (blue dots) and wcg (orange diamonds) profiles of the AMICO KiDS-1000 galaxy clusters, in bins of z (increasing
+from top to bottom) and λ∗ (increasing from left to right). The error bars are the sum of statistical errors and residual uncertainties coming from
+systematic errors (see Sect. 4.6). The bands superimposed to the measurements represent the 68% confidence levels of the gt (blue) and wcg
+(orange) models. The vertical bands show the 68% confidence of the splashback radius, derived from the modelling of gt (blue) and wcg (orange).
+The dashed lines represent median values.
+
+Hartlap et al. (2007), we applied the standard correction when
+inverting the covariance matrix. In particular, Ci jkl is defined as
+
+Ci jkl = Cstat
+
++ Csys
+i jkl ,
+
+(40)
+
+where Cstat
+is the statical part of the covariance, estimated
+through resampling as discussed in Sect. 3, while Csys
+i jkl accounts
+for residual uncertainties on systematic errors that are not in-
+cluded in the model. In the case of gt, this covariance contribu-
+tion is written as
+
+Csys,gt
+
+= (σ2
+m
+
++ σ2
+
+SOM
+
++ σ2
+
+OP) gob
+
+t,k(∆λ∗
+
+ob,i, ∆zob, j) gob
+
+t,l (∆λ∗
+
+ob,i, ∆zob, j) ,
+(41)
+
+bias in Eq. (28). The impact of this approach on galaxy bias
+constraints shall be tested in future studies. Conversely, we in-
+cluded the contribution to wcg measurements due to the uncer-
+tainty on the mean of the SOM-reconstructed n(zg), amount-
+ing to 2% (Hildebrandt et al. 2021). To this end, we estimated
+⟨wcg(R, ∆λ∗
+ob, ∆zob)⟩ in Eq. (28) at the model best-fit parameters,
+using the reconstructed n(zg) from Sect. 2 in Eq. (17). We then
+repeated this process while shifting nbkg(zg) by ±2% of its mean.
+This yielded a relative uncertainty on wcg which is approximately
+constant with R and λ∗
+ob, amounting to 3% for the first two cluster
+redshift bins and 2% for the last one. Thus, the residual system-
+atics term in the case of wcg has the following expression:
+Csys,wcg
+ob,i, ∆zob, j) ωob
+
+ob,i, ∆zob, j) ,
+
+cg,k(∆λ∗
+
+cg,l(∆λ∗
+
+SOM ωob
+
+= σ2
+
+(42)
+
+is the observed stacked reduced shear, σm = 0.02 is
+where gob
+t
+the uncertainty on the multiplicative shear bias, corresponding to
+the largest multiplicative bias uncertainty reported across the to-
+mographic bins analysed by Giblin et al. (2021). Furthermore,
+σSOM accounts for the uncertainty on the SOM-reconstructed
+= 0.01 for
+background redshift distributions, amounting to σSOM
+= 0.04 for the last
+the first two cluster redshift bins and to σSOM
+= 0.03 is the residual un-
+one (see Sect. 4.4 in L25), while σOP
+certainty due to orientation and projection effects (see Sect. 5.4
+in L25).
+
+Measurements of wcg are not affected by multiplicative shear
+biases. We also ignored orientation and projection effects in this
+case, assuming that their impact is absorbed by the free galaxy
+
+where wob
+σSOM
+σSOM
+
+cg is the observed cluster-galaxy correlation function,
+= 0.03 for zob ∈ [0.1, 0.3) and zob ∈ [0.3, 0.45), while
+= 0.02 for zob ∈ [0.45, 0.8].
+The parameter priors adopted in the analysis are reported in
+Table 2. We assumed a Gaussian prior on the truncation factor
+of the 1-halo term, Ft, in Eq. (8), with mean 1.495 (following
+DK14) and standard deviation 0.3 (corresponding to that as-
+sumed by L25, in the case of M200m), imposing also Ft > 0.
+Gaussian priors were adopted also on the parameters of the
+transition factor (Eq. 9), namely γ0, appearing in the relation
+γ = γ0νvir (see Sect. 4.1), and β, both having mean 4 (following
+DK14) and standard deviation 1.6 (following More et al. 2016;
+Shin et al. 2019; Murata et al. 2020; Rana et al. 2023). For the
+
+103102101100rspzob[0.10,0.30)*ob[20,40)zob[0.10,0.30)*ob[40,65)zob[0.10,0.30)*ob[65,210)103102101100probezob[0.30,0.45)*ob[25,40)zob[0.30,0.45)*ob[40,65)zob[0.30,0.45)*ob[65,210)10.40.72345103102101100zob[0.45,0.80]*ob[30,45)10.40.72345R[h1Mpc]zob[0.45,0.80]*ob[45,60)10.40.72345zob[0.45,0.80]*ob[60,210)gt measurewcg measuregt 68% confidencewcg 68% confidenceA&A proofs: manuscript no. aanda
+
+outer profile parameters (Eq. 10), as introduced in Sect. 4.1, we
+assumed that se is independent of mass and redshift, and adopted
+a flat prior on this parameter. On the other hand, be varies with
+redshift (Eq. 11), and flat priors are adopted for its amplitude,
+be,0, and redshift scaling, be,z.
+
+The fraction of miscentred clusters, foff, in Eq. (16) is as-
+signed a Gaussian prior with mean 0.3 and standard deviation
+0.1, imposing also foff > 0, while the miscentring scale, σoff,
+in Eq. (A.1) is given the uniform prior [0, 0.5] h−1Mpc. These
+priors are motivated by previous studies of centre offsets in sim-
+ulations (Yan et al. 2020; Sommer et al. 2024) and observations
+across various mass density tracers (Saro et al. 2015; Zhang et al.
+2019; Seppi et al. 2023; Ding et al. 2025). In the gt modelling,
+we assumed flat priors on the log λ∗ − log M200m scaling relation
+parameters (Eqs. 25 and 26), namely A, B, C, and σintr. On the
+other hand, to analyse wcg we assumed the gt posteriors on these
+parameters as priors. A flat prior is used for the amplitude of the
+log c200m − log M200m relation (Eq. 32). In the latter relation, we
+fixed cM = −0.107 and cz = −1.16 (following Duffy et al. 2008).
+We expect that our priors on σintr and c200m account for theoreti-
+cal uncertainties in baryonic effects on cluster profiles (Schaller
+et al. 2015; Henson et al. 2017; Lee et al. 2018; Beltz-Mohrmann
+& Berlind 2021; Shao & Anbajagane 2024).
+
+In the wcg modelling, we assumed flat priors on bg,0, bg,λ∗ ,
+and bg,z, which enter the relation between the average galaxy
+ob, ∆zob)⟩, and cluster observables (Eq. 29). The BHMF
+bias, ⟨bg(∆λ∗
+factor in Eq. (22) provides a correction to the standard Tinker
+et al. (2008) halo mass function. For the parameters s and q,
+we employed the Costanzi et al. (2019) prescription, assigning
+a bivariate Gaussian prior with mean values (0.037, 1.008) and
+covariance matrix CHMF expressed as
+
+CHMF
+
+0.00019
+0.00024
+
+0.00024
+0.00038
+
+(43)
+
+Although baryonic physics uncertainties are not taken into ac-
+count in this prescription, they are negligible compared to the
+precision of the BHMF measurement (see Costanzi et al. 2019, and
+references therein).
+
+5. Results
+In the modelling presented here, we adopted a flat ΛCDM cos-
+mological model assuming the median values of the posteriors
+derived by L25, namely Ωm = 0.22 and σ8 = 0.86. The other
+cosmological parameters were fixed to the results by Planck Col-
+laboration et al. (2020, Table 2, TT, TE + EE + lowE + lens-
+ing, referred to as Planck18 hereafter). Figure 2 shows the gt
+and wcg measurements against the corresponding best-fit models.
+The ⟨rsp⟩ estimates are shown as vertical bands, and are derived
+by computing the model described in Sect. 4.5 at each MCMC
+step. The results presented in this section on splashback radii,
+masses, and other derived quantities are reported also in Table
+1. The robustness of the results against our modelling choices is
+discussed in Appendix C.
+
+The top-left panel of Fig. 3 displays our constraints on
+⟨Rsp⟩ ≡ ⟨rsp/r200m⟩, based on the methods outlined in Sect. 4.5.
+Specifically, we first obtained the posteriors on ⟨Rsp⟩ and ⟨ν200m⟩
+in each stack using Eq. (34), and then constrained Asp and Bsp
+in Eq. (33) through an MCMC algorithm. In this process, we
+ignored the statistical uncertainty on ⟨ν200m⟩, corresponding to
+about 2%. We obtained the following constraints:
+sp = 0.91+0.30
+sp = 0.49+1.63
+Agt
+−0.84
+Awcg
+sp = 0.30+0.97
+sp = 0.87+0.20
+−0.59 ,
+
+−0.30, Bgt
+−0.21, Bwcg
+
+(44)
+
+where the gt and wcg superscripts represent the results derived
+from the modelling of weak-lensing and cluster-galaxy correla-
+tion function measurements, respectively. As we can see in the
+top-left panel of Fig. 3, our estimates of Rsp derived from these
+two probes are consistent within 1σ. This agreement between the
+two probes is in line with the findings of previous studies (Chang
+et al. 2018; Shin et al. 2021). Furthermore, as reported in Table
+1, we find no significant trends of Rsp with redshift or intrinsic
+richness, indicating that rsp and r200m share similar dependencies
+on M200m and z, in agreement with simulation predictions (More
+et al. 2015; Diemer 2020a).
+
+Compared to the Rsp constraints from Giocoli et al. (2024)
+shown in Fig. 3, based on weak-lensing measurements in KiDS-
+DR3, our gt modelling yields results that agree within 1σ for
+ν200m > 3, reducing to 2σ agreement at lower ν200m. We verified
+the consistency within 1σ between our rsp values and those from
+Giocoli et al. (2024). Furthermore, our mass constraints agree
+with those by L25 (see Appendix C). Thus, we conclude that
+the observed small shift in Rsp aligns with the cluster mass dis-
+crepancy between KiDS-1000 and KiDS-DR3 reported by L25.
+In that work, the KiDS-1000 analysis yields lower masses at the
+low-mass end. These lower masses imply smaller r200m values,
+which in turn explain the larger Rsp we find compared to Giocoli
+et al. (2024). L25 ascribe these mass differences to improved
+systematic uncertainty modelling in KiDS-1000 (see Appendix
+C in that reference). The modelling of wcg provides Rsp con-
+straints in better agreement with Giocoli et al. (2024). As dis-
+cussed below, this agreement originates mainly from the lower
+rsp values derived from cluster-galaxy correlation function mea-
+surements, which we attribute to dynamical friction. Indeed, gt
+probes the total matter distribution and is insensitive to galaxy-
+specific dynamical processes, while wcg traces the spatial dis-
+tribution of satellite galaxies. Dynamical friction acts on these
+satellites, causing them to lose kinetic energy and sink inward.
+This shifts the splashback radius traced by wcg to smaller values.
+The precision of the Rsp −ν200m relation parameters, reported
+in Eq. (44), aligns with the findings of Giocoli et al. (2024). Our
+analysis, however, incorporates a more comprehensive marginal-
+isation over statistical uncertainties, including those from the
+transition factor parameters (Eq. 9), the halo miscentring (Sect.
+4.2), the intrinsic scatter of the log λ∗ − log M200m relation (Eq.
+25), and the halo mass function correction (Eqs. 22 and 43). We
+also applied more conservative λ∗ cuts.
+
+The Rsp models in the top-left panel of Fig. 3 are com-
+puted across the mass range of our sample, M200m ∈ [0.4, 20]
+1014h−1M⊙, which is derived from individual cluster mass esti-
+mates based on Eq. (54) in L25 and on the parameter posteriors
+obtained from the gt modelling (Table 2). The theoretical models
+shown in the figure, by More et al. (2015) and Diemer (2020a),
+are computed at z = 0.45, which corresponds to the midpoint of
+the redshift range covered by our cluster sample. We remark that
+the redshift dependence of these models is very mild. Our con-
+straints are in good agreement with these theoretical predictions.
+The largest deviations appear for the wcg results at ν200m < 3,
+reaching 2σ with Diemer (2020a) at ν200m ∼ 2.
+
+The top-left panel of Fig. 3 also shows the comparison with
+literature results based on X-ray (Umetsu & Diemer 2017; Con-
+tigiani et al. 2019; Bianconi et al. 2021; Rana et al. 2023; Joshi
+et al. 2025), Sunyaev-Zeldovich (SZ, Zürcher & More 2019;
+Shin et al. 2019, 2021), and optical (More et al. 2016; Baxter
+et al. 2017; Chang et al. 2018; Murata et al. 2020) samples of
+
+Fig. 3. Left panels: Constraints on the ratio of rsp to r200m as a function of ν200m (top panel), obtained from the modelling of gt (blue band) and
+wcg (orange band) presented in this work, and by Giocoli et al. (2024) in KiDS-DR3 (grey band). The median theoretical models by More et al.
+(2015) (black dashed line) and Diemer (2020a) (magenta dashed line) are shown. Both models are computed at z = 0.45. Squares represent the
+results from X-ray-selected clusters by Umetsu & Diemer (2017, green), Contigiani et al. (2019, cyan), Bianconi et al. (2021, grey), Rana et al.
+(2023, purple), Joshi et al. (2025, red). Triangles display results from SZ-selected cluster catalogues by Zürcher & More (2019, green), Shin et al.
+(2019, red and purple), Shin et al. (2021, cyan and grey). Crosses show the results from optically-selected clusters by More et al. (2016); Baxter
+et al. (2017, green), Chang et al. (2018, cyan and grey), Murata et al. (2020, red). The probes used in these analyses, namely weak lensing (WL),
+strong lensing (SL), luminosity distribution (LD), and galaxy distribution (GD), are reported in the legend. Mass accretion rates from gt and wcg
+measurements are shown in the middle and bottom panels, respectively. Here, the model by Diemer (2020a) is shown, computed at z = 0.2 (solid
+lines), z = 0.37 (dotted lines), and z = 0.62 (dash-dotted lines). Right panels: rsp derived from the modelling of gt (blue dots) and wcg (orange
+diamonds), as a function of M200m and for zob ∈ [0.1, 0.3) (top panel), zob ∈ [0.3, 0.45) (middle panel), zob ∈ [0.45, 0.8] (bottom panel).
+
+galaxy clusters.3 We find general agreement with these litera-
+ture results. The largest discrepancies arise against the results
+by More et al. (2016) and Chang et al. (2018), based on cluster
+member galaxy distributions. This may be explained in part by
+dynamical friction, which has a greater effect on the galaxy sam-
+
+3 The legend in the top-left panel of Fig. 3 reports the surveys these
+works are based on, namely the Cluster Lensing And Supernova survey
+with Hubble (CLASH, Postman et al. 2012), the Canadian Cluster Com-
+parison Project (CCCP, Hoekstra et al. 2012), the Local Cluster Sub-
+structure Survey (LoCuSS, Böhringer et al. 2004), the eROSITA final
+equatorial depth survey (eFEDS, Bulbul et al. 2022), the ROSAT All-
+Sky Survey (RASS, Voges et al. 1999), Planck (Planck Collaboration
+et al. 2020), the South Pole Telescope (SPT, Bleem et al. 2015) survey,
+the Atacama Cosmology Telescope (ACT, Hilton et al. 2018) survey,
+the Sloan Digital Sky Survey (SDSS, Aihara et al. 2011), the Dark En-
+ergy Survey (DES, The Dark Energy Survey Collaboration 2005), and
+the Hyper Suprime-Cam (HSC, Miyazaki et al. 2012) survey.
+
+ples used in those studies. In fact, More et al. (2016) and Chang
+et al. (2018) used shallower galaxy samples, with a magnitude
+limit of i < 21.5. Compared to our work, this implies a selection
+of more massive galaxies, for which the impact of dynamical
+friction is stronger. Future photometric surveys will allow for a
+detailed investigation of the effects by dynamical friction.
+
+As displayed in the top and middle panels of Fig. 4, the pre-
+cision on Rsp and rsp derived from the modelling of gt and wcg
+is constant with z and M200m. It amounts to 14% for gt and to
+10% for wcg. These precisions are among the best available in
+the literature to date. Furthermore, these results show that wcg
+is a stronger probe of the splashback radius, as it directly con-
+strains the infalling term parameters, which are not accessible
+via weak-lensing observations (see Appendix D).
+
+The right panels of Fig. 3 show that rsp estimates from wcg
+are systematically lower than those from the gt modelling, al-
+
+0.751.001.251.501.752.002.252.50sprsp/r200mMore+15, z=0.45Diemer+20, z=0.45KiDS-1000 - gt (this work)KiDS-1000 - wcg (this work)KiDS-DR3; Giocoli+24 - WLCLASH; Umetsu+17 - WL+SLCCCP; Contigiani+19 - WLLoCuSS; Bianconi+21 - LDeFEDS; Rana+23 - GDRASS; Joshi+25 - GDPlanck; Zürcher+19 - GDSPT; Shin+19 - GDACT; Shin+19 - GDACT; Shin+21 - GDACT; Shin+21 - WLSDSS; More+16 - GDDES; Chang+18 - GDDES; Chang+18 - WLHSC; Murata+20 - GD1234gtDiemer+20, z=0.2Diemer+20, z=0.37Diemer+20, z=0.62KiDS-10002.02.53.03.54.0200m1234wcgKiDS-10000.60.81.01.21.41.61.82.0rsp [h1Mpc]zob[0.10,0.30)KiDS-1000 - gtKiDS-1000 - wcg0.60.81.01.21.41.61.82.0rsp [h1Mpc]zob[0.30,0.45)10.72345M200m [1014h1M]0.60.81.01.21.41.61.82.0rsp [h1Mpc]zob[0.45,0.80]A&A proofs: manuscript no. aanda
+
+agrees also with literature simulation and observational results
+(Saro et al. 2015; Zhang et al. 2019; Yan et al. 2020; Seppi et al.
+2023; Sommer et al. 2024). As shown in Table 2, we constrain
+the average galaxy bias parameters in Eq. (29) through the wcg
+modelling, obtaining bg,0 = 1.17+0.18
+−0.11, and
+bg,z = 0.31+0.35
+−0.33. A positive redshift evolution of ⟨bg⟩ is expected,
+because galaxies at higher redshifts reside in rarer, more biased
+haloes. Our analysis, however, does not yield a significant red-
+shift trend, as bg,z is consistent with zero within 1σ. Similarly,
+we find no significant dependence on λ∗. Future, more precise
+wcg measurements will allow for a more detailed modelling of
+the galaxy bias.
+
+−0.17, bg,λ∗ = −0.10+0.11
+
+6. Discussion and conclusions
+
+In this paper, we presented an analysis of the splashback radius
+for the richest 8730 optically-selected galaxy clusters from the
+AMICO KiDS-1000 catalogue (Maturi et al. 2025). The sample
+covers an effective area of 839 deg2 and spans the redshift range
+z ∈ [0.1, 0.8]. We measured and modelled the reduced tangential
+shear, gt, and the cluster-galaxy projected correlation function,
+wcg, of cluster ensembles, binning in redshift and mass proxy.
+Our modelling strategy, based on the techniques employed in
+recent cosmological analyses, allowed us to reconstruct the av-
+erage properties of the underlying dark matter halo population,
+such as the normalised splashback radius, Rsp, the splashback
+radius, rsp, and the mass accretion rate, Γ.
+
+Our constraints confirm the results of ΛCDM simulations
+and agree with observational studies in the literature. The rsp
+estimates from gt and wcg agree within 1σ, though wcg yields
+slightly lower values. This small offset may reflect a mild dy-
+namical friction effect on satellite galaxies. We caution that
+galaxy selection is expected to play a role, as dynamical friction
+preferentially affects the most massive cluster members. Further-
+more, the precision of our rsp estimates is among the best avail-
+able in the literature to date. It amounts to 14% in the case of
+gt modelling, while wcg constraints have a precision 10%. The
+measurements of wcg also uniquely constrain the profile of the
+infalling material, which is not probed by weak-lensing observa-
+tions.
+
+A natural question is whether gt and wcg estimates of rsp
+should be combined into a single constraint. We have chosen not
+to do so because the two probes are physically distinct: gt traces
+the total matter distribution, whereas wcg is sensitive to cluster
+member galaxies, which are affected by dynamical friction. The
+observed difference between the two measurements is consistent
+with this expected bias. Combining them would therefore aver-
+age a biased and an unbiased estimate of rsp. Future analyses
+with more complete galaxy samples or explicit modelling of dy-
+namical friction may allow for a joint rsp constraint.
+
+As discussed in Sect. 4.6, we assumed that the net effect of
+orientation and projections on the wcg measurements is absorbed
+by the free galaxy bias. The impact of this assumption on wcg
+will be tested in future studies based on simulations. Intrinsic
+alignments are expected to have a negligible impact in our anal-
+ysis, contributing only a sub-percent systematic error to cluster
+profiles (Chisari et al. 2014; Sereno et al. 2018). In the mod-
+elling of gt, L25 demonstrated that anisotropic boosts, affecting
+the correlation functions on large scales due to optical projec-
+tion effects (Sunayama et al. 2020; Wu et al. 2022; Sunayama
+2023; Park et al. 2023; Zhou et al. 2024; Nyarko Nde et al.
+2025), have negligible impact on our mass constraints. In par-
+ticular, L25 adopted a model designed for cluster samples se-
+
+Fig. 4. Precision of the Rsp (top panels), rsp (middle panels), and M200m
+(bottom panels) constraints, obtained from the modelling of gt (blue
+dots) and wcg (orange diamonds), for zob ∈ [0.1, 0.3) (left panels), zob ∈
+[0.3, 0.45) (central panels), and zob ∈ [0.45, 0.8] (right panels).
+
+though the values remain consistent within 1σ. This small offset
+can be attributed to dynamical friction affecting cluster members
+(Diemer et al. 2017; Chang et al. 2018), which also causes haloes
+to appear more concentrated. Figure 3 displays also an agree-
+ment on the M200m constraints derived from the two probes. As
+we detail in Appendix D, the larger M200m uncertainties derived
+from wcg, displayed in the bottom panels of Fig. 4, are attributed
+to the differences in the constraints on the A and σintr parameters,
+appearing in the log λ∗ − log M200m relation. The right panels of
+Fig. 3 also show that rsp mildly decreases with redshift, as higher
+redshifts correspond to larger halo mass accretion rates, leading
+to smaller splashback radii (Diemer & Kravtsov 2014; Diemer
+et al. 2017).
+
+More et al. (2015) derived the following expression for the
+
+dimensionless mass accretion rate, Γ,
+
+Γ ≡
+
+∆ log Mvir
+∆ log a
+
+= 0.935 − 3.04 ln
+
+Rsp
+0.54 + 0.286 Ωm(z)
+
+− 1
+
+(45)
+where a is the scale factor. We computed Γ posteriors by in-
+jecting ⟨Rsp(∆λ∗
+ob, ∆zob)⟩ values, derived from Eq. (34) at each
+MCMC step, into Eq. (45). Furthermore, Ωm(z) in Eq. (45) is
+computed at the median cluster redshifts reported in Table 1. As
+shown in the middle and bottom left panels of Fig. 3, our con-
+straints on Γgt and Γwcg , derived from the modelling of gt and
+wcg, respectively, agree with the theoretical model by Diemer
+(2020a). This agreement is expected, as our Rsp results are con-
+sistent with the ΛCDM predictions from More et al. (2015) and
+Diemer (2020a), and Eq. (45) is itself derived from those same
+simulations.
+
+As reported in Table 2 and detailed in Appendix D, the wcg
+modelling yields robust constraints on the DK14 infalling term
+parameters, namely be and se, while weak-lensing observations
+do not probe this region. This is not attributable to different mea-
+surement precisions, which are similar for the two probes, but to
+the fact that wcg is more directly sensitive to the spatial matter
+distribution in the infall region. Weak lensing, instead, probes
+∆Σt, an enclosed-mass quantity that is less sensitive to the de-
+tailed structure of the infalling region. Further discussions on the
+constraints on DK14 parameters can be found in Appendix D. In
+agreement with L25, we find that the foff posterior aligns with
+the prior and σoff = 0.21 ± 0.11 h−1Mpc. The latter constraint
+
+0.100.150.20sp/spzob[0.10,0.30)gtwcgzob[0.30,0.45)zob[0.45,0.80]0.100.15rsp/rsp10.72340.10.2M200m/M200m10.7234M200m [1014h1M]10.7234G. F. Lesci et al.: AMICO clusters in KiDS-1000: Splashback radius
+
+lected with the red-sequence Matched-filter Probabilistic Perco-
+lation (redMaPPer, Rykoff et al. 2014) algorithm. This approxi-
+mation holds in the case of a cosmological two-halo term, which
+mildly depends on the free parameters considered in the analy-
+sis. In this work, the cosmological two-halo is replaced by a free
+infalling term (Eq. 10), whose shape is poorly constrained by
+weak-lensing observations. Thus, we do not expect a dramatic
+impact of the anisotropic boosts on the results from the gt mod-
+elling. Nonetheless, the constraints obtained from wcg measure-
+ments may be biased due to this selection effect. In the future we
+will effectively test the impact of this selection bias on rsp, de-
+veloping dedicated mock data sets that simulate AMICO detec-
+tions. We will also test how the assumption of the Diemer (2025)
+model, adopted as an alternative to the DK14 profile (Eq. 8), af-
+fects our results. The Diemer (2025) model requires higher data
+quality because it includes a larger number of free parameters
+compared to DK14, and KiDS-Legacy data (Wright et al. 2024)
+can provide the statistical power needed to constrain these addi-
+tional degrees of freedom. We also note that the DK14 model is
+extrapolated up to very large scales for the derivation of gt (Eq.
+16) and wcg (Eq. 17) models. The impact of such extrapolation
+shall be assessed through simulations.
+
+Based on simulations, Shin & Diemer (2023) demonstrated
+the luminosity difference between the brightest cluster
+that
+galaxy and its brightest satellites, known as magnitude gap,
+serves as a reliable tracer of both the mass accretion rate and
+rsp. This gap widens as satellites undergo disruption and halo
+accretion slows, also representing an indicator of system age
+(Jones et al. 2003; Deason et al. 2013; Yang et al. 2025). Data
+from KiDS-Legacy and Stage-IV surveys, such as Euclid (Eu-
+clid Collaboration et al. 2025) and the Vera C. Rubin Obser-
+vatory (Rubin/LSST, Ivezic et al. 2008), will allow us to em-
+pirically constrain the correlation between rsp and the magni-
+tude gap. Stage-IV data can potentially shed light also on the
+stellar splashback radius, traced by the intracluster light (Da-
+cunha et al. 2025; Walker et al. 2025), and on eventual devia-
+tions from General Relativity probed by the outskirst of galaxy
+clusters (Contigiani et al. 2023; Butt et al. 2025). As discussed
+in Appendix C, rsp estimates obtained assuming the Planck18
+cosmology are systematically lower than those from the base-
+line analysis, though they remain consistent within 0.5σ. With
+future data, the reduction in statistical uncertainties will enhance
+the rsp sensitivity to cosmological parameters. Lastly, while the
+present rsp measurements from gt and wcg are consistent within
+1σ, upcoming data may better constrain the role of dynamical
+friction on cluster galaxies.
+
+Acknowledgements. Based on observations made with ESO Telescopes at the
+La Silla Paranal Observatory under programme IDs 177.A-3016, 177.A-3017,
+177.A-3018 and 179.A-2004, and on data products produced by the KiDS
+consortium. The KiDS production team acknowledges support from: Deutsche
+Forschungsgemeinschaft, ERC, NOVA and NWO-M grants; Target; the Univer-
+sity of Padova, and the University Federico II (Naples). We acknowledge the
+financial contribution from the grant PRIN-MUR 2022 20227RNLY3 "The con-
+cordance cosmological model: stress-tests with galaxy clusters" supported by
+Next Generation EU and from the grant ASI n. 2024-10-HH.0 "Attività scien-
+tifiche per la missione Euclid - fase E". MS acknowledges financial contribu-
+tions from contract ASI-INAF n.2017-14-H.0, contract INAF mainstream project
+1.05.01.86.10, INAF Theory Grant 2023: Gravitational lensing detection of mat-
+ter distribution at galaxy cluster boundaries and beyond (1.05.23.06.17), and
+contract Prin-MUR 2022 supported by Next Generation EU (n.20227RNLY3,
+The concordance cosmological model: stress-tests with galaxy clusters). GC
+acknowledges the support from the Next Generation EU funds within the Na-
+tional Recovery and Resilience Plan (PNRR), Mission 4 - Education and Re-
+search, Component 2 - From Research to Business (M4C2), Investment Line 3.1
+• Strengthening and creation of Research Infrastructures, Project IR0000012 -
+"CTA+ - Cherenkov Telescope Array Plus". HH is supported by a DFG Heisen-
+
+berg grant (Hi 1495/5-1), the DFG Collaborative Research Center SFB1491, an
+ERC Consolidator Grant (No. 770935), and the DLR project 50QE2305.
+
+References
+
+Adelberger, K. L., Steidel, C. C., Pettini, M., et al. 2005, ApJ, 619, 697
+Adhikari, S., Dalal, N., & Chamberlain, R. T. 2014, J. Cosm. Astro-Particle
+
+Phys., 2014, 019
+
+Aihara, H., Allende Prieto, C., An, D., et al. 2011, ApJ Suppl., 193, 29
+Alam, S., Albareti, F. D., Allende Prieto, C., et al. 2015, ApJ Suppl., 219, 12
+Baltz, E. A., Marshall, P., & Oguri, M. 2009, J. Cosm. Astro-Particle Phys., 2009,
+
+015
+
+Bartelmann, M. & Schneider, P. 2001, Phys. Rept., 340, 291
+Baxter, E., Chang, C., Jain, B., et al. 2017, ApJ, 841, 18
+Bellagamba, F., Roncarelli, M., Maturi, M., & Moscardini, L. 2018, MNRAS,
+
+473, 5221
+
+Beltz-Mohrmann, G. D. & Berlind, A. A. 2021, ApJ, 921, 112
+Benítez, N. 2000, ApJ, 536, 571
+Bertschinger, E. 1985, ApJ Suppl., 58, 39
+Bhattacharya, S., Habib, S., Heitmann, K., & Vikhlinin, A. 2013, ApJ, 766, 32
+Bhattacharyya, J., Adhikari, S., Banerjee, A., et al. 2022, ApJ, 932, 30
+Bianconi, M., Buscicchio, R., Smith, G. P., et al. 2021, ApJ, 911, 136
+Blake, C., Amon, A., Childress, M., et al. 2016, MNRAS, 462, 4240
+Bleem, L. E., Stalder, B., de Haan, T., et al. 2015, ApJ Suppl., 216, 27
+Böhringer, H., Schuecker, P., Guzzo, L., et al. 2004, A&A, 425, 367
+Bryan, G. L. & Norman, M. L. 1998, ApJ, 495, 80
+Bulbul, E., Liu, A., Pasini, T., et al. 2022, A&A, 661, A10
+Butt, M. A., Haridasu, S., Diaferio, A., et al. 2025, arXiv e-prints,
+
+Capaccioli, M. & Schipani, P. 2011, The Messenger, 146, 2
+Cardone, V. F., Karmakar, P., De Petris, M., & Maoli, R. 2021, Phys. Rev. D,
+
+103, 064065
+
+Chang, C., Baxter, E., Jain, B., et al. 2018, ApJ, 864, 83
+Chisari, N. E., Mandelbaum, R., Strauss, M. A., Huff, E. M., & Bahcall, N. A.
+
+2014, MNRAS, 445, 726
+
+Contigiani, O., Hoekstra, H., & Bahé, Y. M. 2019, MNRAS, 485, 408
+Contigiani, O., Hoekstra, H., Brouwer, M. M., et al. 2023, MNRAS, 518, 2640
+Costanzi, M., Rozo, E., Simet, M., et al. 2019, MNRAS, 488, 4779
+Coupon, J., Kilbinger, M., McCracken, H. J., et al. 2012, A&A, 542, A5
+Covone, G., Sereno, M., Kilbinger, M., & Cardone, V. F. 2014, ApJ Lett., 784,
+
+L25
+
+Dacunha, T., Mansfield, P., & Wechsler, R. 2025,
+
+arXiv e-prints,
+
+Davis, M. & Peebles, P. J. E. 1983, ApJ, 267, 465
+de Jong, J. T. A., Verdoes Kleijn, G. A., Erben, T., et al. 2017, A&A, 604, A134
+Deason, A. J., Conroy, C., Wetzel, A. R., & Tinker, J. L. 2013, ApJ, 777, 154
+Despali, G., Moscardini, L., Nelson, D., et al. 2025, A&A, 697, A213
+Diemer, B. 2017, ApJ Suppl., 231, 5
+Diemer, B. 2020a, ApJ Suppl., 251, 17
+Diemer, B. 2020b, ApJ, 903, 87
+Diemer, B. 2025, MNRAS, 536, 1718
+Diemer, B. & Kravtsov, A. V. 2014, ApJ, 789, 1
+Diemer, B. & Kravtsov, A. V. 2015, ApJ, 799, 108
+Diemer, B., Mansfield, P., Kravtsov, A. V., & More, S. 2017, ApJ, 843, 140
+Ding, J., Dalal, R., Sunayama, T., et al. 2025, MNRAS, 536, 572
+Driver, S. P., Bellstedt, S., Robotham, A. S. G., et al. 2022, MNRAS, 513, 439
+Driver, S. P., Hill, D. T., Kelvin, L. S., et al. 2011, MNRAS, 413, 971
+Duffy, A. R., Schaye, J., Kay, S. T., & Dalla Vecchia, C. 2008, MNRAS, 390,
+
+L64
+
+Eckert, D., Ettori, S., Robertson, A., et al. 2022, A&A, 666, A41
+Edge, A., Sutherland, W., Kuijken, K., et al. 2013, The Messenger, 154, 32
+Einasto, J. 1965, Trudy Astrofizicheskogo Instituta Alma-Ata, 5, 87
+Eltvedt, A. M., Shanks, T., Metcalfe, N., et al. 2024, MNRAS, 535, 2092
+Euclid Collaboration, Mellier, Y., Abdurro'uf, et al. 2025, A&A, 697, A1
+Euclid Collaboration: Adam, R., Vannier, M., Maurogordato, S., et al. 2019,
+
+A&A, 627, A23
+
+Fenech Conti, I., Herbonnet, R., Hoekstra, H., et al. 2017, MNRAS, 467, 1627
+Fillmore, J. A. & Goldreich, P. 1984, ApJ, 281, 1
+Fong, M. & Han, J. 2021, MNRAS, 503, 4250
+Gao, L., Navarro, J. F., Cole, S., et al. 2008, MNRAS, 387, 536
+García, R., Salazar, E., Rozo, E., et al. 2023, MNRAS, 521, 2464
+Ghirardini, V., Bulbul, E., Artis, E., et al. 2024, A&A, 689, A298
+Giblin, B., Heymans, C., Asgari, M., et al. 2021, A&A, 645, A105
+Giocoli, C., Marulli, F., Moscardini, L., et al. 2021, A&A, 653, A19
+Giocoli, C., Palmucci, L., Lesci, G. F., et al. 2024, A&A, 687, A79
+Haggar, R., Amoura, Y., Mpetha, C. T., et al. 2024, ApJ, 972, 28
+Hartlap, J., Simon, P., & Schneider, P. 2007, A&A, 464, 399
+
+Sutherland, W., Emerson, J., Dalton, G., et al. 2015, A&A, 575, A25
+The Dark Energy Survey Collaboration. 2005, arXiv e-prints, astro
+Tinker, J., Kravtsov, A. V., Klypin, A., et al. 2008, ApJ, 688, 709
+Tinker, J. L., Weinberg, D. H., Zheng, Z., & Zehavi, I. 2005, ApJ, 631, 41
+Umetsu, K. & Diemer, B. 2017, ApJ, 836, 231
+van den Busch, J. L., Hildebrandt, H., Wright, A. H., et al. 2020, A&A, 642,
+
+A200
+
+van den Busch, J. L., Wright, A. H., Hildebrandt, H., et al. 2022, A&A, 664,
+
+A170
+
+Viola, M., Cacciato, M., Brouwer, M., et al. 2015, MNRAS, 452, 3529
+Vladimir, Z., Osinga, C., Diemer, B., Salazar, E. M., & Rozo, E. 2025, arXiv
+
+e-prints, arXiv:2506.09146
+
+Voges, W., Aschenbach, B., Boller, T., et al. 1999, A&A, 349, 389
+Walker, K., Ludlow, A., Power, C., Knebe, A., & Cui, W. 2025, arXiv e-prints,
+
+Wehrens, R. & Buydens, L. M. C. 2007, Journal of Statistical Software, 21, 1
+Wehrens, R. & Kruisselbrink, J. 2018, Journal of Statistical Software, 87, 1
+Wright, A. H., Hildebrandt, H., van den Busch, J. L., & Heymans, C. 2020, A&A,
+
+637, A100
+
+Wright, A. H., Kuijken, K., Hildebrandt, H., et al. 2024, A&A, 686, A170
+Wu, H.-Y., Costanzi, M., To, C.-H., et al. 2022, MNRAS, 515, 4471
+Yan, Z., Raza, N., Van Waerbeke, L., et al. 2020, MNRAS, 493, 1120
+Yang, M., Han, J., Wang, W., et al. 2025, arXiv e-prints, arXiv:2508.00667
+Yang, X., Mo, H. J., van den Bosch, F. C., et al. 2006, MNRAS, 373, 1159
+Yu, Q. S., O'Neil, S., Shen, X., et al. 2025, arXiv e-prints, arXiv:2507.22102
+Zhang, Y., Jeltema, T., Hollowood, D. L., et al. 2019, MNRAS, 487, 2578
+Zhou, C., Wu, H.-Y., Salcedo, A. N., et al. 2024, Phys. Rev. D, 110, 103508
+Zhou, Y. & Han, J. 2023, MNRAS, 525, 2489
+Zürcher, D. & More, S. 2019, ApJ, 874, 184
+
+Henson, M. A., Barnes, D. J., Kay, S. T., McCarthy, I. G., & Schaye, J. 2017,
+
+MNRAS, 465, 3361
+
+Hildebrandt, H., van den Busch, J. L., Wright, A. H., et al. 2021, A&A, 647,
+
+A124
+
+Hilton, M., Hasselfield, M., Sifón, C., et al. 2018, ApJ Suppl., 235, 20
+Hoekstra, H., Mahdavi, A., Babul, A., & Bildfell, C. 2012, MNRAS, 427, 1298
+Ingoglia, L., Covone, G., Sereno, M., et al. 2022, MNRAS, 511, 1484
+Ivezic, Z., Axelrod, T., Brandt, W. N., et al. 2008, Serbian Astronomical Journal,
+
+176, 1
+
+Johnston, D. E., Sheldon, E. S., Wechsler, R. H., et al. 2007, arXiv e-prints,
+
+Jones, L. R., Ponman, T. J., Horton, A., et al. 2003, MNRAS, 343, 627
+Joshi, J., Rana, D., More, S., & Klein, M. 2025, arXiv e-prints, arXiv:2506.08925
+Kohonen, T. 1982, Biological Cybernetics, 43, 59
+Kuijken, K. 2011, The Messenger, 146, 8
+Kuijken, K., Heymans, C., Dvornik, A., et al. 2019, A&A, 625, A2
+Landy, S. D. & Szalay, A. S. 1993, ApJ, 412, 64
+Lee, B. E., Le Brun, A. M. C., Haq, M. E., et al. 2018, MNRAS, 479, 890
+Lesci, G. F., Marulli, F., Moscardini, L., et al. 2025, A&A, 703, A25
+Lewis, A. & Challinor, A. 2011, ascl:1102.026
+Liske, J., Baldry, I. K., Driver, S. P., et al. 2015, MNRAS, 452, 2087
+Marulli, F., Veropalumbo, A., García-Farieta, J. E., et al. 2021, ApJ, 920, 13
+Marulli, F., Veropalumbo, A., & Moresco, M. 2016, Astronomy and Computing,
+
+14, 35
+
+Maturi, M., Bellagamba, F., Radovich, M., et al. 2019, MNRAS, 485, 498
+Maturi, M., Radovich, M., Moscardini, L., et al. 2025, A&A, 701, A201
+McClintock, T., Varga, T. N., Gruen, D., et al. 2019, MNRAS, 482, 1352
+Miller, L., Kitching, T. D., Heymans, C., Heavens, A. F., & van Waerbeke, L.
+
+2007, MNRAS, 382, 315
+
+Mitchell, M. A., Arnold, C., & Li, B. 2021, MNRAS, 502, 6101
+Miyazaki, S., Komiyama, Y., Nakaya, H., et al. 2012, in Society of Photo-Optical
+Instrumentation Engineers (SPIE) Conference Series, Vol. 8446, Ground-
+based and Airborne Instrumentation for Astronomy IV, ed. I. S. McLean, S. K.
+Ramsay, & H. Takami, 84460Z
+
+More, S., Diemer, B., & Kravtsov, A. V. 2015, ApJ, 810, 36
+More, S., Miyatake, H., Takada, M., et al. 2016, ApJ, 825, 39
+Mpetha, C. T., Taylor, J. E., Amoura, Y., & Haggar, R. 2024, MNRAS, 532, 2521
+Murata, R., Sunayama, T., Oguri, M., et al. 2020, Publ. Astron. Soc. Japan, 72,
+
+64
+
+Navarro, J. F., Frenk, C. S., & White, S. D. M. 1997, ApJ, 490, 493
+Nyarko Nde, T., Wu, H.-Y., Cao, S., et al. 2025, arXiv e-prints, arXiv:2510.00753
+Park, Y., Sunayama, T., Takada, M., et al. 2023, MNRAS, 518, 5171
+Peter, A. H. G., Rocha, M., Bullock, J. S., & Kaplinghat, M. 2013, MNRAS,
+
+430, 105
+
+Pizzardo, M., Geller, M. J., Kenyon, S. J., & Damjanov, I. 2024, A&A, 683, A82
+Pizzuti, L., Sartoris, B., Amendola, L., et al. 2017, J. Cosm. Astro-Particle Phys.,
+
+2017, 023
+
+Planck Collaboration, Aghanim, N., Akrami, Y., et al. 2020, A&A, 641, A6
+Planck Collaboration XXIV. 2016, A&A, 594, A24
+Postman, M., Coe, D., Benítez, N., et al. 2012, ApJ Suppl., 199, 25
+Rana, D., More, S., Miyatake, H., et al. 2023, MNRAS, 522, 4181
+Robertson, A., Harvey, D., Massey, R., et al. 2019, MNRAS, 488, 3646
+Roche, N. & Eales, S. A. 1999, MNRAS, 307, 703
+Romanello, M., Marulli, F., Moscardini, L., et al. 2024, A&A, 682, A72
+Rosselli, D., Marulli, F., Veropalumbo, A., Cimatti, A., & Moscardini, L. 2023,
+
+A&A, 669, A29
+
+Rykoff, E. S., Rozo, E., Busha, M. T., et al. 2014, ApJ, 785, 104
+Ryu, S. & Lee, J. 2021, ApJ, 917, 98
+Ryu, S. & Lee, J. 2022, ApJ, 933, 189
+Salazar, E. M., Rozo, E., García, R., et al. 2025, Phys. Rev. D, 111, 043527
+Saro, A., Bocquet, S., Rozo, E., et al. 2015, MNRAS, 454, 2305
+Schaller, M., Frenk, C. S., Bower, R. G., et al. 2015, MNRAS, 451, 1247
+Schneider, P. & Seitz, C. 1995, A&A, 294, 411
+Seitz, C. & Schneider, P. 1997, A&A, 318, 687
+Seppi, R., Comparat, J., Ghirardini, V., et al. 2024, A&A, 686, A196
+Seppi, R., Comparat, J., Nandra, K., et al. 2023, A&A, 671, A57
+Sereno, M. & Ettori, M. 2015a, MNRAS, 450, 3675
+Sereno, M. & Ettori, S. 2015b, MNRAS, 450, 3633
+Sereno, M., Giocoli, C., Izzo, L., et al. 2018, Nature Astronomy, 2, 744
+Shao, M. & Anbajagane, D. 2024, The Open Journal of Astrophysics, 7, 29
+Sheldon, E. S., Johnston, D. E., Frieman, J. A., et al. 2004, Astron. J., 127, 2544
+Shin, T., Adhikari, S., Baxter, E. J., et al. 2019, MNRAS, 487, 2900
+Shin, T., Jain, B., Adhikari, S., et al. 2021, MNRAS, 507, 5758
+Shin, T.-h. & Diemer, B. 2023, MNRAS, 521, 5570
+Sommer, M. W., Schrabback, T., Ragagnin, A., & Rockenfeller, R. 2024, MN-
+
+RAS, 532, 3359
+
+Sun, X., O'Neil, S., Shen, X., & Vogelsberger, M. 2025, arXiv e-prints,
+
+Sunayama, T. 2023, MNRAS, 521, 5064
+Sunayama, T., Park, Y., Takada, M., et al. 2020, MNRAS, 496, 4468
+
+Appendix A: Halo miscentring model
+
+To model the contribution due to the miscentred population of
+clusters, we assumed that the probability of a lens being at a pro-
+jected distance Rs from the chosen centre, namely P(Rs), follows
+a Rayleigh distribution (following, e.g. Johnston et al. 2007; Vi-
+ola et al. 2015), that is
+
+P(Rs) = Rs
+σ2
+off
+
+−
+
+exp
+
+ Rs
+σoff
+
+(A.1)
+
+where σoff is the standard deviation of the halo misplacement
+distribution on the plane of the sky, expressed in units of h−1Mpc.
+The corresponding azimuthally averaged profile is given by
+(Yang et al. 2006)
+
+Σ(R|Rs) = 1
+2π
+
+ 2π
+
+Σcen
+
+R2 + R2
+
+s − 2RRs cos θ
+
+dθ ,
+
+(A.2)
+
+where Σcen is the centred surface mass density, while θ is the
+polar angle in the plane of the sky. The surface mass density
+distribution of a miscentred halo is expressed as
+
+where we write ⟨∆ρ(r | x)⟩x as ∆ρ(r) for brevity. If galaxies are
+taken as biased tracers of the matter field, with galaxy overden-
+sity δg ≡ bgδm and galaxy bias bg, the corresponding cluster-
+galaxy correlation function follows from Eqs. (B.2) - (B.4):
+
+ξcg(r) = bg
+
+∆ρ(r)
+
+(B.5)
+
+Here, bg generally depends on the scale r. However, as discussed
+below, we assumed a constant galaxy bias. The cluster-galaxy
+correlation function projected over the line of sight, wcg, is ex-
+pressed as follows:
+
+wcg(R) =
+
+dχ ̃n(χ) ξcg
+
+R2 + (χ − χc)2
+
+(B.6)
+
+where R is the projected comoving distance from the cluster cen-
+tre, ̃n(χ) is the probability density function of galaxy comoving
+distances, and χc is the comoving distance of the cluster. We re-
+mark that χ and χc are comoving distances along the line of sight.
+Alternatively, Eq. B.6 can be integrated over the galaxy redshift,
+zg:
+
+Σoff(R) =
+
+P(Rs) Σ(R|Rs) dRs .
+
+(A.3)
+
+wcg(R) =
+
+dzg n(zg) ξcg
+
+R2 + [χ(zg) − χc]2
+
+(B.7)
+
+Analogously to Eq. (12), the miscentred tangential reduced
+shear, gt,off, has the following expression:
+
+gt,off(R, M, z) =
+
+∆Σt,off(R, M, z) ⟨Σ−1
+
+crit(z)⟩
+crit(z)⟩−1 ⟨Σ−2
+
+crit(z)⟩
+
+1 − Σoff(R, M, z) ⟨Σ−1
+
+(A.4)
+
+where Σoff is given by Eq. (A.3), while ∆Σt,off is derived by re-
+placing Σ with Σoff in Eq. (14).
+
+Appendix B: Cluster-galaxy correlation model
+
+The 3D halo-matter correlation function, ξhm(r), is defined as
+follows
+
+ξhm(r) ≡ ⟨δh(x) δm(x + r)⟩x ,
+
+(B.1)
+
+where x denotes the 3D comoving position of a halo centre, δh
+and δm are the halo and matter overdensity fields, respectively,
+while ⟨. . . ⟩x represents the average over halo positions. The mat-
+ter density field is defined as
+
+δm(x) ≡
+
+ρ(x) − ρm
+
+(B.2)
+
+where ρ is the local 3D matter density field and ρm is the mean
+matter density of the Universe. Because the right-hand side of
+Eq. (B.1) involves an average over halo centres, it can be ex-
+pressed in terms of the conditional matter density profile around
+haloes, ρ(r | x):
+
+ξhm(r) =
+
+⟨ρ(r | x) − ρm⟩x
+
+⟨∆ρ(r | x)⟩x
+
+(B.3)
+
+Here, ⟨∆ρ⟩ can be expressed as the DK14 profile in Eq. (8). As-
+suming spatial isotropy, the correlation function depends only
+on the separation r = |r|. Furthermore, assuming that δc = δh,
+where δc is the galaxy cluster density field, we can express the
+3D cluster-matter correlation function as
+
+ξcm(r) =
+
+∆ρ(r)
+
+(B.4)
+
+where n(zg) is the galaxy redshift probability density function.
+In Eq. (B.7), the Jacobian arising from the change of variable is
+absorbed into the definition of n(zg), namely
+
+n(zg) ≡ ̃n(χ(zg))
+
+dχ
+dzg
+
+(B.8)
+
+Substituting Eq. (B.5) into Eq. (B.7), we obtain
+
+wcg(R) =
+
+⟨bg⟩
+
+dzg n(zg) ∆ρ
+
+R2 + [χ(zg) − χc]2
+
+(B.9)
+
+where ⟨bg⟩ is the galaxy bias averaged along the line of sight.
+With this approximation, we assume that bg varies slowly along
+the line of sight, and that bg does not depend on the projected
+separation R. These assumptions are motivated by the limited
+constraining power of our data on bg.
+
+Throughout this section, we assumed that x, r, and R are co-
+moving distances. Conversely, in our analysis we measured and
+modelled wcg as a function of the physical projected separation
+from cluster centres. In this case, Eq. (B.9) takes the following
+form:
+
+wcg(R, z) =
+
+⟨bg(z)⟩
+ρm(z)
+
+dzg n(zg) ∆ρ
+
+R2 +
+
+ χ(zg) − χc
+1 + z
+
+, z
+
+where z is the cluster redshift. The (1 + z) factor in the denom-
+inator accounts for the conversion from comoving to physical
+line-of-sight separation between the cluster and galaxies at the
+epoch of the cluster.
+
+(B.10)
+
+Appendix C: Robustness of the results
+
+In this work, parameters that cannot be fully constrained by our
+data are fixed using simulations and previous observational re-
+sults, as described in Sect. 4.6. Moreover, our sample selections
+are driven exclusively by the quality of the fit. For instance, we
+exclude clusters at z > 0.8 since their inclusion would otherwise
+
+Fig. C.3. Posterior distributions of the log λ∗ − log M200m relation pa-
+rameters (Eq. 25) from the modelling of gt (blue solid lines) and wcg
+(orange dashed lines). Shaded areas represent 68% confidence regions.
+
+Fig. C.1. Comparison between MBMO
+200 , derived by L25, and the mass es-
+timates obtained from the gt modelling presented in this work, MDK14
+for zob ∈ [0.1, 0.3) (top), zob ∈ [0.3, 0.45) (middle), and zob ∈ [0.45, 0.8]
+(bottom), applying the λ∗ cuts listed in Table 1 to the AMICO KiDS-
+1000 cluster sample. The mean and error bars are derived by marginal-
+ising the mass estimates over all the free model parameter posteriors.
+The dashed red lines represent the 1:1 relation.
+
+200
+
+Fig. C.4. log c200m − log M200 relation constrained by gt (blue band) and
+wcg (orange band) measurements. The width of the bands represents the
+68% confidence of the models, while the dashed lines display median
+values. The black solid line shows the model by Duffy et al. (2008). The
+cluster redshift assumed in this figure is z = 0.45.
+
+(see e.g. Duffy et al. 2008; Bhattacharya et al. 2013; Diemer
+& Kravtsov 2015). Given our data set, this scatter is negligible
+compared to the statistical uncertainty on the amplitude of the
+relation, log c0.
+
+Figure C.1 displays the comparison between the individual
+cluster mass estimates derived from the gt modelling presented
+in this work (based on Eq. 54 in L25) and those from L25. De-
+spite L25 adopting the truncated NFW profile by Baltz, Mar-
+shall, & Oguri (2009, BMO) rather than the DK14 profile in Eq.
+(8), and modelling the gt profiles only up to 3.5 h−1Mpc, we find
+excellent agreement.
+
+As discussed in Sect. 5, in our analysis we assumed the me-
+dian cosmological parameter values constrained by L25. To test
+the impact of this choice, we fixed the cosmological parame-
+ters to the median values from Planck18. The resulting splash-
+back radius estimates obtained from the gt modelling are sys-
+tematically lower but consistent within 0.5σ (Fig. C.2). These
+lower rsp estimates are expected, as the Ωm value from Planck18,
+Ωm = 0.31, is larger than the one assumed in our baseline analy-
+sis, analysis, namely Ωm = 0.22. Indeed, larger Ωm implies faster
+accretion rates and smaller rsp (Diemer et al. 2017; Haggar et al.
+2024; Mpetha et al. 2024). We verified that the same level of
+agreement holds for Rsp. While this test was performed only for
+gt modelling, we expect similar results for wcg.
+
+Fig. C.2. Splashback radius derived from the gt modelling assuming
+Planck18 cosmology, rPlanck18
+, compared to the one derived by assum-
+sp
+ing the cosmological parameters by L25, rbase
+, for zob ∈ [0.1, 0.3) (or-
+ange dots), zob ∈ [0.3, 0.45) (red crosses), and zob ∈ [0.45, 0.8] (brown
+squares).
+
+sp
+
+reduce the fit accuracy. In this section, we assess the impact of
+these assumptions on our final results.
+
+Several tests were already performed in L25, who carried out
+the weak-lensing mass calibration of the cluster sample anal-
+ysed in this paper. They showed that weak-lensing measure-
+ments pass null tests, further demonstrating that the final mass
+constraints are robust against the choice of priors on the halo
+miscentring parameters. The same analysis also confirmed that
+our data lack the precision to detect any potential mass depen-
+dence of σintr. In addition, L25 demonstrated that fixing the mass
+slope of the log c200m − log M200m relation (Eq. 32), denoted as
+cM and discussed in Sect. 4.6, does not introduce any biases in
+the mass estimates. The same holds for the intrinsic scatter in
+the log c200m − log M200m relation, which amounts to about 35%
+
+0.81.01.21.41.61.82.0rbasesp0.81.01.21.41.61.82.0rPlanck18sp1:1 relationzob[0.10,0.30)zob[0.30,0.45)zob[0.45,0.80]0.400.350.300.250.20A024681012Densitygtwcg0.40.50.60.70.8B02468Density0.50.00.51.0C0.000.250.500.751.001.251.50Density0.050.100.15intr0.02.55.07.510.012.5Density10141015M200m [h1M]102346c200mDuffy+08gtwcgG. F. Lesci et al.: AMICO clusters in KiDS-1000: Splashback radius
+
+Fig. C.5. Constraints on the parameters of the transition factor and infalling term of the DK14 profile. The 68% and 84% confidence levels of the
+2-dimensional posteriors from gt (blue) and wcg (orange) modellings are shown. The Gaussian priors on Ft, β, and γ0 are represented by the red
+dashed lines.
+
+Appendix D: Constraints on the DK14 parameters
+
+In this work, we first estimated the parameters of the log λ∗ −
+log M200m relation (Eq. 25) by modelling gt, subsequently using
+the resulting posteriors as priors for the wcg modelling. Figure
+C.3 shows that the two probes yield similar constraints on these
+parameters. The most significant differences appear in the pos-
+teriors for the amplitude, A, and the intrinsic scatter, σintr. For
+wcg, the A posterior is shifted to lower values and is more heav-
+ily tailed, while σintr peaks at a larger value compared to the
+constraint from gt. The σintr result can be explained by our as-
+sumption of M200m ≡ Mgt ≡ Mwcg , where Mgt and Mwcg are the
+weak-lensing and cluster-galaxy correlation function masses, re-
+spectively. In fact, these are scattered proxies of the true M200m
+(see, e.g. Sereno & Ettori 2015b), with a larger scatter expected
+for Mwcg due to the large variance in cluster member galaxy dis-
+tributions. The differences in A and σintr explain the larger sta-
+tistical uncertainties on Mwcg compared to Mgt (Fig. 4).
+
+Figure C.4 shows that our constraints on the log c200m −
+log M200m relation agree within 1σ with the model by Duffy et al.
+(2008). The rsp results presented in Sect. 5 suggest that dynam-
+ical friction on cluster member galaxies imprints a splashback
+
+feature in wcg at smaller scales than in weak-lensing observa-
+tions. Consequently, haloes traced by cluster galaxies should ap-
+pear more concentrated. However, the large uncertainty on c200m
+derived from wcg (Fig. C.4) precludes any stronger conclusion
+on this point.
+
+Figure C.5 shows that the constraints on the parameters of
+the DK14 transition factor (Eq. 9), namely Ft, β, and γ0, align
+with the adopted Gaussian priors. The largest difference between
+prior and posterior occurs for β in the wcg modelling, where the
+posterior median shifts from the prior by 0.5σ (see also Table
+2). Furthermore, in this work we adopted uninformative priors
+on the infalling profile parameters in Eq. (10), namely be and se,
+allowing be to evolve with redshift (Eq. 11). As shown in Fig.
+C.5 and reported in Table 2, gt measurements do not constrain
+these parameters, whereas wcg provides strong constraints with a
+precision of 11% on be,0 and of 4% on se. Our resulting values,
+be,0 = 1.97+0.23
+−0.046, also agree within 1σ with
+the theoretical predictions from DK14. Neither probe constrains
+the redshift evolution of be.
+
+−0.19 and se = 1.461+0.052
+
+gtwcgPrior024680246800.81.62.43.24.0be,00.30.00.30.60.9be,z1.01.52.02.5Ft0.81.21.62.0se024680246800.81.62.43.24.0be,00.30.00.30.60.9be,z0.81.21.62.0se
