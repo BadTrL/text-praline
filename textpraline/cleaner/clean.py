@@ -1,11 +1,13 @@
 # textpraline/cleaner/clean.py
 from __future__ import annotations
 
+import json
 import re
 import sys
 import unicodedata
-from dataclasses import dataclass
+from dataclasses import asdict, dataclass, field
 from html import unescape
+from pathlib import Path
 from typing import Iterable, List, Literal, Tuple, Union, Any
 
 from .mappings import PUA_BULLETS, PUA_TRANSLATE_MAP, TRANSLATE_MAP
@@ -14,6 +16,7 @@ __all__ = [
     "praline",
     "clean_text",
     "clean_lines",
+    "LineDecision",
     "PralineReport",
     "detect_text_profile",
 ]
@@ -22,6 +25,15 @@ Profile = Literal["safe", "strict", "markdown_safe"]
 NormalizeExtracted = Literal[False, True, "auto"]
 Toggle = Literal["off", "on", "auto"]
 ReportMode = Literal[False, True, "detail"]
+DecisionAction = Literal["keep", "drop"]
+DecisionCategory = Literal[
+    "toc",
+    "toc_navigation",
+    "header_footer",
+    "boilerplate",
+    "layout_noise",
+    "other",
+]
 
 # ---------------------------------------------------------------------------
 # Pre-compiled regexes
@@ -56,6 +68,8 @@ RE_CID = re.compile(r"\(cid:\d+\)")
 
 # Collapse huge blank gaps (e.g. OCR/PDF)
 RE_BLANK_GAPS = re.compile(r"\n{3,}")
+RE_PAGE_MARKER = re.compile(r"^\s*page\s+\d+(?:\s+of\s+\d+)?\s*$", re.IGNORECASE)
+RE_STRONG_SEPARATOR = re.compile(r"^\s*(?:[-_=*]{6,}|#{6,})\s*$")
 
 # Common publisher / arXiv / proofs boilerplate (line-level)
 BOILERPLATE_PATTERNS = [
@@ -75,6 +89,28 @@ CAPTION_HINT = re.compile(r"\b(fig\.?|figure|table)\b", re.IGNORECASE)
 
 
 @dataclass
+class LineDecision:
+    """
+    Per-line decision trace emitted by debug mode.
+    """
+
+    doc_id: str | None
+    page_idx: int
+    line_idx: int
+    raw_text: str
+    normalized_text: str
+    action: DecisionAction
+    category: DecisionCategory
+    confidence: float | None = None
+    repeat_count: int | None = None
+    edge_hit_ratio: float | None = None
+    caps_ratio: float = 0.0
+    digit_ratio: float = 0.0
+    punctuation_ratio: float = 0.0
+    codepoints: List[str] = field(default_factory=list)
+
+
+@dataclass
 class PralineReport:
     """
     Execution report for a TextPraline cleaning run.
@@ -90,10 +126,25 @@ class PralineReport:
     removed_toc_lines: int = 0
     normalized_extracted: bool = False
     removed_layout_noise_lines: int = 0
+    removed_header_footer_lines: int = 0
+    # Backward-compatible counter name.
     removed_repeated_lines: int = 0
     removed_boilerplate_lines: int = 0
     text_profile: Literal["clean_web", "pdf_like", "ocr_like", "unknown"] = "unknown"
     detail_enabled: bool = False
+    decisions: List[LineDecision] = field(default_factory=list)
+
+    def to_jsonl(self, path: str | Path, *, dropped_only: bool = False) -> None:
+        """
+        Export line-level decisions as JSONL.
+        """
+        out_path = Path(path)
+        out_path.parent.mkdir(parents=True, exist_ok=True)
+        with out_path.open("w", encoding="utf-8") as f:
+            for d in self.decisions:
+                if dropped_only and d.action != "drop":
+                    continue
+                f.write(json.dumps(asdict(d), ensure_ascii=False) + "\n")
 
 
 # ---------------------------------------------------------------------------
@@ -212,30 +263,38 @@ def detect_text_profile(
         - "ocr_like"   : OCR noise patterns
         - "unknown"    : not enough signal
     """
-    if not text or len(text) < 200:
+    if not text or len(text) < 240:
         return "unknown"
 
     lines = text.splitlines()
-    total_lines = len(lines)
+    non_empty = [line.strip() for line in lines if line.strip()]
+    total_lines = len(non_empty)
+    if total_lines < 8:
+        return "unknown"
 
-    short_lines = [line for line in lines if 0 < len(line.strip()) < 40]
+    short_lines = [line for line in non_empty if len(line) < 45]
     short_line_ratio = len(short_lines) / max(total_lines, 1)
-    avg_line_length = sum(len(line) for line in lines) / max(total_lines, 1)
+    avg_line_length = sum(len(line) for line in non_empty) / max(total_lines, 1)
+    long_paragraphs = [line for line in non_empty if len(line) >= 120]
 
-    cid_count = len(re.findall(r"\(cid:\d+\)", text))
-    glyph_count = len(re.findall(r"glyph<[^>]+>", text))
+    cid_count = len(RE_CID.findall(text))
+    glyph_count = len(GLYPH_RUN_RE.findall(text))
+    glyph_escaped_count = len(RE_GLYPH_ESCAPED.findall(text))
     pua_count = sum(1 for c in text if 0xE000 <= ord(c) <= 0xF8FF)
-    page_markers = len(re.findall(r"Page\s+\d+(\s+of\s+\d+)?", text, re.IGNORECASE))
+    replacement_count = len(RE_REPLACEMENT.findall(text))
+    page_markers = len(RE_PAGE_MARKER.findall(text))
     hyphen_line_breaks = len(re.findall(r"-\n[a-z]", text))
+    entity_count = len(RE_HTML_ENTITY.findall(text))
 
-    pdf_score = (
-        cid_count * 2
-        + glyph_count * 2
-        + pua_count * 0.5
-        + page_markers * 2
-        + hyphen_line_breaks * 1
-        + (short_line_ratio > 0.4) * 2
-        + (avg_line_length < 80) * 1
+    artifact_signals = sum(
+        (
+            cid_count > 0,
+            glyph_count > 0,
+            glyph_escaped_count > 0,
+            pua_count > 0,
+            replacement_count > 0,
+            entity_count >= 4,
+        )
     )
 
     weird_char_ratio = sum(
@@ -243,25 +302,42 @@ def detect_text_profile(
     ) / len(text)
     long_char_runs = len(re.findall(r"(.)\1{4,}", text))
     broken_words = len(re.findall(r"\b[a-zA-Z]{1}\s[a-zA-Z]{1}\s[a-zA-Z]{1}\b", text))
-
-    ocr_score = weird_char_ratio * 100 + long_char_runs * 2 + broken_words * 1.5
-
-    long_paragraphs = len([line for line in lines if len(line.strip()) > 120])
-    punctuation_ratio = sum(1 for c in text if c in ".?!:,;") / len(text)
-
-    web_score = (
-        long_paragraphs * 1.5
-        + (punctuation_ratio > 0.01) * 2
-        - pdf_score * 0.5
-        - ocr_score * 0.5
+    single_char_line_ratio = sum(1 for line in non_empty if len(line) == 1) / max(
+        total_lines, 1
     )
 
-    if pdf_score > 5 and pdf_score > ocr_score:
-        return "pdf_like"
-    if ocr_score > 5 and ocr_score > pdf_score:
-        return "ocr_like"
-    if web_score > 5 and pdf_score < 3 and ocr_score < 3:
+    web_candidate = (
+        len(long_paragraphs) >= 3
+        and short_line_ratio <= 0.30
+        and avg_line_length >= 85
+        and artifact_signals == 0
+        and page_markers == 0
+        and hyphen_line_breaks == 0
+        and weird_char_ratio < 0.0005
+        and long_char_runs == 0
+        and broken_words <= 1
+        and single_char_line_ratio <= 0.02
+    )
+    if web_candidate:
         return "clean_web"
+
+    pdf_like = (
+        artifact_signals >= 2
+        or (page_markers >= 2 and short_line_ratio >= 0.35)
+        or (artifact_signals >= 1 and hyphen_line_breaks >= 2)
+    )
+    if pdf_like:
+        return "pdf_like"
+
+    ocr_like = (
+        (weird_char_ratio >= 0.0025 and short_line_ratio >= 0.45)
+        or (long_char_runs >= 3 and short_line_ratio >= 0.40)
+        or (broken_words >= 6 and short_line_ratio >= 0.45)
+        or (single_char_line_ratio >= 0.10 and short_line_ratio >= 0.55)
+    )
+    if ocr_like and not web_candidate:
+        return "ocr_like"
+
     return "unknown"
 
 
@@ -371,39 +447,303 @@ def _drop_layout_noise_blocks(
     return out, removed
 
 
-def _drop_repeated_lines(
-    lines: List[str], *, min_count: int = 5
+def _normalize_line_key(s: str) -> str:
+    return re.sub(r"[ \t]+", " ", s.strip())
+
+
+def _line_ratios(s: str) -> Tuple[float, float, float]:
+    if not s:
+        return 0.0, 0.0, 0.0
+    total = max(len(s), 1)
+    caps = sum(1 for ch in s if ch.isalpha() and ch.isupper()) / total
+    digit = sum(ch.isdigit() for ch in s) / total
+    punct = sum((not ch.isalnum()) and (not ch.isspace()) for ch in s) / total
+    return caps, digit, punct
+
+
+def _looks_like_toc_navigation_line(s: str) -> bool:
+    """
+    Detect ToC navigation banners (e.g. many ALL-CAPS sections separated by large gaps).
+    """
+    if not s:
+        return False
+    parts = [p.strip() for p in re.split(r"\s{2,}", s.strip()) if p.strip()]
+    if len(parts) < 3:
+        return False
+
+    caps_parts = 0
+    for p in parts:
+        words = re.findall(r"[A-Za-z0-9][A-Za-z0-9&/\-]*", p)
+        if not words:
+            continue
+        upp = sum(1 for w in words if w.isupper() and len(w) >= 3)
+        if upp >= 1:
+            caps_parts += 1
+    return caps_parts >= 3
+
+
+def _looks_like_section_title(s: str) -> bool:
+    """
+    Conservative title-like detector used to avoid destructive removals.
+    """
+    if CAPTION_HINT.search(s):
+        return True
+    if RE_TOC_LINE.search(s):
+        return True
+    if s.endswith((".", "?", "!", ";")):
+        return False
+
+    words = s.split()
+    if not words or len(words) > 6:
+        return False
+    if len(s) < 8:
+        return True
+    if "://" in s:
+        return False
+    if not words[0][0].isalpha():
+        return False
+    if any(sep in s for sep in (" | ", " - ", " -- ", " / ")):
+        return False
+
+    alpha = sum(ch.isalpha() for ch in s)
+    digits = sum(ch.isdigit() for ch in s)
+    if alpha == 0:
+        return False
+
+    # "Introduction 4", "Related Work", "Methods and Data", etc.
+    return (alpha / len(s) >= 0.65) and (digits <= 3) and (len(words) <= 4)
+
+
+def _split_candidate_blocks(
+    lines: List[str], *, block_min_lines: int
+) -> List[List[Tuple[int, str]]]:
+    """
+    Build page-like blocks from text-only signals.
+    """
+    blocks: List[List[Tuple[int, str]]] = []
+    current: List[Tuple[int, str]] = []
+    blank_run = 0
+
+    def flush_current() -> None:
+        nonlocal current
+        if current:
+            non_empty = sum(1 for _, ln in current if ln.strip())
+            if non_empty >= block_min_lines:
+                blocks.append(current)
+        current = []
+
+    for idx, line in enumerate(lines):
+        stripped = line.strip()
+
+        if RE_PAGE_MARKER.match(stripped):
+            flush_current()
+            current = [(idx, line)]
+            blank_run = 0
+            continue
+
+        if RE_STRONG_SEPARATOR.match(stripped):
+            flush_current()
+            blank_run = 0
+            continue
+
+        if not stripped:
+            blank_run += 1
+            # "\n\n\n" between blocks becomes two empty lines in splitlines().
+            if blank_run >= 2:
+                flush_current()
+            elif current:
+                current.append((idx, line))
+            continue
+
+        blank_run = 0
+        current.append((idx, line))
+
+    flush_current()
+    return blocks
+
+
+def _drop_header_footer_lines(
+    lines: List[str],
+    *,
+    min_count: int = 5,
+    min_len: int = 12,
+    max_len: int = 160,
+    top_k: int = 2,
+    bottom_k: int = 2,
+    block_min_lines: int = 12,
+    presence_ratio: float = 0.6,
 ) -> Tuple[List[str], int]:
     """
-    Drop exact repeated lines (header/footer-like), after light normalization.
-    Conservative: only removes lines that repeat at least `min_count` times.
+    Drop only lines that behave like page headers/footers.
 
-    :param lines: Input lines.
-    :param min_count: Minimum repetition count to drop.
-    :returns: (filtered_lines, removed_count)
+    A line is removable only if it appears across many inferred blocks and mostly
+    at top/bottom positions; this avoids global duplicate suppression.
     """
-    norm = []
-    for ln in lines:
-        key = re.sub(r"[ \t]+", " ", ln.strip())
-        norm.append(key)
+    blocks = _split_candidate_blocks(lines, block_min_lines=block_min_lines)
+    if len(blocks) < 2:
+        return lines, 0
 
-    freq: dict[str, int] = {}
-    for k in norm:
-        if not k:
+    n_blocks = len(blocks)
+    key_all_blocks: dict[str, set[int]] = {}
+    key_edge_blocks: dict[str, set[int]] = {}
+    key_edge_indices: dict[str, List[int]] = {}
+    key_non_edge_seen: dict[str, bool] = {}
+
+    for block_id, block in enumerate(blocks):
+        non_empty = [(idx, ln) for idx, ln in block if ln.strip()]
+        if len(non_empty) < block_min_lines:
             continue
-        freq[k] = freq.get(k, 0) + 1
 
-    to_drop = {k for k, c in freq.items() if c >= min_count}
+        edge_rows = non_empty[:top_k] + non_empty[-bottom_k:]
+        edge_keys: set[str] = set()
+        all_keys: set[str] = set()
+
+        for _, ln in non_empty:
+            key = _normalize_line_key(ln)
+            if not key:
+                continue
+            all_keys.add(key)
+            key_all_blocks.setdefault(key, set()).add(block_id)
+
+        for idx, ln in edge_rows:
+            key = _normalize_line_key(ln)
+            if not key:
+                continue
+
+            if len(key) < min_len or len(key) > max_len:
+                continue
+            if CAPTION_HINT.search(key):
+                continue
+            if _looks_like_section_title(key):
+                continue
+
+            edge_keys.add(key)
+            key_edge_blocks.setdefault(key, set()).add(block_id)
+            key_edge_indices.setdefault(key, []).append(idx)
+
+        for key in all_keys:
+            if key in edge_keys:
+                continue
+            key_non_edge_seen[key] = True
+
+    removable_indices: set[int] = set()
+    for key, edge_blocks in key_edge_blocks.items():
+        all_blocks = key_all_blocks.get(key, set())
+        if len(all_blocks) < min_count:
+            continue
+        if len(edge_blocks) / n_blocks < presence_ratio:
+            continue
+        if len(edge_blocks) / len(all_blocks) < 0.80:
+            continue
+        if key_non_edge_seen.get(key, False):
+            continue
+
+        removable_indices.update(key_edge_indices.get(key, []))
+
+    if not removable_indices:
+        return lines, 0
 
     out: List[str] = []
     removed = 0
-    for ln, k in zip(lines, norm):
-        if k and k in to_drop:
+    for idx, ln in enumerate(lines):
+        if idx in removable_indices:
             removed += 1
             continue
         out.append(ln)
-
     return out, removed
+
+
+def _detect_header_footer_candidates(
+    lines: List[str],
+    *,
+    min_count: int = 5,
+    min_len: int = 12,
+    max_len: int = 160,
+    top_k: int = 2,
+    bottom_k: int = 2,
+    block_min_lines: int = 12,
+    presence_ratio: float = 0.6,
+) -> Tuple[set[int], dict[int, int], dict[int, float], dict[int, int]]:
+    """
+    Return candidate local line indices + diagnostic metadata.
+    """
+    blocks = _split_candidate_blocks(lines, block_min_lines=block_min_lines)
+    if len(blocks) < 2:
+        return set(), {}, {}, {}
+
+    n_blocks = len(blocks)
+    key_all_blocks: dict[str, set[int]] = {}
+    key_edge_blocks: dict[str, set[int]] = {}
+    key_edge_indices: dict[str, List[int]] = {}
+    key_non_edge_seen: dict[str, bool] = {}
+    page_idx_by_local: dict[int, int] = {}
+
+    for block_id, block in enumerate(blocks):
+        non_empty = [(idx, ln) for idx, ln in block if ln.strip()]
+        if len(non_empty) < block_min_lines:
+            continue
+        for idx, _ in non_empty:
+            page_idx_by_local[idx] = block_id
+
+        edge_rows = non_empty[:top_k] + non_empty[-bottom_k:]
+        edge_keys: set[str] = set()
+        all_keys: set[str] = set()
+
+        for _, ln in non_empty:
+            key = _normalize_line_key(ln)
+            if not key:
+                continue
+            all_keys.add(key)
+            key_all_blocks.setdefault(key, set()).add(block_id)
+
+        for idx, ln in edge_rows:
+            key = _normalize_line_key(ln)
+            if not key:
+                continue
+            if len(key) < min_len or len(key) > max_len:
+                continue
+            if CAPTION_HINT.search(key):
+                continue
+            if _looks_like_section_title(key):
+                continue
+            if _looks_like_toc_navigation_line(key):
+                continue
+
+            edge_keys.add(key)
+            key_edge_blocks.setdefault(key, set()).add(block_id)
+            key_edge_indices.setdefault(key, []).append(idx)
+
+        for key in all_keys:
+            if key in edge_keys:
+                continue
+            key_non_edge_seen[key] = True
+
+    removable_indices: set[int] = set()
+    repeat_count_by_local: dict[int, int] = {}
+    edge_ratio_by_local: dict[int, float] = {}
+    for key, edge_blocks in key_edge_blocks.items():
+        all_blocks = key_all_blocks.get(key, set())
+        if len(all_blocks) < min_count:
+            continue
+        if len(edge_blocks) / n_blocks < presence_ratio:
+            continue
+        if len(edge_blocks) / len(all_blocks) < 0.80:
+            continue
+        if key_non_edge_seen.get(key, False):
+            continue
+
+        edge_ratio = len(edge_blocks) / n_blocks
+        for idx in key_edge_indices.get(key, []):
+            removable_indices.add(idx)
+            repeat_count_by_local[idx] = len(all_blocks)
+            edge_ratio_by_local[idx] = edge_ratio
+
+    return (
+        removable_indices,
+        repeat_count_by_local,
+        edge_ratio_by_local,
+        page_idx_by_local,
+    )
 
 
 def _pass_detect_profile(s: str, rep: PralineReport) -> Tuple[str, bool]:
@@ -424,7 +764,8 @@ def _pass_extraction_normalize(
     text_profile: Literal["clean_web", "pdf_like", "ocr_like", "unknown"],
 ) -> Tuple[str, bool]:
     """
-    Normalize extractor artefacts if needed. Returns (text, do_norm).
+    Normalize extractor artefacts if needed using cleanup-only transforms.
+    Returns (text, do_norm).
     """
     do_norm = normalize_extracted is True or (
         normalize_extracted == "auto"
@@ -493,7 +834,8 @@ def _pass_toc_and_bullets(
     profile: Profile,
 ) -> List[str]:
     """
-    Remove ToC dotted lines (safe/strict only) and normalize list heads.
+    Remove dotted ToC lines (Table of Contents, safe/strict only) and
+    normalize list heads. Non-dotted ToC entries are intentionally kept.
     """
     bullet = "-" if profile == "markdown_safe" else "•"
     out_lines: List[str] = []
@@ -507,6 +849,23 @@ def _pass_toc_and_bullets(
 
     rep.removed_toc_lines = removed_toc
     return out_lines
+
+
+def _pass_drop_header_footer(
+    lines: List[str],
+    rep: PralineReport,
+    *,
+    enabled: bool,
+) -> List[str]:
+    """
+    Drop only high-confidence header/footer lines.
+    """
+    if not enabled:
+        return lines
+    lines, removed = _drop_header_footer_lines(lines)
+    rep.removed_header_footer_lines += removed
+    rep.removed_repeated_lines += removed
+    return lines
 
 
 def _pass_whitespace(
@@ -547,6 +906,193 @@ def _pass_final_guardrails(s: str) -> str:
     return s
 
 
+@dataclass
+class _WorkingLine:
+    line_idx: int
+    raw_text: str
+    normalized_text: str
+    page_idx: int = -1
+    action: DecisionAction = "keep"
+    category: DecisionCategory = "other"
+    confidence: float | None = None
+    repeat_count: int | None = None
+    edge_hit_ratio: float | None = None
+
+
+def _drop_layout_noise_records(
+    records: List[_WorkingLine],
+) -> Tuple[List[_WorkingLine], int]:
+    out: List[_WorkingLine] = []
+    removed = 0
+    single_run: List[_WorkingLine] = []
+    axis_run: List[_WorkingLine] = []
+
+    def flush_single() -> None:
+        nonlocal single_run, removed
+        if not single_run:
+            return
+        if len(single_run) >= 8:
+            for rec in single_run:
+                rec.action = "drop"
+                rec.category = "layout_noise"
+                rec.confidence = 0.82
+                removed += 1
+        else:
+            out.extend(single_run)
+        single_run = []
+
+    def flush_axis() -> None:
+        nonlocal axis_run, removed
+        if not axis_run:
+            return
+        if len(axis_run) >= 4:
+            for rec in axis_run:
+                rec.action = "drop"
+                rec.category = "layout_noise"
+                rec.confidence = 0.82
+                removed += 1
+        else:
+            out.extend(axis_run)
+        axis_run = []
+
+    for rec in records:
+        ln = rec.normalized_text
+        if _looks_like_single_char_line(ln):
+            flush_axis()
+            single_run.append(rec)
+            continue
+        flush_single()
+
+        if _looks_like_axis_noise_line(ln):
+            axis_run.append(rec)
+            continue
+        flush_axis()
+        out.append(rec)
+
+    flush_single()
+    flush_axis()
+    return out, removed
+
+
+def _build_line_decisions(
+    raw_line_texts: List[str],
+    lines: List[str],
+    *,
+    rep: PralineReport,
+    profile: Profile,
+    do_norm: bool,
+    web_safe: bool,
+    layout_enabled: bool,
+    header_footer_enabled: bool,
+    toc_navigation_enabled: bool,
+    debug_decisions: bool,
+    doc_id: str | None,
+) -> Tuple[List[str], List[LineDecision]]:
+    records: List[_WorkingLine] = []
+    for idx, ln in enumerate(lines):
+        raw = raw_line_texts[idx] if idx < len(raw_line_texts) else ln
+        records.append(_WorkingLine(line_idx=idx, raw_text=raw, normalized_text=ln))
+
+    page_idx_by_local: dict[int, int] = {}
+    for block_id, block in enumerate(
+        _split_candidate_blocks(lines, block_min_lines=12)
+    ):
+        for local_idx, _ in block:
+            page_idx_by_local[local_idx] = block_id
+    for rec in records:
+        rec.page_idx = page_idx_by_local.get(rec.line_idx, -1)
+
+    active = records
+
+    if do_norm:
+        kept: List[_WorkingLine] = []
+        for rec in active:
+            if _is_boilerplate_line(rec.normalized_text):
+                rec.action = "drop"
+                rec.category = "boilerplate"
+                rec.confidence = 0.90
+                rep.removed_boilerplate_lines += 1
+            else:
+                kept.append(rec)
+        active = kept
+
+    if layout_enabled:
+        active, removed = _drop_layout_noise_records(active)
+        rep.removed_layout_noise_lines += removed
+
+    if toc_navigation_enabled:
+        kept = []
+        for rec in active:
+            if _looks_like_toc_navigation_line(rec.normalized_text):
+                rec.action = "drop"
+                rec.category = "toc_navigation"
+                rec.confidence = 0.88
+            else:
+                kept.append(rec)
+        active = kept
+
+    if header_footer_enabled and active:
+        active_lines = [r.normalized_text for r in active]
+        removable, rep_count, edge_ratio, page_map = _detect_header_footer_candidates(
+            active_lines
+        )
+        kept = []
+        for local_idx, rec in enumerate(active):
+            if local_idx in page_map:
+                rec.page_idx = page_map[local_idx]
+            if local_idx in removable:
+                rec.action = "drop"
+                rec.category = "header_footer"
+                rec.confidence = 0.85
+                rec.repeat_count = rep_count.get(local_idx)
+                rec.edge_hit_ratio = edge_ratio.get(local_idx)
+                rep.removed_header_footer_lines += 1
+                rep.removed_repeated_lines += 1
+            else:
+                kept.append(rec)
+        active = kept
+
+    bullet = "-" if profile == "markdown_safe" else "•"
+    kept_final: List[_WorkingLine] = []
+    for rec in active:
+        s = rec.normalized_text
+        if profile in ("safe", "strict") and RE_TOC_LINE.search(s.strip()):
+            rec.action = "drop"
+            rec.category = "toc"
+            rec.confidence = 0.98
+            rep.removed_toc_lines += 1
+            continue
+        rec.normalized_text = RE_LIST_HEAD.sub(f"{bullet} ", s)
+        kept_final.append(rec)
+
+    out_lines = [r.normalized_text for r in kept_final]
+    if not debug_decisions:
+        return out_lines, []
+
+    decisions: List[LineDecision] = []
+    for rec in records:
+        caps, digit, punct = _line_ratios(rec.normalized_text)
+        decisions.append(
+            LineDecision(
+                doc_id=doc_id,
+                page_idx=rec.page_idx,
+                line_idx=rec.line_idx,
+                raw_text=rec.raw_text,
+                normalized_text=rec.normalized_text,
+                action=rec.action,
+                category=rec.category if rec.action == "drop" else "other",
+                confidence=rec.confidence,
+                repeat_count=rec.repeat_count,
+                edge_hit_ratio=rec.edge_hit_ratio,
+                caps_ratio=caps,
+                digit_ratio=digit,
+                punctuation_ratio=punct,
+                codepoints=[f"U+{ord(ch):04X}" for ch in rec.raw_text],
+            )
+        )
+    return out_lines, decisions
+
+
 # --- clean_text ------------------------------------------------
 
 
@@ -560,6 +1106,8 @@ def clean_text(
     collapse_blank_lines: bool = True,
     drop_layout_noise: Toggle = "auto",
     drop_repeated_lines: Toggle = "off",  # IMPORTANT: keep OFF by default
+    debug_decisions: bool = False,
+    doc_id: str | None = None,
     report: ReportMode = False,
 ) -> Tuple[str, PralineReport]:
     """
@@ -574,6 +1122,7 @@ def clean_text(
         rep.detail_enabled = report == "detail"
         return s, rep
 
+    original_text = s
     rep = PralineReport(input_len=len(s), output_len=0)
     rep.detail_enabled = report == "detail"
 
@@ -595,26 +1144,35 @@ def clean_text(
     # 2) invariant guardrails
     s = _pass_invariant_guardrails(s)
 
-    # 3) line-level passes
+    # 3) line-level passes + optional debug decisions
     lines = s.splitlines()
-
-    # Boilerplate removal only when extracted/PDF-ish
-    lines = _pass_drop_boilerplate(lines, rep, enabled=do_norm)
+    raw_line_texts = original_text.splitlines()
 
     # Layout-noise: OFF for clean web unless forced
     layout_enabled = (drop_layout_noise == "on") or (
         drop_layout_noise == "auto" and do_norm and not web_safe
     )
-    lines = _pass_drop_layout_noise(lines, rep, enabled=layout_enabled)
-
-    # Repeated lines: dangerous without page-awareness -> only if forced ON
-    if drop_repeated_lines == "on":
-        lines, removed = _drop_repeated_lines(lines, min_count=5)
-        rep.removed_repeated_lines += removed
-    # if "auto" or "off": do nothing
-
-    # ToC dotted lines + bullets normalization
-    lines = _pass_toc_and_bullets(lines, rep, profile=profile)
+    header_footer_enabled = (drop_repeated_lines == "on") or (
+        drop_repeated_lines == "auto"
+        and do_norm
+        and text_profile in ("pdf_like", "ocr_like")
+        and not web_safe
+    )
+    toc_navigation_enabled = do_norm and not web_safe
+    lines, decisions = _build_line_decisions(
+        raw_line_texts,
+        lines,
+        rep=rep,
+        profile=profile,
+        do_norm=do_norm,
+        web_safe=web_safe,
+        layout_enabled=layout_enabled,
+        header_footer_enabled=header_footer_enabled,
+        toc_navigation_enabled=toc_navigation_enabled,
+        debug_decisions=debug_decisions,
+        doc_id=doc_id,
+    )
+    rep.decisions = decisions
     s = "\n".join(lines)
 
     # 4) whitespace normalization
@@ -645,6 +1203,8 @@ def praline(
     collapse_blank_lines: bool = True,
     drop_layout_noise: Toggle = "auto",
     drop_repeated_lines: Toggle = "off",
+    debug_decisions: bool = False,
+    doc_id: str | None = None,
     report: ReportMode = False,
 ) -> Union[str, Tuple[str, PralineReport]]:
     """
@@ -660,6 +1220,8 @@ def praline(
         collapse_blank_lines=collapse_blank_lines,
         drop_layout_noise=drop_layout_noise,
         drop_repeated_lines=drop_repeated_lines,
+        debug_decisions=debug_decisions,
+        doc_id=doc_id,
         report=report,
     )
     return (out, rep) if report in (True, "detail") else out
