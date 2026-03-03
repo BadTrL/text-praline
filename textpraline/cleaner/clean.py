@@ -8,7 +8,7 @@ import unicodedata
 from dataclasses import asdict, dataclass, field
 from html import unescape
 from pathlib import Path
-from typing import Iterable, List, Literal, Tuple, Union, Any
+from typing import Any, Dict, Iterable, List, Literal, Tuple, Union
 
 from .mappings import PUA_BULLETS, PUA_TRANSLATE_MAP, TRANSLATE_MAP
 
@@ -19,11 +19,14 @@ __all__ = [
     "LineDecision",
     "PralineReport",
     "detect_text_profile",
+    "PralineConfig",
+    "PRESETS",
 ]
 
 Profile = Literal["safe", "strict", "markdown_safe"]
 NormalizeExtracted = Literal[False, True, "auto"]
 Toggle = Literal["off", "on", "auto"]
+StructureMode = Literal["off", "light", "aggressive"]
 ReportMode = Literal[False, True, "detail"]
 DecisionAction = Literal["keep", "drop"]
 DecisionCategory = Literal[
@@ -32,46 +35,139 @@ DecisionCategory = Literal[
     "header_footer",
     "boilerplate",
     "layout_noise",
+    "references_section",
+    "paragraph_merge",
+    "hyphen_fix",
+    "section_marker_inserted",
     "other",
 ]
+Preset = Literal["raw", "safe", "bench", "strict"]
+
+# ---------------------------------------------------------------------------
+# Presets / config (bench-friendly separation)
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True)
+class PralineConfig:
+    profile: Profile = "safe"
+    normalize_extracted: NormalizeExtracted = "auto"
+    normalize_form: str = "NFKC"
+    preserve_markdown_tables: bool | None = None
+    collapse_blank_lines: bool = True
+    drop_layout_noise: Toggle = "auto"
+    drop_repeated_lines: Toggle = "off"
+    drop_references_section: Toggle = "off"
+    structure_mode: StructureMode = "off"
+
+
+PRESETS: Dict[str, PralineConfig] = {
+    "safe": PralineConfig(),
+    # Bench preset: conservative, but cuts common PDF tails (References) in auto mode.
+    "bench": PralineConfig(
+        profile="safe",
+        drop_layout_noise="auto",
+        drop_repeated_lines="off",
+        drop_references_section="off",
+    ),
+    # Strict preset: more aggressive, but still keeps repeated-lines OFF unless forced.
+    "strict": PralineConfig(
+        profile="strict",
+        drop_layout_noise="auto",
+        drop_repeated_lines="off",
+        drop_references_section="on",
+        structure_mode="light",
+    ),
+}
+
+
+def _resolve_cfg(
+    preset: Preset,
+    *,
+    profile: Profile | None = None,
+    normalize_extracted: NormalizeExtracted | None = None,
+    normalize_form: str | None = None,
+    preserve_markdown_tables: bool | None = None,
+    collapse_blank_lines: bool | None = None,
+    drop_layout_noise: Toggle | None = None,
+    drop_repeated_lines: Toggle | None = None,
+    drop_references_section: Toggle | None = None,
+    structure_mode: StructureMode | None = None,
+) -> PralineConfig:
+    if preset == "raw":
+        # Not used, but keep a valid object.
+        base = PRESETS["safe"]
+    else:
+        base = PRESETS[preset]
+
+    return PralineConfig(
+        profile=profile if profile is not None else base.profile,
+        normalize_extracted=(
+            normalize_extracted
+            if normalize_extracted is not None
+            else base.normalize_extracted
+        ),
+        normalize_form=normalize_form
+        if normalize_form is not None
+        else base.normalize_form,
+        preserve_markdown_tables=(
+            preserve_markdown_tables
+            if preserve_markdown_tables is not None
+            else base.preserve_markdown_tables
+        ),
+        collapse_blank_lines=(
+            collapse_blank_lines
+            if collapse_blank_lines is not None
+            else base.collapse_blank_lines
+        ),
+        drop_layout_noise=drop_layout_noise
+        if drop_layout_noise is not None
+        else base.drop_layout_noise,
+        drop_repeated_lines=(
+            drop_repeated_lines
+            if drop_repeated_lines is not None
+            else base.drop_repeated_lines
+        ),
+        drop_references_section=(
+            drop_references_section
+            if drop_references_section is not None
+            else base.drop_references_section
+        ),
+        structure_mode=structure_mode
+        if structure_mode is not None
+        else base.structure_mode,
+    )
+
 
 # ---------------------------------------------------------------------------
 # Pre-compiled regexes
 # ---------------------------------------------------------------------------
 
-# Unicode Private Use Area (BMP)
 RE_PUA = re.compile(r"[\uE000-\uF8FF]")
-
-# Control chars except TAB(0x09), LF(0x0A), CR(0x0D)
 RE_CTRL = re.compile(r"[\x00-\x08\x0B\x0C\x0E-\x1F]")
-
-# Table-of-contents lines like "....... 23"
 RE_TOC_LINE = re.compile(r"\.{3,}\s*\d+\s*$")
-
-# Normalize list bullets at line start
 RE_LIST_HEAD = re.compile(r"^\s*(?:•|\*|·|∙|‧|■|▪|●|◦|—|-)\s*")
-
-# Extractor artefacts like: glyph<...>
 GLYPH_RUN_RE = re.compile(r"glyph<[^>]*>|glyph<\S*", re.IGNORECASE)
 RE_GLYPH_ESCAPED = re.compile(r"glyph&lt;[^&]*&gt;", re.IGNORECASE)
-
-# Heuristic: heavy presence of HTML entities
 RE_HTML_ENTITY = re.compile(r"&[a-zA-Z#0-9]+;")
-
-# Extra artefacts frequently seen in extracted text
-RE_ZERO_WIDTH = re.compile(r"[\u200B-\u200D\u2060]")  # ZWSP/ZWNJ/ZWJ/WORD JOINER
+RE_ZERO_WIDTH = re.compile(r"[\u200B-\u200D\u2060]")
 RE_SOFT_HYPHEN = re.compile(r"\u00AD")
 RE_BOM = re.compile(r"\ufeff")
 RE_VARIATION_SELECTORS = re.compile(r"[\uFE00-\uFE0F]")
-
 RE_CID = re.compile(r"\(cid:\d+\)")
-
-# Collapse huge blank gaps (e.g. OCR/PDF)
 RE_BLANK_GAPS = re.compile(r"\n{3,}")
 RE_PAGE_MARKER = re.compile(r"^\s*page\s+\d+(?:\s+of\s+\d+)?\s*$", re.IGNORECASE)
 RE_STRONG_SEPARATOR = re.compile(r"^\s*(?:[-_=*]{6,}|#{6,})\s*$")
+RE_REPLACEMENT = re.compile(r"[\uFFFD\uFFFE]")
 
-# Common publisher / arXiv / proofs boilerplate (line-level)
+# References tail section (bench-friendly)
+RE_REF_HEADER = re.compile(
+    r"^\s*(references|bibliography|références)\s*$", re.IGNORECASE
+)
+RE_REF_HEADER_INLINE = re.compile(
+    r"^\s*(references|bibliography|références)\b[:\s]*", re.IGNORECASE
+)
+
 BOILERPLATE_PATTERNS = [
     re.compile(r"^A&A proofs:\s*manuscript no\..*", re.IGNORECASE),
     re.compile(r"^Article number,\s*page\s*\d+\s*of\s*\d+.*", re.IGNORECASE),
@@ -79,9 +175,7 @@ BOILERPLATE_PATTERNS = [
     re.compile(r"^submitted to.*", re.IGNORECASE),
 ]
 
-# Keep captions / table mentions even if they look numeric-ish
 CAPTION_HINT = re.compile(r"\b(fig\.?|figure|table)\b", re.IGNORECASE)
-
 
 # ---------------------------------------------------------------------------
 # Report (optional)
@@ -90,10 +184,6 @@ CAPTION_HINT = re.compile(r"\b(fig\.?|figure|table)\b", re.IGNORECASE)
 
 @dataclass
 class LineDecision:
-    """
-    Per-line decision trace emitted by debug mode.
-    """
-
     doc_id: str | None
     page_idx: int
     line_idx: int
@@ -112,32 +202,20 @@ class LineDecision:
 
 @dataclass
 class PralineReport:
-    """
-    Execution report for a TextPraline cleaning run.
-
-    :param input_len: Length of the input string.
-    :param output_len: Length of the cleaned output string.
-    :param removed_toc_lines: Number of ToC-like dotted lines removed.
-    :param normalized_extracted: Whether extraction normalization was applied.
-    """
-
     input_len: int
     output_len: int
     removed_toc_lines: int = 0
     normalized_extracted: bool = False
     removed_layout_noise_lines: int = 0
     removed_header_footer_lines: int = 0
-    # Backward-compatible counter name.
     removed_repeated_lines: int = 0
     removed_boilerplate_lines: int = 0
+    removed_references_lines: int = 0
     text_profile: Literal["clean_web", "pdf_like", "ocr_like", "unknown"] = "unknown"
     detail_enabled: bool = False
     decisions: List[LineDecision] = field(default_factory=list)
 
     def to_jsonl(self, path: str | Path, *, dropped_only: bool = False) -> None:
-        """
-        Export line-level decisions as JSONL.
-        """
         out_path = Path(path)
         out_path.parent.mkdir(parents=True, exist_ok=True)
         with out_path.open("w", encoding="utf-8") as f:
@@ -151,29 +229,10 @@ class PralineReport:
 # Extraction pollution detection & normalization
 # ---------------------------------------------------------------------------
 
-# Detect common "PDF extraction went wrong" non-characters / replacement chars
-RE_REPLACEMENT = re.compile(
-    r"[\uFFFD\uFFFE]"
-)  # � and ￾-like noncharacters (often seen in bad PDF text)
-
 
 def _looks_extraction_polluted(s: str) -> bool:
-    """
-    Heuristically detect extraction pollution (PDF/OCR/HTML artefacts).
-
-    We keep this conservative but practical for real PDFs:
-    - raw or HTML-escaped ``glyph<...>`` runs
-    - PUA characters
-    - many HTML entities
-    - replacement/noncharacter markers (U+FFFD, U+FFFE)
-    - ``(cid:123)`` markers (common in some PDF→text outputs)
-
-    :param s: Input text.
-    :returns: True if text looks polluted by an extractor, else False.
-    """
     if not s:
         return False
-
     if GLYPH_RUN_RE.search(s) or RE_GLYPH_ESCAPED.search(s):
         return True
     if RE_PUA.search(s):
@@ -184,85 +243,41 @@ def _looks_extraction_polluted(s: str) -> bool:
         return True
     if len(RE_HTML_ENTITY.findall(s)) >= 3:
         return True
-
     return False
 
 
 def _strip_extraction_artifacts(s: str) -> str:
-    """
-    Normalize common artefacts introduced by extractors.
-
-    This step is language-agnostic and aims to preserve meaning while removing
-    invisible corruption and extractor noise.
-
-    Operations:
-    - HTML entity unescape (``&nbsp;`` etc.)
-    - remove ad-hoc glyph runs (``glyph<...>``)
-    - remove ``(cid:123)`` markers
-    - normalize punctuation via ``TRANSLATE_MAP``
-    - Unicode normalization (NFKC)
-    - remove PUA leftovers, zero-width chars, soft hyphens, BOM, variation selectors
-    - remove disallowed control characters
-    - remove replacement/noncharacters (U+FFFD, U+FFFE)
-
-    :param s: Input text.
-    :returns: Cleaned text.
-    """
     if not s:
         return s
 
-    # Decode HTML entities (e.g., &nbsp;)
     s = unescape(s)
-
-    # Remove extractor-specific glyph runs
     s = GLYPH_RUN_RE.sub("", s)
-
-    # Remove "(cid:NNN)" markers early
     s = RE_CID.sub("", s)
 
-    # Fast PUA bullet mapping to canonical bullet
     if any(ch in s for ch in PUA_BULLETS):
         s = s.translate(str.maketrans(PUA_TRANSLATE_MAP))
 
-    # Basic mapping (quotes/dashes/NBSP etc.)
     s = s.translate(str.maketrans(TRANSLATE_MAP))
-
-    # Unicode normalization: compatibility form handles ligatures/fullwidth
     s = unicodedata.normalize("NFKC", s)
 
-    # Strip residual artefacts
     s = RE_PUA.sub("", s)
     s = RE_ZERO_WIDTH.sub("", s)
     s = RE_SOFT_HYPHEN.sub("", s)
     s = RE_BOM.sub("", s)
     s = RE_VARIATION_SELECTORS.sub("", s)
-
-    # Drop disallowed control chars
     s = RE_CTRL.sub("", s)
-
-    # Drop replacement / noncharacters seen in bad PDF extraction
     s = RE_REPLACEMENT.sub("", s)
-
     return s
 
 
 # ---------------------------------------------------------------------------
-# Generic PDF layout noise removal (block-based)
+# Profile detection
 # ---------------------------------------------------------------------------
 
 
 def detect_text_profile(
     text: str,
 ) -> Literal["clean_web", "pdf_like", "ocr_like", "unknown"]:
-    """
-    Heuristic detection of text extraction profile.
-
-    Returns:
-        - "clean_web"  : well-formed HTML/RSS extraction
-        - "pdf_like"   : typical PDF text extraction artefacts
-        - "ocr_like"   : OCR noise patterns
-        - "unknown"    : not enough signal
-    """
     if not text or len(text) < 240:
         return "unknown"
 
@@ -342,12 +357,6 @@ def detect_text_profile(
 
 
 def _is_boilerplate_line(ln: str) -> bool:
-    """
-    Detect common publisher / arXiv boilerplate lines.
-
-    :param ln: Single line.
-    :returns: True if the line looks like boilerplate.
-    """
     s = ln.strip()
     if not s:
         return False
@@ -360,13 +369,19 @@ def _looks_like_single_char_line(ln: str) -> bool:
 
 
 def _looks_like_axis_noise_line(ln: str) -> bool:
-    """
-    Catch dense numeric/axis garbage (plots/axes) while keeping captions.
-    """
     s = ln.strip()
     if len(s) < 12:
         return False
     if CAPTION_HINT.search(s):
+        return False
+    # Preserve likely scientific signal even when numeric-heavy.
+    if re.search(
+        r"\b(km|m|cm|mm|ms|s|kg|g|hz|khz|mhz|ghz|ev|kev|mev|gev|sigma|lambda)\b",
+        s,
+        re.IGNORECASE,
+    ):
+        return False
+    if len(re.findall(r"[A-Za-z]{3,}", s)) >= 3:
         return False
 
     letters = sum(ch.isalpha() for ch in s)
@@ -378,11 +393,14 @@ def _looks_like_axis_noise_line(ln: str) -> bool:
     ratio_letters = letters / total
     ratio_digits_punct = (digits + punct) / total
 
-    # Dense, compact axis strings (often no spaces)
-    if spaces <= 1 and len(s) >= 30 and ratio_digits_punct >= 0.65:
+    if (
+        spaces <= 1
+        and len(s) >= 36
+        and ratio_digits_punct >= 0.75
+        and ratio_letters <= 0.10
+    ):
         return True
-
-    return ratio_digits_punct >= 0.75 and ratio_letters <= 0.10
+    return ratio_digits_punct >= 0.85 and ratio_letters <= 0.08
 
 
 def _drop_layout_noise_blocks(
@@ -391,23 +409,13 @@ def _drop_layout_noise_blocks(
     min_single_char_run: int = 8,
     min_axis_run: int = 4,
 ) -> Tuple[List[str], int]:
-    """
-    Remove blocks of layout noise common in PDF/OCR extraction:
-    - long runs of single-character lines (vertical/rotated headers)
-    - consecutive axis/plot-garbage lines
-
-    :param lines: Input lines.
-    :param min_single_char_run: Minimum run length to drop (single-char lines).
-    :param min_axis_run: Minimum run length to drop (axis-noise lines).
-    :returns: (filtered_lines, removed_count)
-    """
     out: List[str] = []
     removed = 0
 
     single_run: List[str] = []
     axis_run: List[str] = []
 
-    def flush_single():
+    def flush_single() -> None:
         nonlocal single_run, removed, out
         if not single_run:
             return
@@ -417,7 +425,7 @@ def _drop_layout_noise_blocks(
             out.extend(single_run)
         single_run = []
 
-    def flush_axis():
+    def flush_axis() -> None:
         nonlocal axis_run, removed, out
         if not axis_run:
             return
@@ -443,7 +451,6 @@ def _drop_layout_noise_blocks(
 
     flush_single()
     flush_axis()
-
     return out, removed
 
 
@@ -461,10 +468,102 @@ def _line_ratios(s: str) -> Tuple[float, float, float]:
     return caps, digit, punct
 
 
+def _is_markdown_table_line(line: str) -> bool:
+    s = line.lstrip()
+    return s.startswith("|") and ("|" in s[1:])
+
+
+def _looks_like_sentence_terminal(line: str) -> bool:
+    s = line.rstrip()
+    return bool(s) and s[-1] in ".?!:;)]}\"'"
+
+
+def _starts_with_lowercase(line: str) -> bool:
+    s = line.lstrip()
+    for ch in s:
+        if ch.isalpha():
+            return ch.islower()
+        if ch.isdigit():
+            return False
+    return False
+
+
+def _is_reference_heading(line: str) -> bool:
+    s = line.strip().lower()
+    return s in {"references", "reference", "bibliography", "works cited"}
+
+
+def _is_reference_entry_line(line: str) -> bool:
+    s = line.strip()
+    if re.match(r"^\[\d+\]\s+", s):
+        return True
+    if re.match(r"^\d+\.\s+", s):
+        return True
+    if re.match(r"^[A-Z][a-zA-Z\-]+,\s+[A-Z]\.", s):
+        return True
+    return False
+
+
+def _reconstruct_paragraphs(
+    lines: List[str], *, preserve_markdown_tables: bool
+) -> Tuple[List[str], List[Tuple[str, int, str, str]]]:
+    """
+    Rebuild paragraph continuity from PDF-broken line wraps.
+    """
+    if not lines:
+        return lines, []
+
+    out: List[str] = []
+    events: List[Tuple[str, int, str, str]] = []
+    i = 0
+    while i < len(lines):
+        cur = lines[i]
+        if i == len(lines) - 1:
+            out.append(cur)
+            break
+
+        nxt = lines[i + 1]
+        cur_s = cur.rstrip()
+        nxt_s = nxt.lstrip()
+
+        if cur_s.startswith("## ") or nxt_s.startswith("## "):
+            out.append(cur)
+            i += 1
+            continue
+        if preserve_markdown_tables and (
+            _is_markdown_table_line(cur) or _is_markdown_table_line(nxt)
+        ):
+            out.append(cur)
+            i += 1
+            continue
+        if _is_likely_section_title_line(cur) or _is_likely_section_title_line(nxt):
+            out.append(cur)
+            i += 1
+            continue
+
+        # Hyphenated line-break fix: "infor-\\nmation" -> "information".
+        if cur_s.endswith("-") and nxt_s and nxt_s[:1].islower():
+            merged = cur_s[:-1] + nxt_s
+            events.append(("hyphen_fix", i, f"{cur}\n{nxt}", merged))
+            lines[i + 1] = merged
+            i += 1
+            continue
+
+        # Paragraph reconstruction for wrapped lines.
+        if (not _looks_like_sentence_terminal(cur_s)) and _starts_with_lowercase(nxt):
+            merged = f"{cur_s} {nxt_s}"
+            events.append(("paragraph_merge", i, f"{cur}\n{nxt}", merged))
+            lines[i + 1] = merged
+            i += 1
+            continue
+
+        out.append(cur)
+        i += 1
+
+    return out, events
+
+
 def _looks_like_toc_navigation_line(s: str) -> bool:
-    """
-    Detect ToC navigation banners (e.g. many ALL-CAPS sections separated by large gaps).
-    """
     if not s:
         return False
     parts = [p.strip() for p in re.split(r"\s{2,}", s.strip()) if p.strip()]
@@ -482,10 +581,45 @@ def _looks_like_toc_navigation_line(s: str) -> bool:
     return caps_parts >= 3
 
 
+def _is_likely_section_title_line(line: str) -> bool:
+    s = line.strip()
+    if not s:
+        return False
+    if len(s) < 3 or len(s) > 90:
+        return False
+    if s.endswith("-"):
+        return False
+    if _looks_like_sentence_terminal(s):
+        return False
+    if _is_markdown_table_line(s):
+        return False
+    if CAPTION_HINT.search(s):
+        return False
+    if _is_reference_heading(s):
+        return True
+
+    words = s.split()
+    if len(words) > 8:
+        return False
+    # Heading-like lines usually start uppercase.
+    first_alpha = next((ch for ch in s if ch.isalpha()), "")
+    if not first_alpha or first_alpha.islower():
+        return False
+
+    letters = sum(ch.isalpha() for ch in s)
+    digits = sum(ch.isdigit() for ch in s)
+    alpha_ratio = letters / max(len(s), 1)
+    title_like_ratio = sum(1 for w in words if w[:1].isupper()) / max(len(words), 1)
+    long_words = sum(1 for w in words if len(w) >= 5)
+    return (
+        alpha_ratio >= 0.55
+        and digits <= max(3, len(s) // 12)
+        and (len(words) <= 3 or title_like_ratio >= 0.85)
+        and long_words <= 3
+    )
+
+
 def _looks_like_section_title(s: str) -> bool:
-    """
-    Conservative title-like detector used to avoid destructive removals.
-    """
     if CAPTION_HINT.search(s):
         return True
     if RE_TOC_LINE.search(s):
@@ -509,17 +643,57 @@ def _looks_like_section_title(s: str) -> bool:
     digits = sum(ch.isdigit() for ch in s)
     if alpha == 0:
         return False
-
-    # "Introduction 4", "Related Work", "Methods and Data", etc.
     return (alpha / len(s) >= 0.65) and (digits <= 3) and (len(words) <= 4)
+
+
+def _insert_section_markers(
+    lines: List[str],
+) -> Tuple[List[str], List[Tuple[str, int, str, str]]]:
+    out: List[str] = []
+    events: List[Tuple[str, int, str, str]] = []
+    for idx, ln in enumerate(lines):
+        if _is_likely_section_title_line(ln):
+            marker = f"## SECTION: {ln.strip()}"
+            if not out or out[-1].strip() != marker:
+                out.append(marker)
+                events.append(("section_marker_inserted", idx, ln, marker))
+        out.append(ln)
+    return out, events
+
+
+def _isolate_references_block(
+    lines: List[str],
+) -> Tuple[List[str], List[Tuple[str, int, str, str]]]:
+    if not lines:
+        return lines, []
+    ref_idx = -1
+    for i, ln in enumerate(lines):
+        if _is_reference_heading(ln):
+            ref_idx = i
+            break
+    if ref_idx == -1:
+        tail_start = max(0, len(lines) - 50)
+        tail = lines[tail_start:]
+        ref_like = sum(1 for ln in tail if _is_reference_entry_line(ln))
+        if ref_like >= 5:
+            for j in range(tail_start, len(lines)):
+                if _is_reference_entry_line(lines[j]):
+                    ref_idx = j
+                    break
+    if ref_idx == -1:
+        return lines, []
+
+    marker = "## REFERENCES"
+    if ref_idx > 0 and lines[ref_idx - 1].strip() == marker:
+        return lines, []
+
+    out = lines[:ref_idx] + [marker] + lines[ref_idx:]
+    return out, [("section_marker_inserted", ref_idx, lines[ref_idx], marker)]
 
 
 def _split_candidate_blocks(
     lines: List[str], *, block_min_lines: int
 ) -> List[List[Tuple[int, str]]]:
-    """
-    Build page-like blocks from text-only signals.
-    """
     blocks: List[List[Tuple[int, str]]] = []
     current: List[Tuple[int, str]] = []
     blank_run = 0
@@ -548,7 +722,6 @@ def _split_candidate_blocks(
 
         if not stripped:
             blank_run += 1
-            # "\n\n\n" between blocks becomes two empty lines in splitlines().
             if blank_run >= 2:
                 flush_current()
             elif current:
@@ -562,111 +735,17 @@ def _split_candidate_blocks(
     return blocks
 
 
-def _drop_header_footer_lines(
-    lines: List[str],
-    *,
-    min_count: int = 5,
-    min_len: int = 12,
-    max_len: int = 160,
-    top_k: int = 2,
-    bottom_k: int = 2,
-    block_min_lines: int = 12,
-    presence_ratio: float = 0.6,
-) -> Tuple[List[str], int]:
-    """
-    Drop only lines that behave like page headers/footers.
-
-    A line is removable only if it appears across many inferred blocks and mostly
-    at top/bottom positions; this avoids global duplicate suppression.
-    """
-    blocks = _split_candidate_blocks(lines, block_min_lines=block_min_lines)
-    if len(blocks) < 2:
-        return lines, 0
-
-    n_blocks = len(blocks)
-    key_all_blocks: dict[str, set[int]] = {}
-    key_edge_blocks: dict[str, set[int]] = {}
-    key_edge_indices: dict[str, List[int]] = {}
-    key_non_edge_seen: dict[str, bool] = {}
-
-    for block_id, block in enumerate(blocks):
-        non_empty = [(idx, ln) for idx, ln in block if ln.strip()]
-        if len(non_empty) < block_min_lines:
-            continue
-
-        edge_rows = non_empty[:top_k] + non_empty[-bottom_k:]
-        edge_keys: set[str] = set()
-        all_keys: set[str] = set()
-
-        for _, ln in non_empty:
-            key = _normalize_line_key(ln)
-            if not key:
-                continue
-            all_keys.add(key)
-            key_all_blocks.setdefault(key, set()).add(block_id)
-
-        for idx, ln in edge_rows:
-            key = _normalize_line_key(ln)
-            if not key:
-                continue
-
-            if len(key) < min_len or len(key) > max_len:
-                continue
-            if CAPTION_HINT.search(key):
-                continue
-            if _looks_like_section_title(key):
-                continue
-
-            edge_keys.add(key)
-            key_edge_blocks.setdefault(key, set()).add(block_id)
-            key_edge_indices.setdefault(key, []).append(idx)
-
-        for key in all_keys:
-            if key in edge_keys:
-                continue
-            key_non_edge_seen[key] = True
-
-    removable_indices: set[int] = set()
-    for key, edge_blocks in key_edge_blocks.items():
-        all_blocks = key_all_blocks.get(key, set())
-        if len(all_blocks) < min_count:
-            continue
-        if len(edge_blocks) / n_blocks < presence_ratio:
-            continue
-        if len(edge_blocks) / len(all_blocks) < 0.80:
-            continue
-        if key_non_edge_seen.get(key, False):
-            continue
-
-        removable_indices.update(key_edge_indices.get(key, []))
-
-    if not removable_indices:
-        return lines, 0
-
-    out: List[str] = []
-    removed = 0
-    for idx, ln in enumerate(lines):
-        if idx in removable_indices:
-            removed += 1
-            continue
-        out.append(ln)
-    return out, removed
-
-
 def _detect_header_footer_candidates(
     lines: List[str],
     *,
-    min_count: int = 5,
+    min_count: int = 6,
     min_len: int = 12,
     max_len: int = 160,
     top_k: int = 2,
     bottom_k: int = 2,
     block_min_lines: int = 12,
-    presence_ratio: float = 0.6,
+    presence_ratio: float = 0.8,
 ) -> Tuple[set[int], dict[int, int], dict[int, float], dict[int, int]]:
-    """
-    Return candidate local line indices + diagnostic metadata.
-    """
     blocks = _split_candidate_blocks(lines, block_min_lines=block_min_lines)
     if len(blocks) < 2:
         return set(), {}, {}, {}
@@ -727,7 +806,7 @@ def _detect_header_footer_candidates(
             continue
         if len(edge_blocks) / n_blocks < presence_ratio:
             continue
-        if len(edge_blocks) / len(all_blocks) < 0.80:
+        if len(edge_blocks) / len(all_blocks) < 0.9:
             continue
         if key_non_edge_seen.get(key, False):
             continue
@@ -747,9 +826,6 @@ def _detect_header_footer_candidates(
 
 
 def _pass_detect_profile(s: str, rep: PralineReport) -> Tuple[str, bool]:
-    """
-    Detect profile and return (text_profile, web_safe).
-    """
     text_profile = detect_text_profile(s)
     rep.text_profile = text_profile
     return text_profile, (text_profile == "clean_web")
@@ -763,10 +839,6 @@ def _pass_extraction_normalize(
     normalize_form: str,
     text_profile: Literal["clean_web", "pdf_like", "ocr_like", "unknown"],
 ) -> Tuple[str, bool]:
-    """
-    Normalize extractor artefacts if needed using cleanup-only transforms.
-    Returns (text, do_norm).
-    """
     do_norm = normalize_extracted is True or (
         normalize_extracted == "auto"
         and (text_profile in ("pdf_like", "ocr_like") or _looks_extraction_polluted(s))
@@ -778,94 +850,15 @@ def _pass_extraction_normalize(
         s = s.translate(str.maketrans(TRANSLATE_MAP))
         s = unicodedata.normalize(normalize_form, s)
 
-    # ensure requested normalization (always)
     s = unicodedata.normalize(normalize_form, s)
     return s, do_norm
 
 
 def _pass_invariant_guardrails(s: str) -> str:
-    """
-    Always-safe removals (no semantics changes).
-    """
     s = RE_PUA.sub("", s)
     s = RE_CTRL.sub("", s)
     s = RE_ZERO_WIDTH.sub("", s)
     return s
-
-
-def _pass_drop_boilerplate(
-    lines: List[str], rep: PralineReport, *, enabled: bool
-) -> List[str]:
-    """
-    Drop publisher/arXiv boilerplate lines (only when enabled).
-    """
-    if not enabled:
-        return lines
-
-    out: List[str] = []
-    for ln in lines:
-        if _is_boilerplate_line(ln):
-            rep.removed_boilerplate_lines += 1
-            continue
-        out.append(ln)
-    return out
-
-
-def _pass_drop_layout_noise(
-    lines: List[str],
-    rep: PralineReport,
-    *,
-    enabled: bool,
-) -> List[str]:
-    """
-    Drop PDF/OCR layout noise blocks (only when enabled).
-    """
-    if not enabled:
-        return lines
-    lines, removed = _drop_layout_noise_blocks(lines)
-    rep.removed_layout_noise_lines += removed
-    return lines
-
-
-def _pass_toc_and_bullets(
-    lines: List[str],
-    rep: PralineReport,
-    *,
-    profile: Profile,
-) -> List[str]:
-    """
-    Remove dotted ToC lines (Table of Contents, safe/strict only) and
-    normalize list heads. Non-dotted ToC entries are intentionally kept.
-    """
-    bullet = "-" if profile == "markdown_safe" else "•"
-    out_lines: List[str] = []
-    removed_toc = 0
-
-    for ln in lines:
-        if profile in ("safe", "strict") and RE_TOC_LINE.search(ln.strip()):
-            removed_toc += 1
-            continue
-        out_lines.append(RE_LIST_HEAD.sub(f"{bullet} ", ln))
-
-    rep.removed_toc_lines = removed_toc
-    return out_lines
-
-
-def _pass_drop_header_footer(
-    lines: List[str],
-    rep: PralineReport,
-    *,
-    enabled: bool,
-) -> List[str]:
-    """
-    Drop only high-confidence header/footer lines.
-    """
-    if not enabled:
-        return lines
-    lines, removed = _drop_header_footer_lines(lines)
-    rep.removed_header_footer_lines += removed
-    rep.removed_repeated_lines += removed
-    return lines
 
 
 def _pass_whitespace(
@@ -874,9 +867,6 @@ def _pass_whitespace(
     profile: Profile,
     preserve_markdown_tables: bool,
 ) -> str:
-    """
-    Normalize whitespace according to profile.
-    """
     if profile == "strict":
         s = re.sub(r"[ \t]+", " ", s)
         s = re.sub(r" ?\n ?", "\n", s)
@@ -904,6 +894,11 @@ def _pass_final_guardrails(s: str) -> str:
     s = RE_ZERO_WIDTH.sub("", s)
     s = RE_REPLACEMENT.sub("", s)
     return s
+
+
+# ---------------------------------------------------------------------------
+# Decision engine
+# ---------------------------------------------------------------------------
 
 
 @dataclass
@@ -985,6 +980,7 @@ def _build_line_decisions(
     layout_enabled: bool,
     header_footer_enabled: bool,
     toc_navigation_enabled: bool,
+    references_enabled: bool,
     debug_decisions: bool,
     doc_id: str | None,
 ) -> Tuple[List[str], List[LineDecision]]:
@@ -1004,6 +1000,7 @@ def _build_line_decisions(
 
     active = records
 
+    # Boilerplate (only when extractor-normalization happened)
     if do_norm:
         kept: List[_WorkingLine] = []
         for rec in active:
@@ -1016,10 +1013,12 @@ def _build_line_decisions(
                 kept.append(rec)
         active = kept
 
+    # Layout noise blocks
     if layout_enabled:
         active, removed = _drop_layout_noise_records(active)
         rep.removed_layout_noise_lines += removed
 
+    # TOC navigation banners (ONLY meaningful for pdf/ocr, gating done outside)
     if toc_navigation_enabled:
         kept = []
         for rec in active:
@@ -1031,6 +1030,7 @@ def _build_line_decisions(
                 kept.append(rec)
         active = kept
 
+    # Header/footer candidates
     if header_footer_enabled and active:
         active_lines = [r.normalized_text for r in active]
         removable, rep_count, edge_ratio, page_map = _detect_header_footer_candidates(
@@ -1054,14 +1054,36 @@ def _build_line_decisions(
 
     bullet = "-" if profile == "markdown_safe" else "•"
     kept_final: List[_WorkingLine] = []
+
+    in_refs = False
     for rec in active:
         s = rec.normalized_text
+
+        # References tail cut (bench-friendly; traceable)
+        if references_enabled:
+            if in_refs:
+                rec.action = "drop"
+                rec.category = "references_section"
+                rec.confidence = 0.90
+                rep.removed_references_lines += 1
+                continue
+            st = s.strip()
+            if RE_REF_HEADER.match(st) or RE_REF_HEADER_INLINE.match(st):
+                in_refs = True
+                rec.action = "drop"
+                rec.category = "references_section"
+                rec.confidence = 0.92
+                rep.removed_references_lines += 1
+                continue
+
+        # Dotted ToC lines
         if profile in ("safe", "strict") and RE_TOC_LINE.search(s.strip()):
             rec.action = "drop"
             rec.category = "toc"
             rec.confidence = 0.98
             rep.removed_toc_lines += 1
             continue
+
         rec.normalized_text = RE_LIST_HEAD.sub(f"{bullet} ", s)
         kept_final.append(rec)
 
@@ -1080,7 +1102,7 @@ def _build_line_decisions(
                 raw_text=rec.raw_text,
                 normalized_text=rec.normalized_text,
                 action=rec.action,
-                category=rec.category if rec.action == "drop" else "other",
+                category=rec.category,
                 confidence=rec.confidence,
                 repeat_count=rec.repeat_count,
                 edge_hit_ratio=rec.edge_hit_ratio,
@@ -1093,7 +1115,70 @@ def _build_line_decisions(
     return out_lines, decisions
 
 
-# --- clean_text ------------------------------------------------
+def _line_decision_from_event(
+    event: Tuple[str, int, str, str],
+    *,
+    doc_id: str | None,
+    page_map: dict[int, int],
+) -> LineDecision:
+    category, idx, raw_text, normalized_text = event
+    caps, digit, punct = _line_ratios(normalized_text)
+    return LineDecision(
+        doc_id=doc_id,
+        page_idx=page_map.get(idx, -1),
+        line_idx=idx,
+        raw_text=raw_text,
+        normalized_text=normalized_text,
+        action="keep",
+        category=category,  # paragraph_merge / hyphen_fix / section_marker_inserted
+        confidence=0.85,
+        caps_ratio=caps,
+        digit_ratio=digit,
+        punctuation_ratio=punct,
+        codepoints=[f"U+{ord(ch):04X}" for ch in raw_text],
+    )
+
+
+def _apply_structure_mode(
+    lines: List[str],
+    *,
+    structure_mode: StructureMode,
+    preserve_markdown_tables: bool,
+    debug_decisions: bool,
+    doc_id: str | None,
+    existing_decisions: List[LineDecision],
+) -> Tuple[List[str], List[LineDecision]]:
+    if structure_mode == "off" or not lines:
+        return lines, existing_decisions
+
+    page_map = {d.line_idx: d.page_idx for d in existing_decisions}
+    events: List[Tuple[str, int, str, str]] = []
+
+    # Light mode: continuity restoration only.
+    lines, ev = _reconstruct_paragraphs(
+        lines, preserve_markdown_tables=preserve_markdown_tables
+    )
+    events.extend(ev)
+
+    # Aggressive mode: add structural markers for sections and references.
+    if structure_mode == "aggressive":
+        lines, ev = _insert_section_markers(lines)
+        events.extend(ev)
+        lines, ev = _isolate_references_block(lines)
+        events.extend(ev)
+
+    if not debug_decisions:
+        return lines, existing_decisions
+
+    extra = [
+        _line_decision_from_event(e, doc_id=doc_id, page_map=page_map) for e in events
+    ]
+    return lines, existing_decisions + extra
+
+
+# ---------------------------------------------------------------------------
+# clean_text / praline API
+# ---------------------------------------------------------------------------
 
 
 def clean_text(
@@ -1105,18 +1190,13 @@ def clean_text(
     preserve_markdown_tables: bool | None = None,
     collapse_blank_lines: bool = True,
     drop_layout_noise: Toggle = "auto",
-    drop_repeated_lines: Toggle = "off",  # IMPORTANT: keep OFF by default
+    drop_repeated_lines: Toggle = "off",
+    drop_references_section: Toggle = "off",
+    structure_mode: StructureMode = "off",
     debug_decisions: bool = False,
     doc_id: str | None = None,
     report: ReportMode = False,
 ) -> Tuple[str, PralineReport]:
-    """
-    Clean a text string for reliable ingestion (chunking, indexing, RAG).
-
-    :param report: ``False|True|"detail"`` controls report enrichment.
-                  clean_text ALWAYS returns (text, report).
-                  (praline() can hide the report for convenience.)
-    """
     if not s:
         rep = PralineReport(input_len=0, output_len=0)
         rep.detail_enabled = report == "detail"
@@ -1131,6 +1211,7 @@ def clean_text(
 
     # 0) profile detection
     text_profile, web_safe = _pass_detect_profile(s, rep)
+    is_pdfish = text_profile in ("pdf_like", "ocr_like")
 
     # 1) extraction normalization (+ unicode normalize)
     s, do_norm = _pass_extraction_normalize(
@@ -1148,17 +1229,18 @@ def clean_text(
     lines = s.splitlines()
     raw_line_texts = original_text.splitlines()
 
-    # Layout-noise: OFF for clean web unless forced
     layout_enabled = (drop_layout_noise == "on") or (
-        drop_layout_noise == "auto" and do_norm and not web_safe
+        drop_layout_noise == "auto" and do_norm and is_pdfish and not web_safe
     )
     header_footer_enabled = (drop_repeated_lines == "on") or (
-        drop_repeated_lines == "auto"
-        and do_norm
-        and text_profile in ("pdf_like", "ocr_like")
-        and not web_safe
+        drop_repeated_lines == "auto" and do_norm and is_pdfish and not web_safe
     )
-    toc_navigation_enabled = do_norm and not web_safe
+    toc_navigation_enabled = bool(do_norm and not web_safe)
+
+    references_enabled = (drop_references_section == "on") or (
+        drop_references_section == "auto" and do_norm and is_pdfish and not web_safe
+    )
+
     lines, decisions = _build_line_decisions(
         raw_line_texts,
         lines,
@@ -1169,8 +1251,17 @@ def clean_text(
         layout_enabled=layout_enabled,
         header_footer_enabled=header_footer_enabled,
         toc_navigation_enabled=toc_navigation_enabled,
+        references_enabled=references_enabled,
         debug_decisions=debug_decisions,
         doc_id=doc_id,
+    )
+    lines, decisions = _apply_structure_mode(
+        lines,
+        structure_mode=structure_mode,
+        preserve_markdown_tables=preserve_markdown_tables,
+        debug_decisions=debug_decisions,
+        doc_id=doc_id,
+        existing_decisions=decisions,
     )
     rep.decisions = decisions
     s = "\n".join(lines)
@@ -1192,17 +1283,20 @@ def clean_text(
     return s, rep
 
 
-# --- praline ----------------------------------------------------
-
-
 def praline(
     text: str,
     *,
-    profile: Profile = "safe",
-    normalize_extracted: NormalizeExtracted = "auto",
-    collapse_blank_lines: bool = True,
-    drop_layout_noise: Toggle = "auto",
-    drop_repeated_lines: Toggle = "off",
+    preset: Preset = "safe",
+    # overrides (optional)
+    profile: Profile | None = None,
+    normalize_extracted: NormalizeExtracted | None = None,
+    normalize_form: str | None = None,
+    preserve_markdown_tables: bool | None = None,
+    collapse_blank_lines: bool | None = None,
+    drop_layout_noise: Toggle | None = None,
+    drop_repeated_lines: Toggle | None = None,
+    drop_references_section: Toggle | None = None,
+    structure_mode: StructureMode | None = None,
     debug_decisions: bool = False,
     doc_id: str | None = None,
     report: ReportMode = False,
@@ -1210,16 +1304,43 @@ def praline(
     """
     One-shot entrypoint: refine any text to be ingestion-ready.
 
-    - report=False  -> returns str
+    - preset="raw" -> returns original text (+ report if requested)
+    - report=False -> returns str
     - report=True/"detail" -> returns (str, PralineReport)
     """
-    out, rep = clean_text(
-        text,
+    if preset == "raw":
+        rep = PralineReport(input_len=len(text or ""), output_len=len(text or ""))
+        rep.detail_enabled = report == "detail"
+        return (text, rep) if report in (True, "detail") else text
+
+    cfg = _resolve_cfg(
+        preset,
         profile=profile,
         normalize_extracted=normalize_extracted,
+        normalize_form=normalize_form,
+        preserve_markdown_tables=preserve_markdown_tables,
         collapse_blank_lines=collapse_blank_lines,
         drop_layout_noise=drop_layout_noise,
         drop_repeated_lines=drop_repeated_lines,
+        drop_references_section=drop_references_section,
+        structure_mode=structure_mode,
+    )
+
+    out, rep = clean_text(
+        text,
+        profile=cfg.profile,
+        normalize_extracted=cfg.normalize_extracted,
+        normalize_form=cfg.normalize_form,
+        preserve_markdown_tables=(
+            cfg.preserve_markdown_tables
+            if cfg.preserve_markdown_tables is not None
+            else None
+        ),
+        collapse_blank_lines=cfg.collapse_blank_lines,
+        drop_layout_noise=cfg.drop_layout_noise,
+        drop_repeated_lines=cfg.drop_repeated_lines,
+        drop_references_section=cfg.drop_references_section,
+        structure_mode=cfg.structure_mode,
         debug_decisions=debug_decisions,
         doc_id=doc_id,
         report=report,
@@ -1227,31 +1348,34 @@ def praline(
     return (out, rep) if report in (True, "detail") else out
 
 
-def clean_lines(lines: Iterable[str], **kwargs: Any) -> List[str]:
-    """
-    Clean an iterable of strings with :func:`~textpraline.cleaner.clean.praline`.
+def clean_lines(
+    lines: Iterable[str],
+    *,
+    return_reports: bool = False,
+    **kwargs: Any,
+) -> List[str] | Tuple[List[str], List[PralineReport]]:
+    texts: List[str] = []
+    reports: List[PralineReport] = []
 
-    :param lines: Iterable of strings.
-    :param kwargs: Forwarded to :func:`~textpraline.cleaner.clean.praline`.
-    :returns: List of cleaned strings.
-    """
-    out: List[str] = []
+    kwargs["report"] = True if return_reports else kwargs.get("report", False)
+
     for x in lines:
         res = praline(x, **kwargs)
-        out.append(res if isinstance(res, str) else res[0])
-    return out
+        if isinstance(res, str):
+            texts.append(res)
+        else:
+            txt, rep = res
+            texts.append(txt)
+            if return_reports:
+                reports.append(rep)
+
+    return (texts, reports) if return_reports else texts
 
 
 def main(argv: List[str] | None = None) -> None:
-    """
-    CLI entrypoint.
-
-    Usage::
-
-        textpraline < infile.txt > outfile.txt
-
-    :param argv: Optional argv (unused).
-    :returns: None.
-    """
     data = sys.stdin.read()
     sys.stdout.write(praline(data))
+
+
+if __name__ == "__main__":
+    main()

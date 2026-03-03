@@ -17,7 +17,7 @@ import chromadb
 import fitz
 from chromadb.utils.embedding_functions import SentenceTransformerEmbeddingFunction
 
-from textpraline.cleaner.clean import PralineReport, praline
+from textpraline.cleaner.clean import PralineReport, praline, clean_text
 
 
 # =============================================================================
@@ -111,11 +111,9 @@ class DocData:
     pdf_path: str
     pages: List[str]
     raw_doc_text: str
-    praline_doc_text: str
-    report: PralineReport
+    variants: Dict[str, Tuple[str, PralineReport]]
     page_count: int
     raw_len: int
-    praline_len: int
 
 
 @dataclass
@@ -389,42 +387,153 @@ def build_documents(corpus_dir: Path) -> List[DocData]:
     if not pdf_paths:
         raise RuntimeError(f"No PDF files found in {corpus_dir}")
 
+    # Définis tes variants ici (nom -> kwargs praline)
+    VARIANTS = {
+    "raw": dict(kind="raw"),
+
+    "praline_off": dict(
+        profile="safe",
+        normalize_extracted="auto",
+        drop_layout_noise="auto",
+        drop_repeated_lines="off",
+        structure_mode="off",
+    ),
+    "praline_light": dict(
+        profile="safe",
+        normalize_extracted="auto",
+        drop_layout_noise="auto",
+        drop_repeated_lines="off",
+        structure_mode="light",
+    ),
+    "praline_aggressive": dict(
+        profile="safe",
+        normalize_extracted="auto",
+        drop_layout_noise="auto",
+        drop_repeated_lines="off",
+        structure_mode="aggressive",
+    ),
+    "praline_drop_only": dict(
+        profile = "safe",
+        normalize_extracted="auto",
+        structure_mode="off",
+        drop_layout_noise="auto",
+        drop_repeated_lines="auto",
+        drop_references_section="auto",
+    ),
+    "praline_structure_only": dict(
+        profile = "safe",
+        normalize_extracted="auto",
+        structure_mode="light",
+        drop_layout_noise="off",
+        drop_repeated_lines="off",
+        drop_references_section="off",
+    )
+    }
+
     for pdf_path in pdf_paths:
         pages = extract_pdf_pages(pdf_path)
         raw_doc_text = "\n\n\n".join(pages)
-        praline_doc_text, report = praline(
+
+        variants: Dict[str, Tuple[str, PralineReport]] = {}
+
+        # raw
+        variants["raw"] = (
             raw_doc_text,
-            normalize_extracted="auto",
-            drop_layout_noise="auto",
-            drop_repeated_lines="auto",
-            debug_decisions=True,
-            doc_id=pdf_path.stem,
-            report="detail",
+            PralineReport(
+                input_len=len(raw_doc_text),
+                output_len=len(raw_doc_text),
+                detail_enabled=False,
+            ),
         )
+
+        # praline variants
+        for name, cfg in VARIANTS.items():
+            if cfg.get("kind") == "raw":
+                variants[name] = (raw_doc_text, PralineReport(input_len=len(raw_doc_text), output_len=len(raw_doc_text)))
+                continue
+
+            cleaned, rep = praline(
+                raw_doc_text,
+                **cfg,
+                debug_decisions=True,
+                doc_id=pdf_path.stem,
+                report="detail",
+            )
+            variants[name] = (cleaned, rep)
+
         docs.append(
             DocData(
                 doc_id=pdf_path.stem,
                 pdf_path=str(pdf_path),
                 pages=pages,
                 raw_doc_text=raw_doc_text,
-                praline_doc_text=praline_doc_text,
-                report=report,
+                variants=variants,
                 page_count=len(pages),
                 raw_len=len(raw_doc_text),
-                praline_len=len(praline_doc_text),
             )
         )
+
     return docs
 
+
+def export_selected_variants_jsonl(
+    docs: list[DocData],
+    out_dir: Path,
+) -> None:
+    out_dir.mkdir(parents=True, exist_ok=True)
+
+    selected_variants = [
+        "praline_off",
+        "praline_light",
+        "praline_aggressive",
+        "praline_drop_only",
+        "praline_structure_only",
+    ]
+
+    for variant in selected_variants:
+        out_path = out_dir / f"{variant}.jsonl"
+
+        with out_path.open("w", encoding="utf-8") as f:
+            for doc in docs:
+                if variant not in doc.variants:
+                    continue
+
+                text, rep = doc.variants[variant]
+
+                row = {
+                    "doc_id": doc.doc_id,
+                    "variant": variant,
+                    "input_len": getattr(rep, "input_len", len(text)),
+                    "output_len": getattr(rep, "output_len", len(text)),
+                    "text": text,
+                }
+
+                if rep and getattr(rep, "decisions", None):
+                    row["decisions"] = [
+                        {
+                            "action": d.action,
+                            "category": d.category,
+                            "page_idx": d.page_idx,
+                            "line_idx": d.line_idx,
+                            "raw_text": d.raw_text,
+                            "normalized_text": d.normalized_text,
+                        }
+                        for d in rep.decisions
+                    ]
+
+                f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
 def build_chunks(docs: Sequence[DocData], variant: str) -> List[ChunkData]:
     out: List[ChunkData] = []
     for doc in docs:
-        text = doc.raw_doc_text if variant == "raw" else doc.praline_doc_text
-        page_offsets = compute_page_offsets(doc.pages) if variant == "raw" else [0, len(text)]
-        chunks = chunk_text_with_offsets(
-            text, chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP
-        )
+        if variant not in doc.variants:
+            raise KeyError(f"Unknown variant '{variant}' for doc '{doc.doc_id}'")
+
+        text = doc.variants[variant][0]
+
+        raw_page_offsets = compute_page_offsets(doc.pages)  # only reliable for raw
+        chunks = chunk_text_with_offsets(text, chunk_size=CHUNK_SIZE, chunk_overlap=CHUNK_OVERLAP)
+
         for idx, (start, end, ch) in enumerate(chunks):
             out.append(
                 ChunkData(
@@ -435,9 +544,7 @@ def build_chunks(docs: Sequence[DocData], variant: str) -> List[ChunkData]:
                     text=ch,
                     start_char=start,
                     end_char=end,
-                    page_span=char_span_to_page_span(start, end, page_offsets)
-                    if variant == "raw"
-                    else "",
+                    page_span=char_span_to_page_span(start, end, raw_page_offsets) if variant == "raw" else "",
                 )
             )
     return out
@@ -567,17 +674,22 @@ def build_answer_snippet(text: str, anchor: str) -> str:
     return " ".join(merged[:20] if len(merged) >= 20 else merged)
 
 
-def generate_questions(docs: Sequence[DocData]) -> List[QAItem]:
+def generate_questions(docs: Sequence[DocData], *, qa_variant: str) -> List[QAItem]:
     qa_items: List[QAItem] = []
     qid_counter = 1
+
     for doc in docs:
-        sents = split_sentences(doc.praline_doc_text)
+        if qa_variant not in doc.variants:
+            raise KeyError(f"QA variant '{qa_variant}' missing for doc '{doc.doc_id}'")
+
+        qa_text = doc.variants[qa_variant][0]
+
+        sents = split_sentences(qa_text)
         scored: List[Tuple[float, int, str]] = []
         for i, sent in enumerate(sents):
             score = sentence_informativeness(sent)
-            if score < 0:
-                continue
-            scored.append((score, i, sent))
+            if score >= 0:
+                scored.append((score, i, sent))
         scored.sort(key=lambda x: (-x[0], x[1]))
 
         selected: List[str] = []
@@ -609,17 +721,16 @@ def generate_questions(docs: Sequence[DocData]) -> List[QAItem]:
         selected = selected[:MAX_QUESTIONS_PER_DOC]
         for sent in selected:
             qid = f"q{qid_counter:04d}"
-            question = build_question(sent, qid_counter)
-            answer = build_answer_snippet(doc.praline_doc_text, sent)
             qa_items.append(
                 QAItem(
                     qid=qid,
-                    question=question,
+                    question=build_question(sent, qid_counter),
                     expected_doc_id=doc.doc_id,
-                    expected_answer_snippet=answer,
+                    expected_answer_snippet=build_answer_snippet(qa_text, sent),
                 )
             )
             qid_counter += 1
+
     return qa_items
 
 
@@ -769,7 +880,7 @@ def build_removed_lines_overview(docs: Sequence[DocData]) -> List[Dict[str, Any]
     rows: List[Dict[str, Any]] = []
     for doc in docs:
         raw_lines = [ln for ln in doc.raw_doc_text.splitlines() if ln.strip()]
-        pra_lines = [ln for ln in doc.praline_doc_text.splitlines() if ln.strip()]
+        pra_lines = [ln for ln in doc.variants["praline_safe"][0].splitlines() if ln.strip()]
 
         raw_norm_map: Dict[str, List[str]] = {}
         raw_counts: Dict[str, int] = {}
@@ -843,20 +954,24 @@ def build_removed_debug_rows(docs: Sequence[DocData]) -> List[Dict[str, Any]]:
     """
     rows: List[Dict[str, Any]] = []
     for doc in docs:
-        for d in doc.report.decisions:
-            if d.action != "drop":
+        for variant, (_text, rep) in doc.variants.items():
+            if not rep or not getattr(rep, "decisions", None):
                 continue
-            rows.append(
-                {
-                    "doc_id": d.doc_id or doc.doc_id,
-                    "page_idx": d.page_idx,
-                    "line_index": d.line_idx,
-                    "removal_type": d.category,
-                    "raw_text": d.raw_text,
-                    "repr_text": repr(d.raw_text),
-                    "codepoints": d.codepoints,
-                }
-            )
+            for d in rep.decisions:
+                if d.action != "drop":
+                    continue
+                rows.append(
+                    {
+                        "doc_id": d.doc_id or doc.doc_id,
+                        "variant": variant,
+                        "page_idx": d.page_idx,
+                        "line_index": d.line_idx,
+                        "removal_type": d.category,
+                        "raw_text": d.raw_text,
+                        "repr_text": repr(d.raw_text),
+                        "codepoints": d.codepoints,
+                    }
+                )
     return rows
 
 
@@ -980,176 +1095,214 @@ def main() -> None:
     random.seed(SEED)
 
     docs = build_documents(CORPUS_DIR)
-    raw_chunks = build_chunks(docs, "raw")
-    praline_chunks = build_chunks(docs, "praline")
-
-    embed_fn, embedding_backend = make_embedding_function()
-    client = chromadb.Client()
-    raw_col = build_collection(client, "rag_eval_raw", embed_fn, raw_chunks)
-    praline_col = build_collection(client, "rag_eval_praline", embed_fn, praline_chunks)
-
-    qa_items = generate_questions(docs)
-    write_jsonl(QA_JSONL_PATH, [asdict(x) for x in qa_items])
-
-    question_rows: List[Dict[str, Any]] = []
-    for qa in qa_items:
-        raw_topk = query_topk(raw_col, qa.question, top_k=TOP_K)
-        pra_topk = query_topk(praline_col, qa.question, top_k=TOP_K)
-
-        raw_docs = top_docs_unique(raw_topk)
-        pra_docs = top_docs_unique(pra_topk)
-
-        mrr_raw = mrr(raw_docs, qa.expected_doc_id)
-        mrr_pra = mrr(pra_docs, qa.expected_doc_id)
-
-        question_rows.append(
-            {
-                "qid": qa.qid,
-                "question": qa.question,
-                "expected_doc_id": qa.expected_doc_id,
-                "expected_answer_snippet": qa.expected_answer_snippet,
-                "expected_chunk_raw": best_chunk_for_answer(
-                    raw_chunks, qa.expected_answer_snippet, qa.expected_doc_id
-                ),
-                "expected_chunk_praline": best_chunk_for_answer(
-                    praline_chunks, qa.expected_answer_snippet, qa.expected_doc_id
-                ),
-                "top1_doc_raw": raw_docs[0] if raw_docs else "",
-                "top1_doc_praline": pra_docs[0] if pra_docs else "",
-                "recall@1_raw": recall_at_k(raw_docs, qa.expected_doc_id, 1),
-                "recall@5_raw": recall_at_k(raw_docs, qa.expected_doc_id, 5),
-                "recall@10_raw": recall_at_k(raw_docs, qa.expected_doc_id, 10),
-                "mrr_raw": mrr_raw,
-                "recall@1_praline": recall_at_k(pra_docs, qa.expected_doc_id, 1),
-                "recall@5_praline": recall_at_k(pra_docs, qa.expected_doc_id, 5),
-                "recall@10_praline": recall_at_k(pra_docs, qa.expected_doc_id, 10),
-                "mrr_praline": mrr_pra,
-                "accuracy_top1_raw": bool(raw_docs and raw_docs[0] == qa.expected_doc_id),
-                "accuracy_top1_praline": bool(
-                    pra_docs and pra_docs[0] == qa.expected_doc_id
-                ),
-                "delta_mrr": mrr_pra - mrr_raw,
-                "raw_topk_chunks_json": compact_topk_json(raw_topk),
-                "praline_topk_chunks_json": compact_topk_json(pra_topk),
-            }
-        )
-
-    doc_report_rows: List[Dict[str, Any]] = []
-    for d in docs:
-        removed_chars = d.raw_len - d.praline_len
-        doc_report_rows.append(
-            {
-                "doc_id": d.doc_id,
-                "page_count": d.page_count,
-                "raw_len": d.raw_len,
-                "praline_len": d.praline_len,
-                "removed_chars": removed_chars,
-                "removed_ratio": (removed_chars / d.raw_len) if d.raw_len else 0.0,
-                "text_profile": d.report.text_profile,
-                "normalized_extracted": d.report.normalized_extracted,
-                "removed_layout_noise_lines": d.report.removed_layout_noise_lines,
-                "removed_header_footer_lines": d.report.removed_header_footer_lines,
-                "removed_toc_lines": d.report.removed_toc_lines,
-                "removed_boilerplate_lines": d.report.removed_boilerplate_lines,
-            }
-        )
-
-    removed_lines_rows = build_removed_lines_overview(docs)
-    removed_debug_rows = build_removed_debug_rows(docs)
-    summary_rows = summarize_metrics(question_rows)
-    summary_rows.insert(
-        0,
-        {
-            "section": "run_info",
-            "item": "embedding_backend",
-            "raw_value": "",
-            "praline_value": "",
-            "delta": "",
-            "notes": embedding_backend,
-        },
+    export_selected_variants_jsonl(
+        docs,
+        DATASETS_DIR / "debug_variants"
     )
 
+    doc_variant_rows: List[Dict[str, Any]] = []
+    for doc in docs:
+        for v, (text, rep) in doc.variants.items():
+            n_hyphen_fix = sum(1 for d in rep.decisions if d.category == "hyphen_fix") if rep else 0
+            n_paragraph_merge = sum(1 for d in rep.decisions if d.category == "paragraph_merge") if rep else 0
+
+            doc_variant_rows.append(
+                {
+                    "doc_id": doc.doc_id,
+                    "variant": v,
+                    "input_len": rep.input_len if rep else len(text),
+                    "output_len": rep.output_len if rep else len(text),
+                    "normalized_extracted": getattr(rep, "normalized_extracted", False),
+                    "removed_header_footer": getattr(rep, "removed_header_footer_lines", 0),
+                    "removed_layout_noise": getattr(rep, "removed_layout_noise_lines", 0),
+                    "n_hyphen_fix": n_hyphen_fix,
+                    "n_paragraph_merge": n_paragraph_merge,
+                }
+            )
+    doc_variants_columns = [
+        "doc_id","variant",
+        "input_len","output_len","normalized_extracted",
+        "removed_header_footer","removed_layout_noise",
+        "n_hyphen_fix","n_paragraph_merge",
+    ]
+
+    # 1) liste des variants disponibles
+    variant_names = sorted(docs[0].variants.keys())
+    if "raw" not in variant_names:
+        raise RuntimeError("Missing 'raw' variant")
+
+    # 2) on fixe le variant qui sert à générer les questions (important!)
+    QA_VARIANT = "raw"
+
+    qa_items = generate_questions(docs, qa_variant=QA_VARIANT)
+    write_jsonl(QA_JSONL_PATH, [asdict(x) for x in qa_items])
+
+    # 3) build chunks par variant
+    chunks_by_variant: Dict[str, List[ChunkData]] = {
+        v: build_chunks(docs, v) for v in variant_names
+    }
+
+    # 4) build chroma collections par variant
+    embed_fn, embedding_backend = make_embedding_function()
+    client = chromadb.Client()
+
+    cols = {
+        v: build_collection(client, f"rag_eval__{v}", embed_fn, chunks_by_variant[v])
+        for v in variant_names
+    }
+
+    # 5) scoring : RAW baseline + chaque variant
+    question_rows: List[Dict[str, Any]] = []
+
+    for qa in qa_items:
+        raw_topk = query_topk(cols["raw"], qa.question, top_k=TOP_K)
+        raw_docs = top_docs_unique(raw_topk)
+        mrr_raw = mrr(raw_docs, qa.expected_doc_id)
+
+        for v in variant_names:
+            topk = query_topk(cols[v], qa.question, top_k=TOP_K)
+            ranked = top_docs_unique(topk)
+            mrr_v = mrr(ranked, qa.expected_doc_id)
+
+            question_rows.append(
+                {
+                    "qid": qa.qid,
+                    "variant": v,
+                    "question": qa.question,
+                    "expected_doc_id": qa.expected_doc_id,
+                    "mrr": mrr_v,
+                    "recall@1": recall_at_k(ranked, qa.expected_doc_id, 1),
+                    "recall@5": recall_at_k(ranked, qa.expected_doc_id, 5),
+                    "recall@10": recall_at_k(ranked, qa.expected_doc_id, 10),
+                    "top1_doc": ranked[0] if ranked else "",
+                    "delta_mrr_vs_raw": mrr_v - mrr_raw,
+                    "topk_chunks_json": compact_topk_json(topk),
+                }
+            )
+
+    # 6) summary global par variant
+    def avg(rows, col):
+        return sum(float(r[col]) for r in rows) / max(len(rows), 1)
+
+    summary_rows: List[Dict[str, Any]] = [
+        {"section": "run_info", "item": "embedding_backend", "raw_value": "", "praline_value": "", "delta": "", "notes": embedding_backend},
+        {"section": "run_info", "item": "qa_variant", "raw_value": "", "praline_value": "", "delta": "", "notes": QA_VARIANT},
+    ]
+
+    for v in variant_names:
+        vr = [r for r in question_rows if r["variant"] == v]
+        summary_rows.append(
+            {
+                "section": "variant_metrics",
+                "item": v,
+                "raw_value": "",
+                "praline_value": avg(vr, "mrr"),
+                "delta": avg(vr, "delta_mrr_vs_raw"),
+                "notes": f"top1={avg(vr,'recall@1'):.4f}, r@5={avg(vr,'recall@5'):.4f}, r@10={avg(vr,'recall@10'):.4f}",
+            }
+        )
+
+    # 1) raw baseline per question
+    raw_by_qid = {}
+    for r in question_rows:
+        if r["variant"] == "raw":
+            raw_by_qid[r["qid"]] = r["mrr"]
+
+    # 2) cases where a variant beats raw
+    wins = []
+    for r in question_rows:
+        if r["variant"] == "raw":
+            continue
+        mrr_raw = raw_by_qid.get(r["qid"], None)
+        if mrr_raw is None:
+            continue
+        if r["mrr"] > mrr_raw:
+            wins.append({
+                "qid": r["qid"],
+                "variant": r["variant"],
+                "delta_mrr_vs_raw": r["mrr"] - mrr_raw,
+                "expected_doc_id": r["expected_doc_id"],
+                "question": r["question"],
+            })
+
+    # 3) join with doc-level signals you already compute (doc_variant_rows)
+    docv = {(x["doc_id"], x["variant"]): x for x in doc_variant_rows}
+
+    for w in wins:
+        key = (w["expected_doc_id"], w["variant"])
+        sig = docv.get(key, {})
+        w.update({
+            "normalized_extracted": sig.get("normalized_extracted", False),
+            "removed_header_footer": sig.get("removed_header_footer", 0),
+            "removed_layout_noise": sig.get("removed_layout_noise", 0),
+            "n_hyphen_fix": sig.get("n_hyphen_fix", 0),
+            "n_paragraph_merge": sig.get("n_paragraph_merge", 0),
+            "output_len": sig.get("output_len", None),
+        })
+
+    # 4) sort most convincing wins
+    wins_sorted = sorted(wins, key=lambda x: x["delta_mrr_vs_raw"], reverse=True)
+
+
+    wins_columns = [
+        "qid","variant","delta_mrr_vs_raw","expected_doc_id",
+        "normalized_extracted","removed_header_footer","removed_layout_noise",
+        "n_hyphen_fix","n_paragraph_merge","output_len","question"
+    ]
+
+    losses = []
+    for r in question_rows:
+        if r["variant"] == "raw":
+            continue
+        mrr_raw = raw_by_qid.get(r["qid"])
+        if mrr_raw is None:
+            continue
+        if r["mrr"] < mrr_raw:
+            losses.append({
+                "qid": r["qid"],
+                "variant": r["variant"],
+                "delta_mrr_vs_raw": r["mrr"] - mrr_raw,  # negative
+                "expected_doc_id": r["expected_doc_id"],
+                "question": r["question"],
+            })
+    losses_sorted = sorted(losses, key=lambda x: x["delta_mrr_vs_raw"])  # most negative first
+
+    # 7) export
     questions_columns = [
-        "qid",
-        "question",
-        "expected_doc_id",
-        "expected_answer_snippet",
-        "expected_chunk_raw",
-        "expected_chunk_praline",
-        "top1_doc_raw",
-        "top1_doc_praline",
-        "recall@1_raw",
-        "recall@5_raw",
-        "recall@10_raw",
-        "mrr_raw",
-        "recall@1_praline",
-        "recall@5_praline",
-        "recall@10_praline",
-        "mrr_praline",
-        "accuracy_top1_raw",
-        "accuracy_top1_praline",
-        "delta_mrr",
-        "raw_topk_chunks_json",
-        "praline_topk_chunks_json",
+        "qid","variant","question","expected_doc_id",
+        "mrr","recall@1","recall@5","recall@10","top1_doc",
+        "delta_mrr_vs_raw","topk_chunks_json",
     ]
-    doc_report_columns = [
-        "doc_id",
-        "page_count",
-        "raw_len",
-        "praline_len",
-        "removed_chars",
-        "removed_ratio",
-        "text_profile",
-        "normalized_extracted",
-        "removed_layout_noise_lines",
-        "removed_header_footer_lines",
-        "removed_toc_lines",
-        "removed_boilerplate_lines",
-    ]
-    removed_columns = [
-        "doc_id",
-        "normalized_line",
-        "raw_count",
-        "praline_count",
-        "removed",
-        "category_guess",
-        "example_raw_line",
-    ]
-    summary_columns = ["section", "item", "raw_value", "praline_value", "delta", "notes"]
+    summary_columns = ["section","item","raw_value","praline_value","delta","notes"]
 
     write_csv(CSV_PATH, question_rows, questions_columns)
-    write_jsonl(REMOVED_DEBUG_JSONL_PATH, removed_debug_rows)
     write_xlsx(
         XLSX_PATH,
         {
-            "questions": (question_rows, questions_columns),
-            "doc_reports": (doc_report_rows, doc_report_columns),
-            "removed_lines_overview": (removed_lines_rows, removed_columns),
+            "questions_long": (question_rows, questions_columns),
             "summary": (summary_rows, summary_columns),
+            "doc_variants": (doc_variant_rows, doc_variants_columns),
+            "wins_vs_raw": (wins_sorted, wins_columns),
+            "losses_vs_raw": (losses_sorted, wins_columns),
         },
     )
 
     print("Done.")
     print(f"Docs processed: {len(docs)}")
-    print(f"Questions generated: {len(question_rows)}")
-    print(f"RAW chunks: {len(raw_chunks)}")
-    print(f"PRALINE chunks: {len(praline_chunks)}")
+    print(f"Questions generated: {len(qa_items)}")
+    print(f"Variants: {variant_names}")
+    print(f"QA variant: {QA_VARIANT}")
     print(f"Embedding backend: {embedding_backend}")
-    if question_rows:
-        raw_mrr = sum(float(r["mrr_raw"]) for r in question_rows) / len(question_rows)
-        pra_mrr = sum(float(r["mrr_praline"]) for r in question_rows) / len(question_rows)
-        raw_top1 = sum(float(r["accuracy_top1_raw"]) for r in question_rows) / len(question_rows)
-        pra_top1 = sum(float(r["accuracy_top1_praline"]) for r in question_rows) / len(question_rows)
-        winner = "PRALINE" if pra_mrr > raw_mrr else ("RAW" if raw_mrr > pra_mrr else "TIE")
-        print(
-            "Overall winner by MRR: "
-            f"{winner} (raw={raw_mrr:.4f}, praline={pra_mrr:.4f}, "
-            f"top1_raw={raw_top1:.4f}, top1_praline={pra_top1:.4f})"
-        )
-    print(f"QA JSONL: {QA_JSONL_PATH}")
-    print(f"XLSX: {XLSX_PATH}")
-    print(f"CSV: {CSV_PATH}")
-    print(f"Removed debug JSONL: {REMOVED_DEBUG_JSONL_PATH}")
+
+    # best variant by avg MRR
+    best = None
+    for v in variant_names:
+        vr = [r for r in question_rows if r["variant"] == v]
+        score = avg(vr, "mrr")
+        if best is None or score > best[1]:
+            best = (v, score)
+    if best:
+        print(f"Best variant by avg MRR: {best[0]} ({best[1]:.4f})")
 
 
 if __name__ == "__main__":
