@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/TextPraline_logo.png" alt="TextPraline Logo" width="300"/>
+  <img src="https://raw.githubusercontent.com/BadTrL/text-praline/main/assets/TextPraline_logo.png" alt="TextPraline Logo" width="300"/>
 </p>
 <h1 align="center">TextPraline 🍬</h1>
 

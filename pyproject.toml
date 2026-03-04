@@ -1,6 +1,6 @@
 [project]
 name = "textpraline"
-version = "0.1.0"
+version = "0.1.1"
 description = "TextPraline is a text normalization and refinement engine designed to prepare raw extracted content for reliable downstream processing. It cleans and stabilizes text coming from: PDF extractors , OCR pipelines, HTML scrapers. Praline removes structural noise and invisible corruption without altering meaning."
 authors = [
     {name = "Sacha Cassereau"}
