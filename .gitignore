@@ -21,4 +21,4 @@ rag_testing/chroma_db/
 rag_testing/corpus/
 
 #dist 
-.dist/
+dist/
