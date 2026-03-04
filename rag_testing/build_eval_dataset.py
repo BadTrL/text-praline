@@ -399,11 +399,7 @@ def build_documents(corpus_dir: Path) -> List[DocData]:
         structure_mode="off",
     ),
     "praline_light": dict(
-        profile="safe",
-        normalize_extracted="auto",
-        drop_layout_noise="auto",
-        drop_repeated_lines="off",
-        structure_mode="light",
+        preset="light",
     ),
     "praline_aggressive": dict(
         profile="safe",

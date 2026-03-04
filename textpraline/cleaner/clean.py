@@ -41,7 +41,7 @@ DecisionCategory = Literal[
     "section_marker_inserted",
     "other",
 ]
-Preset = Literal["raw", "safe", "bench", "strict"]
+Preset = Literal["raw", "safe", "bench", "strict", "light"]
 
 # ---------------------------------------------------------------------------
 # Presets / config (bench-friendly separation)
@@ -77,6 +77,16 @@ PRESETS: Dict[str, PralineConfig] = {
         drop_repeated_lines="off",
         drop_references_section="on",
         structure_mode="light",
+    ),
+    # Light preset: minimal normalization, preserves structure and formatting
+    "light": PralineConfig(
+        profile="safe",
+        normalize_extracted="auto",
+        collapse_blank_lines=False,
+        drop_layout_noise="auto",
+        drop_repeated_lines="auto",
+        drop_references_section="off",
+        structure_mode="off",
     ),
 }
 
