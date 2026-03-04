@@ -38,3 +38,10 @@ rag-testing = [
 ]
 [tool.ruff]
 exclude = ["rag_testing"]
+
+[tool.setuptools.packages.find]
+exclude = [
+    "rag_testing*",
+    "assets*",
+    "tests*"
+]

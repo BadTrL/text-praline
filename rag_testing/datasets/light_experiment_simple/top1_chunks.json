@@ -1,0 +1,3122 @@
+[
+  {
+    "qid": "q0001",
+    "variant": "raw",
+    "question": "According to the document, what is said about STATISTICS DATASETS TABLE THREE ODQA TEST OF De?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__raw__00022",
+      "chunk_index": 22,
+      "distance": 1.088815689086914,
+      "snippet": "Dk into a shorter context Sπ based on the query q, then l represents the number of tokens and Ic is the instruction to guide the compressor in summarizing the documents. We divide "
+    }
+  },
+  {
+    "qid": "q0001",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about STATISTICS DATASETS TABLE THREE ODQA TEST OF De?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_full__00022",
+      "chunk_index": 22,
+      "distance": 1.0677427053451538,
+      "snippet": " instruction to guide the compressor in summarizing the documents. We divide Dk into two subsets: De and Dnoisy. De is the set of evidential documents, and Dnoisy is the set of noi"
+    }
+  },
+  {
+    "qid": "q0001",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about STATISTICS DATASETS TABLE THREE ODQA TEST OF De?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_light__00022",
+      "chunk_index": 22,
+      "distance": 1.0688166618347168,
+      "snippet": " the instruction to guide the compressor in summarizing the documents. We divide Dk into two subsets: De and Dnoisy. De is the set of evidential documents, and Dnoisy is the set of"
+    }
+  },
+  {
+    "qid": "q0002",
+    "variant": "raw",
+    "question": "What key point is made regarding A5000 A6000 NVIDIA NVIDIA GPU RTX RTX GPUs?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__raw__00033",
+      "chunk_index": 33,
+      "distance": 1.7045377492904663,
+      "snippet": "a zero-shot manner. As the compressor, Flan-T5-large [29] and T5-large [30] are fine-tuned for the task. We use two NVIDIA RTX A6000 GPUs for fine-tuning and a single NVIDIA RTX A5"
+    }
+  },
+  {
+    "qid": "q0002",
+    "variant": "praline_full",
+    "question": "What key point is made regarding A5000 A6000 NVIDIA NVIDIA GPU RTX RTX GPUs?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_full__00032",
+      "chunk_index": 32,
+      "distance": 1.6748454570770264,
+      "snippet": " queries q paired with short answers containing no more than five tokens. TriviaQA is constructed by extracting spans from Wikipedia articles that contain correct answers to each g"
+    }
+  },
+  {
+    "qid": "q0002",
+    "variant": "praline_light",
+    "question": "What key point is made regarding A5000 A6000 NVIDIA NVIDIA GPU RTX RTX GPUs?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_light__00032",
+      "chunk_index": 32,
+      "distance": 1.672206163406372,
+      "snippet": "comprises queries q paired with short answers containing no more than five tokens. TriviaQA is constructed by extracting spans from Wikipedia articles that contain correct answers "
+    }
+  },
+  {
+    "qid": "q0003",
+    "variant": "raw",
+    "question": "What does the document state about ACL Computational Association Linguistics Proceedings Zettlemoyer Comprehen- Supervised?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "RAG_Noise_LLM",
+      "chunk_id": "RAG_Noise_LLM__raw__00049",
+      "chunk_index": 49,
+      "distance": 1.3666785955429077,
+      "snippet": "tgpt/. Preligens Lab. 2023. Textnoisr: Adding ran- dom noise to a dataset. https://github.com/ preligens-lab/textnoisr. Ofir Press, Muru Zhang, Sewon Min, Ludwig Schmidt, Noah Smit"
+    }
+  },
+  {
+    "qid": "q0003",
+    "variant": "praline_full",
+    "question": "What does the document state about ACL Computational Association Linguistics Proceedings Zettlemoyer Comprehen- Supervised?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "RAG_Noise_LLM",
+      "chunk_id": "RAG_Noise_LLM__praline_full__00049",
+      "chunk_index": 49,
+      "distance": 1.3977173566818237,
+      "snippet": "Textnoisr: Adding ran- dom noise to a dataset. https://github.com/ preligens-lab/textnoisr. Ofir Press, Muru Zhang, Sewon Min, Ludwig Schmidt, Noah Smith, and Mike Lewis. 2023. Mea"
+    }
+  },
+  {
+    "qid": "q0003",
+    "variant": "praline_light",
+    "question": "What does the document state about ACL Computational Association Linguistics Proceedings Zettlemoyer Comprehen- Supervised?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_light__00235",
+      "chunk_index": 235,
+      "distance": 1.3376847505569458,
+      "snippet": " the Association for Computational Linguistics, A. Korhonen, D. Traum, and L. M`arquez, Eds. Florence, Italy: Association for Computational Linguistics, Jul. 2019, pp. 4884-4895. ["
+    }
+  },
+  {
+    "qid": "q0004",
+    "variant": "raw",
+    "question": "According to the document, what is said about RAG Comprehensive Revealing Analysis Language 13533 Aladdin Pandora?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00024",
+      "chunk_index": 24,
+      "distance": 1.3278446197509766,
+      "snippet": "in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weight of term k in document i: bk,i = ½ 0 if term k is pr"
+    }
+  },
+  {
+    "qid": "q0004",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about RAG Comprehensive Revealing Analysis Language 13533 Aladdin Pandora?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00024",
+      "chunk_index": 24,
+      "distance": 1.3260281085968018,
+      "snippet": "f the associated term is present in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weight of term k in docum"
+    }
+  },
+  {
+    "qid": "q0004",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about RAG Comprehensive Revealing Analysis Language 13533 Aladdin Pandora?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "RAG_Noise_LLM",
+      "chunk_id": "RAG_Noise_LLM__praline_light__00000",
+      "chunk_index": 0,
+      "distance": 1.3041131496429443,
+      "snippet": "arXiv:2408.13533v4 [cs.CL] 31 May 2025 Pandora's Box or Aladdin's Lamp: A Comprehensive Analysis Revealing the Role of RAG Noise in Large Language Models Jinyang Wu1, Shuai Zhang1*"
+    }
+  },
+  {
+    "qid": "q0005",
+    "variant": "raw",
+    "question": "What key point is made regarding NAACL NLP Computational Evidentiality-guided Technologies Association Linguistics Proceedings?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "RAG_Noise_LLM",
+      "chunk_id": "RAG_Noise_LLM__raw__00049",
+      "chunk_index": 49,
+      "distance": 1.4117604494094849,
+      "snippet": "tgpt/. Preligens Lab. 2023. Textnoisr: Adding ran- dom noise to a dataset. https://github.com/ preligens-lab/textnoisr. Ofir Press, Muru Zhang, Sewon Min, Ludwig Schmidt, Noah Smit"
+    }
+  },
+  {
+    "qid": "q0005",
+    "variant": "praline_full",
+    "question": "What key point is made regarding NAACL NLP Computational Evidentiality-guided Technologies Association Linguistics Proceedings?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "RAG_Noise_LLM",
+      "chunk_id": "RAG_Noise_LLM__praline_full__00049",
+      "chunk_index": 49,
+      "distance": 1.442689299583435,
+      "snippet": "Textnoisr: Adding ran- dom noise to a dataset. https://github.com/ preligens-lab/textnoisr. Ofir Press, Muru Zhang, Sewon Min, Ludwig Schmidt, Noah Smith, and Mike Lewis. 2023. Mea"
+    }
+  },
+  {
+    "qid": "q0005",
+    "variant": "praline_light",
+    "question": "What key point is made regarding NAACL NLP Computational Evidentiality-guided Technologies Association Linguistics Proceedings?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "RAG_Noise_LLM",
+      "chunk_id": "RAG_Noise_LLM__praline_light__00049",
+      "chunk_index": 49,
+      "distance": 1.4100093841552734,
+      "snippet": "ligens Lab. 2023. Textnoisr: Adding ran- dom noise to a dataset. https://github.com/ preligens-lab/textnoisr. Ofir Press, Muru Zhang, Sewon Min, Ludwig Schmidt, Noah Smith, and Mik"
+    }
+  },
+  {
+    "qid": "q0006",
+    "variant": "raw",
+    "question": "What does the document state about ACL Computational Retrieval-Augmented Adversarial Association Linguistics Proceedings Robustness?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__raw__00235",
+      "chunk_index": 235,
+      "distance": 1.3162071704864502,
+      "snippet": "the Association for Computational Linguistics, A. Korhonen, D. Traum, and L. M`arquez, Eds. Florence, Italy: Association for Computational Linguistics, Jul. 2019, pp. 4884–4895. [O"
+    }
+  },
+  {
+    "qid": "q0006",
+    "variant": "praline_full",
+    "question": "What does the document state about ACL Computational Retrieval-Augmented Adversarial Association Linguistics Proceedings Robustness?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_full__00057",
+      "chunk_index": 57,
+      "distance": 1.3245669603347778,
+      "snippet": "al., \"Longllmlingua: Accelerating and enhancing llms in long context scenarios via prompt compression,\" In Proceedings of the Annual Meeting of the Association for Computational Li"
+    }
+  },
+  {
+    "qid": "q0006",
+    "variant": "praline_light",
+    "question": "What does the document state about ACL Computational Retrieval-Augmented Adversarial Association Linguistics Proceedings Robustness?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "RAG_Noise_LLM",
+      "chunk_id": "RAG_Noise_LLM__praline_light__00042",
+      "chunk_index": 42,
+      "distance": 1.2903848886489868,
+      "snippet": "024. The power of noise: Redefin- ing retrieval for rag systems. In Proceedings of the 47th International ACM SIGIR Conference on Re- search and Development in Information Retrieva"
+    }
+  },
+  {
+    "qid": "q0007",
+    "variant": "raw",
+    "question": "According to the document, what is said about ACL Computational Query-Guided Association Compression Information Linguistics Proceedings?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__raw__00007",
+      "chunk_index": 7,
+      "distance": 1.2743912935256958,
+      "snippet": "ising critical information, abstractive compression has been proposed [12]. Abstractive compression methods [12], [13] leverage the query-focused summarization (QFS) capabilities o"
+    }
+  },
+  {
+    "qid": "q0007",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about ACL Computational Query-Guided Association Compression Information Linguistics Proceedings?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_full__00014",
+      "chunk_index": 14,
+      "distance": 1.2609938383102417,
+      "snippet": " on the question or task [23]. They can be categorized into token pruning [22], [38], extractive compression [12], [24], and abstractive compression [12], [13]. Unlike token prunin"
+    }
+  },
+  {
+    "qid": "q0007",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about ACL Computational Query-Guided Association Compression Information Linguistics Proceedings?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_light__00014",
+      "chunk_index": 14,
+      "distance": 1.2487270832061768,
+      "snippet": "ng on the question or task [23]. They can be categorized into token pruning [22], [38], extractive compression [12], [24], and abstractive compression [12], [13]. Unlike token prun"
+    }
+  },
+  {
+    "qid": "q0008",
+    "variant": "raw",
+    "question": "What key point is made regarding IEEE/CVF CVPR Uncertainty-aware Proceedings Recognition Computer Pattern 2020?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00535",
+      "chunk_index": 535,
+      "distance": 1.5518016815185547,
+      "snippet": "nd  allocative efficiency in advanced economies, but not in  emerging market and developing economies. Second,  subsidized financing is associated with a reduction in  allocative e"
+    }
+  },
+  {
+    "qid": "q0008",
+    "variant": "praline_full",
+    "question": "What key point is made regarding IEEE/CVF CVPR Uncertainty-aware Proceedings Recognition Computer Pattern 2020?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_full__00059",
+      "chunk_index": 59,
+      "distance": 1.5142886638641357,
+      "snippet": ", and Y. Tay et al., \"Scaling instruction-finetuned language models,\" arXiv preprint [30] G.-H. Lee and S.-W. Lee, \"Uncertainty-aware mesh decoder for high fidelity 3d face reconst"
+    }
+  },
+  {
+    "qid": "q0008",
+    "variant": "praline_light",
+    "question": "What key point is made regarding IEEE/CVF CVPR Uncertainty-aware Proceedings Recognition Computer Pattern 2020?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_light__00059",
+      "chunk_index": 59,
+      "distance": 1.5151143074035645,
+      "snippet": "ongpre, B. Zoph, and Y. Tay et al., \"Scaling instruction-finetuned language models,\" arXiv preprint [30] G.-H. Lee and S.-W. Lee, \"Uncertainty-aware mesh decoder for high fidelity "
+    }
+  },
+  {
+    "qid": "q0009",
+    "variant": "raw",
+    "question": "What does the document state about RECOMP T5-large PAR NQ Notably 4966 6425 0?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__raw__00042",
+      "chunk_index": 42,
+      "distance": 1.3835883140563965,
+      "snippet": "EST DATASET Method NQ TriviaQA PopQA CR(↓) PAR(↑) CR(↓) PAR(↑) CR(↓) PAR(↑) Token pruning LongLLMLingua 0.5607 0.6320 0.5625 0.7044 0.5963 0.7760 Abstractive compression RECOMP 0.0"
+    }
+  },
+  {
+    "qid": "q0009",
+    "variant": "praline_full",
+    "question": "What does the document state about RECOMP T5-large PAR NQ Notably 4966 6425 0?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_full__00041",
+      "chunk_index": 41,
+      "distance": 1.3513743877410889,
+      "snippet": ".5-turbo QFS performance when only evidential documents are included in the prompt versus when all top-5 documents are included, based on random sampling of 100 cases for each evid"
+    }
+  },
+  {
+    "qid": "q0009",
+    "variant": "praline_light",
+    "question": "What does the document state about RECOMP T5-large PAR NQ Notably 4966 6425 0?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_light__00041",
+      "chunk_index": 41,
+      "distance": 1.3704168796539307,
+      "snippet": "on of GPT-3.5-turbo QFS performance when only evidential documents are included in the prompt versus when all top-5 documents are included, based on random sampling of 100 cases fo"
+    }
+  },
+  {
+    "qid": "q0010",
+    "variant": "raw",
+    "question": "According to the document, what is said about Flan-T5-large LLaMA-3 QFS 1-8B-Instruct Query-Focused Summarization 29 36?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__raw__00027",
+      "chunk_index": 27,
+      "distance": 1.3195772171020508,
+      "snippet": "9] compresses documents using Query-Focused Summarization (QFS), compressed passages are then passed to LLaMA-3.1-8B-Instruct [36] to generate answers to the queries. calibrating b"
+    }
+  },
+  {
+    "qid": "q0010",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about Flan-T5-large LLaMA-3 QFS 1-8B-Instruct Query-Focused Summarization 29 36?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00027",
+      "chunk_index": 27,
+      "distance": 1.3810842037200928,
+      "snippet": "is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matching the query. Using a c"
+    }
+  },
+  {
+    "qid": "q0010",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about Flan-T5-large LLaMA-3 QFS 1-8B-Instruct Query-Focused Summarization 29 36?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00027",
+      "chunk_index": 27,
+      "distance": 1.3773787021636963,
+      "snippet": " q = (q1, . . . , qT ) is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matchi"
+    }
+  },
+  {
+    "qid": "q0011",
+    "variant": "raw",
+    "question": "What key point is made regarding TDT2 IDIAP 03-08 19 20 1 2 2?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00000",
+      "chunk_index": 0,
+      "distance": 1.084132432937622,
+      "snippet": "  I C O M M U N C A T I O N I D I A P Rue du Simplon 4 IDIAP Research Institute 1920 Martigny − Switzerland www.idiap.ch Tel: +41 27 721 77 11 Email: info@idiap.ch P.O. Box 592 Fax"
+    }
+  },
+  {
+    "qid": "q0011",
+    "variant": "praline_full",
+    "question": "What key point is made regarding TDT2 IDIAP 03-08 19 20 1 2 2?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00000",
+      "chunk_index": 0,
+      "distance": 1.100768804550171,
+      "snippet": "I C O M M U N C A T I O N I D I A P Rue du Simplon 4 IDIAP Research Institute 1920 Martigny − Switzerland www.idiap.ch Tel: +41 27 721 77 11 Email: info@idiap.ch P.O. Box 592 Fax: "
+    }
+  },
+  {
+    "qid": "q0011",
+    "variant": "praline_light",
+    "question": "What key point is made regarding TDT2 IDIAP 03-08 19 20 1 2 2?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00000",
+      "chunk_index": 0,
+      "distance": 1.100768804550171,
+      "snippet": "I C O M M U N C A T I O N I D I A P Rue du Simplon 4 IDIAP Research Institute 1920 Martigny − Switzerland www.idiap.ch Tel: +41 27 721 77 11 Email: info@idiap.ch P.O. Box 592 Fax: "
+    }
+  },
+  {
+    "qid": "q0012",
+    "variant": "raw",
+    "question": "What does the document state about TDT2 IDIAP 03-08 Clean 22 Text 1 1?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__raw__00000",
+      "chunk_index": 0,
+      "distance": 1.2612876892089844,
+      "snippet": "pep8 documentation Release 1.7.1.dev0 Johann C. Rocholl, Florent Xicluna, Ian Lee December 27, 2016       Contents 1 Introduction 3 1.1 Features . . . . . . . . . . . . . . . . . ."
+    }
+  },
+  {
+    "qid": "q0012",
+    "variant": "praline_full",
+    "question": "What does the document state about TDT2 IDIAP 03-08 Clean 22 Text 1 1?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__praline_full__00000",
+      "chunk_index": 0,
+      "distance": 1.2597720623016357,
+      "snippet": "pep8 documentation Release 1.7.1.dev0 Johann C. Rocholl, Florent Xicluna, Ian Lee December 27, 2016  Contents 1 Introduction 3 1.1 Features . . . . . . . . . . . . . . . . . . . . "
+    }
+  },
+  {
+    "qid": "q0012",
+    "variant": "praline_light",
+    "question": "What does the document state about TDT2 IDIAP 03-08 Clean 22 Text 1 1?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__praline_light__00000",
+      "chunk_index": 0,
+      "distance": 1.2597720623016357,
+      "snippet": "pep8 documentation Release 1.7.1.dev0 Johann C. Rocholl, Florent Xicluna, Ian Lee December 27, 2016       Contents 1 Introduction 3 1.1 Features . . . . . . . . . . . . . . . . . ."
+    }
+  },
+  {
+    "qid": "q0013",
+    "variant": "raw",
+    "question": "According to the document, what is said about TDT2 TDT2 American Database English 600 1 2?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00060",
+      "chunk_index": 60,
+      "distance": 1.1655207872390747,
+      "snippet": "the relevant documents should represent only a small percentage, less than 2% for TREC queries, of the whole collection). Moreover, in TDT2, both reference transcriptions and ASR t"
+    }
+  },
+  {
+    "qid": "q0013",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about TDT2 TDT2 American Database English 600 1 2?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00060",
+      "chunk_index": 60,
+      "distance": 1.1672533750534058,
+      "snippet": "ast news, which is sufficiently large to have a non-trivial retrieval task (i.e. for a given query, the relevant documents should represent only a small percentage, less than 2% fo"
+    }
+  },
+  {
+    "qid": "q0013",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about TDT2 TDT2 American Database English 600 1 2?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00060",
+      "chunk_index": 60,
+      "distance": 1.2430801391601562,
+      "snippet": "tabase is composed of 600 hours of broadcast news, which is sufficiently large to have a non-trivial retrieval task (i.e. for a given query, the relevant documents should represent"
+    }
+  },
+  {
+    "qid": "q0014",
+    "variant": "raw",
+    "question": "What key point is made regarding TREC-8 TREC-9 TDT2 TREC SDR During 50 evaluation?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00063",
+      "chunk_index": 63,
+      "distance": 1.4947866201400757,
+      "snippet": "th related relevance judgments. During the TREC SDR evaluation, two sets of 50 queries have been collected for TDT2: a training set (also called TREC-8) and a test set (also called"
+    }
+  },
+  {
+    "qid": "q0014",
+    "variant": "praline_full",
+    "question": "What key point is made regarding TREC-8 TREC-9 TDT2 TREC SDR During 50 evaluation?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00063",
+      "chunk_index": 63,
+      "distance": 1.4137974977493286,
+      "snippet": "5.3). 3.2.2 TREC SDR Queries In order to evaluate an IR system, it is necessary to have a set of queries with related relevance judgments. During the TREC SDR evaluation, two sets "
+    }
+  },
+  {
+    "qid": "q0014",
+    "variant": "praline_light",
+    "question": "What key point is made regarding TREC-8 TREC-9 TDT2 TREC SDR During 50 evaluation?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00063",
+      "chunk_index": 63,
+      "distance": 1.4335010051727295,
+      "snippet": "ced by length variability (see section 2.2.5.3). 3.2.2 TREC SDR Queries In order to evaluate an IR system, it is necessary to have a set of queries with related relevance judgments"
+    }
+  },
+  {
+    "qid": "q0015",
+    "variant": "raw",
+    "question": "What does the document state about IDIAP SDR Introduction 03-08 Chapter State 1 2?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00000",
+      "chunk_index": 0,
+      "distance": 1.2365856170654297,
+      "snippet": "  I C O M M U N C A T I O N I D I A P Rue du Simplon 4 IDIAP Research Institute 1920 Martigny − Switzerland www.idiap.ch Tel: +41 27 721 77 11 Email: info@idiap.ch P.O. Box 592 Fax"
+    }
+  },
+  {
+    "qid": "q0015",
+    "variant": "praline_full",
+    "question": "What does the document state about IDIAP SDR Introduction 03-08 Chapter State 1 2?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00000",
+      "chunk_index": 0,
+      "distance": 1.254085898399353,
+      "snippet": "I C O M M U N C A T I O N I D I A P Rue du Simplon 4 IDIAP Research Institute 1920 Martigny − Switzerland www.idiap.ch Tel: +41 27 721 77 11 Email: info@idiap.ch P.O. Box 592 Fax: "
+    }
+  },
+  {
+    "qid": "q0015",
+    "variant": "praline_light",
+    "question": "What does the document state about IDIAP SDR Introduction 03-08 Chapter State 1 2?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00000",
+      "chunk_index": 0,
+      "distance": 1.254085898399353,
+      "snippet": "I C O M M U N C A T I O N I D I A P Rue du Simplon 4 IDIAP Research Institute 1920 Martigny − Switzerland www.idiap.ch Tel: +41 27 721 77 11 Email: info@idiap.ch P.O. Box 592 Fax: "
+    }
+  },
+  {
+    "qid": "q0016",
+    "variant": "raw",
+    "question": "According to the document, what is said about IDIAP Matching Measures 03-08 Ranking Vector Model Space?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00027",
+      "chunk_index": 27,
+      "distance": 1.2031006813049316,
+      "snippet": "inary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matching the query. Using a continuous RSV allows the user to be aw"
+    }
+  },
+  {
+    "qid": "q0016",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about IDIAP Matching Measures 03-08 Ranking Vector Model Space?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00027",
+      "chunk_index": 27,
+      "distance": 1.1769205331802368,
+      "snippet": "is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matching the query. Using a c"
+    }
+  },
+  {
+    "qid": "q0016",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about IDIAP Matching Measures 03-08 Ranking Vector Model Space?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00027",
+      "chunk_index": 27,
+      "distance": 1.1719927787780762,
+      "snippet": " q = (q1, . . . , qT ) is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matchi"
+    }
+  },
+  {
+    "qid": "q0017",
+    "variant": "raw",
+    "question": "What key point is made regarding IDIAP RSV 03-08 10 q1 1 2 9?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00735",
+      "chunk_index": 735,
+      "distance": 1.3150887489318848,
+      "snippet": "onomy in Flux, Prospects Remain Dim 132 International Monetary Fund | October 2025 Table A6. Advanced Economies: Consumer Prices1 (Annual percent change) End of Period2 Average Pro"
+    }
+  },
+  {
+    "qid": "q0017",
+    "variant": "praline_full",
+    "question": "What key point is made regarding IDIAP RSV 03-08 10 q1 1 2 9?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00294",
+      "chunk_index": 294,
+      "distance": 1.3281313180923462,
+      "snippet": "untry-specific note for Nigeria in the \"Country Notes\" section of the Statistical Appendix. 6 Includes Benin, Botswana, Cabo Verde, the Comoros, Eswatini, Lesotho, Mauritius, Namib"
+    }
+  },
+  {
+    "qid": "q0017",
+    "variant": "praline_light",
+    "question": "What key point is made regarding IDIAP RSV 03-08 10 q1 1 2 9?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_light__00728",
+      "chunk_index": 728,
+      "distance": 1.3114721775054932,
+      "snippet": "6 2.6 2.5 2.2 2.1 2.5 2.4 2.1 United States 1.8 2.1 2.4 1.8 1.3 4.7 8.0 4.1 3.0 2.7 2.4 2.2 2.7 2.6 2.2 Euro Area3 1.5 1.5 1.8 1.2 0.3 2.6 8.4 5.4 2.4 2.1 1.9 2.0 2.4 1.8 1.9 Germa"
+    }
+  },
+  {
+    "qid": "q0018",
+    "variant": "raw",
+    "question": "What does the document state about LCA OW Expansion Analysis Context Rocchio Weight Local?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00035",
+      "chunk_index": 35,
+      "distance": 1.4272782802581787,
+      "snippet": "28] and Local Context Analysis (LCA) [41]. Documents Vectors or Relevance feedback Blind Relevance Feedback Term Selection Term Re−weighting Query Vector Expanded Query Vector Matc"
+    }
+  },
+  {
+    "qid": "q0018",
+    "variant": "praline_full",
+    "question": "What does the document state about LCA OW Expansion Analysis Context Rocchio Weight Local?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00035",
+      "chunk_index": 35,
+      "distance": 1.3862133026123047,
+      "snippet": " Rocchio Query Expansion [32], Offer Weight (OW) [28] and Local Context Analysis (LCA) [41]. Documents Vectors or Relevance feedback Blind Relevance Feedback Term Selection Term Re"
+    }
+  },
+  {
+    "qid": "q0018",
+    "variant": "praline_light",
+    "question": "What does the document state about LCA OW Expansion Analysis Context Rocchio Weight Local?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00035",
+      "chunk_index": 35,
+      "distance": 1.3873422145843506,
+      "snippet": "ect and re-weight terms are Rocchio Query Expansion [32], Offer Weight (OW) [28] and Local Context Analysis (LCA) [41]. Documents Vectors or Relevance feedback Blind Relevance Feed"
+    }
+  },
+  {
+    "qid": "q0019",
+    "variant": "raw",
+    "question": "According to the document, what is said about QE QE Parallel 3 3 3 3 4?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00003",
+      "chunk_index": 3,
+      "distance": 0.8316030502319336,
+      "snippet": "xperimental Setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19 3.2.1 TDT2 Database . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . ."
+    }
+  },
+  {
+    "qid": "q0019",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about QE QE Parallel 3 3 3 3 4?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00003",
+      "chunk_index": 3,
+      "distance": 0.8117624521255493,
+      "snippet": "ental Setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19 3.2.1 TDT2 Database . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 2"
+    }
+  },
+  {
+    "qid": "q0019",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about QE QE Parallel 3 3 3 3 4?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00003",
+      "chunk_index": 3,
+      "distance": 0.8121463060379028,
+      "snippet": "perimental Setup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 19 3.2.1 TDT2 Database . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . "
+    }
+  },
+  {
+    "qid": "q0020",
+    "variant": "raw",
+    "question": "What key point is made regarding IDIAP SDR Conclusions Retrieval Document 03-08 Chapter Future?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00007",
+      "chunk_index": 7,
+      "distance": 1.4665758609771729,
+      "snippet": "on errors) on the retrieval performance. To perform such a task, a state-of-the-art SDR system has been implemented. At each step of the retrieval process, the performances obtaine"
+    }
+  },
+  {
+    "qid": "q0020",
+    "variant": "praline_full",
+    "question": "What key point is made regarding IDIAP SDR Conclusions Retrieval Document 03-08 Chapter Future?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00007",
+      "chunk_index": 7,
+      "distance": 1.491187334060669,
+      "snippet": "ion errors) on the retrieval performance. To perform such a task, a state-of-the-art SDR system has been implemented. At each step of the retrieval process, the performances obtain"
+    }
+  },
+  {
+    "qid": "q0020",
+    "variant": "praline_light",
+    "question": "What key point is made regarding IDIAP SDR Conclusions Retrieval Document 03-08 Chapter Future?",
+    "expected_doc_id": "Information_Retrieval_on_Noisy_Text",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00007",
+      "chunk_index": 7,
+      "distance": 1.5119776725769043,
+      "snippet": " recognition errors) on the retrieval performance. To perform such a task, a state-of-the-art SDR system has been implemented. At each step of the retrieval process, the performanc"
+    }
+  },
+  {
+    "qid": "q0021",
+    "variant": "raw",
+    "question": "What does the document state about INTRODUCTION ORGANIZATION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT MEMBERSHIP CAPITAL?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__raw__00177",
+      "chunk_index": 177,
+      "distance": 1.2590241432189941,
+      "snippet": "ide network with regional  forums across the globe, employees have the  opportunity to learn more about sustainable finance  and incorporate sustainability into their daily lives. "
+    }
+  },
+  {
+    "qid": "q0021",
+    "variant": "praline_full",
+    "question": "What does the document state about INTRODUCTION ORGANIZATION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT MEMBERSHIP CAPITAL?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_full__00254",
+      "chunk_index": 254,
+      "distance": 1.4636790752410889,
+      "snippet": "mpact of climate-related risks and opportunities on the organization's businesses, strategy and financial planning. Climate Strategy; Our Climate Ambitions; Climate Risk Management"
+    }
+  },
+  {
+    "qid": "q0021",
+    "variant": "praline_light",
+    "question": "What does the document state about INTRODUCTION ORGANIZATION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT MEMBERSHIP CAPITAL?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_light__00251",
+      "chunk_index": 251,
+      "distance": 1.4280931949615479,
+      "snippet": "mate-related risks and opportunities on the organization's businesses, strategy and financial planning. Climate Strategy; Our Climate Ambitions; Climate Risk Management c. Describe"
+    }
+  },
+  {
+    "qid": "q0022",
+    "variant": "raw",
+    "question": "According to the document, what is said about INTRODUCTION SUSTAINABLE APPENDICES DISCLOSURE GOVERNANCE MANAGEMENT LOCATION CAPITAL?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__raw__00177",
+      "chunk_index": 177,
+      "distance": 1.230388879776001,
+      "snippet": "ide network with regional  forums across the globe, employees have the  opportunity to learn more about sustainable finance  and incorporate sustainability into their daily lives. "
+    }
+  },
+  {
+    "qid": "q0022",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about INTRODUCTION SUSTAINABLE APPENDICES DISCLOSURE GOVERNANCE MANAGEMENT LOCATION CAPITAL?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00027",
+      "chunk_index": 27,
+      "distance": 1.3307642936706543,
+      "snippet": "is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matching the query. Using a c"
+    }
+  },
+  {
+    "qid": "q0022",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about INTRODUCTION SUSTAINABLE APPENDICES DISCLOSURE GOVERNANCE MANAGEMENT LOCATION CAPITAL?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00027",
+      "chunk_index": 27,
+      "distance": 1.3267576694488525,
+      "snippet": " q = (q1, . . . , qT ) is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matchi"
+    }
+  },
+  {
+    "qid": "q0023",
+    "variant": "raw",
+    "question": "What key point is made regarding INTRODUCTION DISCLAIMERS SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__raw__00191",
+      "chunk_index": 191,
+      "distance": 1.2610397338867188,
+      "snippet": "omparable among companies. MORGAN STANLEY  |  2023 ESG REPORT 52 INTRODUCTION                  SUSTAINABLE FINANCE                  HUMAN CAPITAL                  CLIMATE          "
+    }
+  },
+  {
+    "qid": "q0023",
+    "variant": "praline_full",
+    "question": "What key point is made regarding INTRODUCTION DISCLAIMERS SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_full__00000",
+      "chunk_index": 0,
+      "distance": 1.4830741882324219,
+      "snippet": "2023 ESG Report  TABLE OF CONTENTS  3 From Our CEO  4 Introduction 4 Our Business 5 About This Report 6 Our Approach to ESG 7 2023 ESG Highlights  8 Sustainable Finance 8 Sustainab"
+    }
+  },
+  {
+    "qid": "q0023",
+    "variant": "praline_light",
+    "question": "What key point is made regarding INTRODUCTION DISCLAIMERS SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_light__00174",
+      "chunk_index": 174,
+      "distance": 1.4654850959777832,
+      "snippet": "including risk identification, scenario analysis and credit risk ratings. We categorize obligors and counterparties with similar climate risk profiles into climate sub- industries."
+    }
+  },
+  {
+    "qid": "q0024",
+    "variant": "raw",
+    "question": "What does the document state about INTRODUCTION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE FINANCE?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__raw__00177",
+      "chunk_index": 177,
+      "distance": 1.1432019472122192,
+      "snippet": "ide network with regional  forums across the globe, employees have the  opportunity to learn more about sustainable finance  and incorporate sustainability into their daily lives. "
+    }
+  },
+  {
+    "qid": "q0024",
+    "variant": "praline_full",
+    "question": "What does the document state about INTRODUCTION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE FINANCE?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_full__00176",
+      "chunk_index": 176,
+      "distance": 1.3618243932724,
+      "snippet": " identification, scenario analysis and credit risk ratings. We categorize obligors and counterparties with similar climate risk profiles into climate sub- industries. Each climate "
+    }
+  },
+  {
+    "qid": "q0024",
+    "variant": "praline_light",
+    "question": "What does the document state about INTRODUCTION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE FINANCE?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_light__00174",
+      "chunk_index": 174,
+      "distance": 1.344189167022705,
+      "snippet": "including risk identification, scenario analysis and credit risk ratings. We categorize obligors and counterparties with similar climate risk profiles into climate sub- industries."
+    }
+  },
+  {
+    "qid": "q0025",
+    "variant": "raw",
+    "question": "According to the document, what is said about INTRODUCTION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE FINANCE?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__raw__00177",
+      "chunk_index": 177,
+      "distance": 1.055469036102295,
+      "snippet": "ide network with regional  forums across the globe, employees have the  opportunity to learn more about sustainable finance  and incorporate sustainability into their daily lives. "
+    }
+  },
+  {
+    "qid": "q0025",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about INTRODUCTION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE FINANCE?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_full__00176",
+      "chunk_index": 176,
+      "distance": 1.2745051383972168,
+      "snippet": " identification, scenario analysis and credit risk ratings. We categorize obligors and counterparties with similar climate risk profiles into climate sub- industries. Each climate "
+    }
+  },
+  {
+    "qid": "q0025",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about INTRODUCTION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE FINANCE?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_light__00174",
+      "chunk_index": 174,
+      "distance": 1.2589343786239624,
+      "snippet": "including risk identification, scenario analysis and credit risk ratings. We categorize obligors and counterparties with similar climate risk profiles into climate sub- industries."
+    }
+  },
+  {
+    "qid": "q0026",
+    "variant": "raw",
+    "question": "What key point is made regarding ANALYTICS MEASURING PORTFOLIO POWERED STANLEY IMPACT MORGAN ESG?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__raw__00057",
+      "chunk_index": 57,
+      "distance": 1.2243850231170654,
+      "snippet": " INTRODUCTION                  SUSTAINABLE FINANCE                  HUMAN CAPITAL                  CLIMATE                  GOVERNANCE AND RISK MANAGEMENT                  APPENDIC"
+    }
+  },
+  {
+    "qid": "q0026",
+    "variant": "praline_full",
+    "question": "What key point is made regarding ANALYTICS MEASURING PORTFOLIO POWERED STANLEY IMPACT MORGAN ESG?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_full__00053",
+      "chunk_index": 53,
+      "distance": 1.185198426246643,
+      "snippet": "s to provide clients, with a comprehensive menu of metrics, including nine impact themes and more than 100 social and environmental impact metrics. In 2023, we expanded Morgan Stan"
+    }
+  },
+  {
+    "qid": "q0026",
+    "variant": "praline_light",
+    "question": "What key point is made regarding ANALYTICS MEASURING PORTFOLIO POWERED STANLEY IMPACT MORGAN ESG?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_light__00052",
+      "chunk_index": 52,
+      "distance": 1.261925220489502,
+      "snippet": " teams. 17    Morgan Stanley Impact Quotient® Morgan Stanley IQ® is an award-winning14 and patented15 application that empowers clients to assess their portfolios' alignment to the"
+    }
+  },
+  {
+    "qid": "q0027",
+    "variant": "raw",
+    "question": "What does the document state about CMDS ESG ESG ESG ESG Subcommittee Subcommittees/Working Sustainability?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__raw__00213",
+      "chunk_index": 213,
+      "distance": 1.2002687454223633,
+      "snippet": " other governance bodies, policies  and procedures across the firm. In 2023, Morgan Stanley continued enhancing our  firmwide ESG governance framework, as illustrated below.  Board"
+    }
+  },
+  {
+    "qid": "q0027",
+    "variant": "praline_full",
+    "question": "What does the document state about CMDS ESG ESG ESG ESG Subcommittee Subcommittees/Working Sustainability?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_full__00195",
+      "chunk_index": 195,
+      "distance": 1.057829737663269,
+      "snippet": "ncial institutions. 3 MORGAN STANLEY | 2023 ESG REPORT 59  Governance and Risk Management ESG Governance We believe Morgan Stanley's governance and business practices help foster c"
+    }
+  },
+  {
+    "qid": "q0027",
+    "variant": "praline_light",
+    "question": "What does the document state about CMDS ESG ESG ESG ESG Subcommittee Subcommittees/Working Sustainability?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_light__00193",
+      "chunk_index": 193,
+      "distance": 1.1680712699890137,
+      "snippet": "rust, and mitigate risk. ESG governance starts with leadership from the top and is embedded in committees and other governance bodies, policies and procedures across the firm. In 2"
+    }
+  },
+  {
+    "qid": "q0028",
+    "variant": "raw",
+    "question": "According to the document, what is said about COMMITMENT CONTINUING INCLUSION Standard30 LGBT LGBT OUR TO?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__raw__00095",
+      "chunk_index": 95,
+      "distance": 1.262154221534729,
+      "snippet": "s ability to deliver strategic advice, solutions and services to  our clients.  We focus on the needs of our people through  intentional investments in their development and  wellb"
+    }
+  },
+  {
+    "qid": "q0028",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about COMMITMENT CONTINUING INCLUSION Standard30 LGBT LGBT OUR TO?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_full__00119",
+      "chunk_index": 119,
+      "distance": 1.1406564712524414,
+      "snippet": "ampus programs. STEP INTO STEM SCHOLARSHIPS With the Institute for Inclusion's Step into STEM scholarships, the firm is able to support women from underserved communities pursuing "
+    }
+  },
+  {
+    "qid": "q0028",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about COMMITMENT CONTINUING INCLUSION Standard30 LGBT LGBT OUR TO?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_light__00087",
+      "chunk_index": 87,
+      "distance": 1.2458572387695312,
+      "snippet": "nvest in our workforce, and in the modernization of our technology platforms to enhance the employee experience, enabling our workforce to deliver exceptional ideas and solutions t"
+    }
+  },
+  {
+    "qid": "q0029",
+    "variant": "raw",
+    "question": "What key point is made regarding CH4 CO2 N2O NF3 SF6 Hydrofluorocarbons Dioxide Methane?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__raw__00065",
+      "chunk_index": 65,
+      "distance": 1.6120634078979492,
+      "snippet": "so review the Transformer architecture here. 1) Transformer: in a ground-breaking work [44], Vaswani et al. proposed the Transformer framework, which was orig- inally designed for "
+    }
+  },
+  {
+    "qid": "q0029",
+    "variant": "praline_full",
+    "question": "What key point is made regarding CH4 CO2 N2O NF3 SF6 Hydrofluorocarbons Dioxide Methane?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_full__00065",
+      "chunk_index": 65,
+      "distance": 1.6571788787841797,
+      "snippet": "architecture here. 1) Transformer: in a ground-breaking work [44], Vaswani et al. proposed the Transformer framework, which was orig- inally designed for effective parallel computi"
+    }
+  },
+  {
+    "qid": "q0029",
+    "variant": "praline_light",
+    "question": "What key point is made regarding CH4 CO2 N2O NF3 SF6 Hydrofluorocarbons Dioxide Methane?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_light__00065",
+      "chunk_index": 65,
+      "distance": 1.6386594772338867,
+      "snippet": "eview the Transformer architecture here. 1) Transformer: in a ground-breaking work [44], Vaswani et al. proposed the Transformer framework, which was orig- inally designed for effe"
+    }
+  },
+  {
+    "qid": "q0030",
+    "variant": "raw",
+    "question": "What does the document state about REDUCTION SECTOR TARGET LLP Manufacturing Emissions Absolute Deloitte?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__raw__00194",
+      "chunk_index": 194,
+      "distance": 1.2382090091705322,
+      "snippet": " them using our FELI metric.   For an in-depth explanation of this metric, please  see the Methodology for Morgan Stanley’s 2030  Interim Financed Emissions Targets on the Path   t"
+    }
+  },
+  {
+    "qid": "q0030",
+    "variant": "praline_full",
+    "question": "What does the document state about REDUCTION SECTOR TARGET LLP Manufacturing Emissions Absolute Deloitte?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_full__00178",
+      "chunk_index": 178,
+      "distance": 1.2300540208816528,
+      "snippet": "ced initial 2030 interim financed emissions reduction targets in 2021. We track progress toward them using our FELI metric. For an in-depth explanation of this metric, please see t"
+    }
+  },
+  {
+    "qid": "q0030",
+    "variant": "praline_light",
+    "question": "What does the document state about REDUCTION SECTOR TARGET LLP Manufacturing Emissions Absolute Deloitte?",
+    "expected_doc_id": "Morgan_Stanley_2023_ESG_Report",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_light__00176",
+      "chunk_index": 176,
+      "distance": 1.2074888944625854,
+      "snippet": "interim financed emissions reduction targets in 2021. We track progress toward them using our FELI metric. For an in-depth explanation of this metric, please see the Methodology fo"
+    }
+  },
+  {
+    "qid": "q0031",
+    "variant": "raw",
+    "question": "According to the document, what is said about B2-13B L2-13B L3-70B L3-8B Q2-7B V-13B M-7B Baichuan2-13B-chat?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00024",
+      "chunk_index": 24,
+      "distance": 1.368288278579712,
+      "snippet": "in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weight of term k in document i: bk,i = ½ 0 if term k is pr"
+    }
+  },
+  {
+    "qid": "q0031",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about B2-13B L2-13B L3-70B L3-8B Q2-7B V-13B M-7B Baichuan2-13B-chat?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00027",
+      "chunk_index": 27,
+      "distance": 1.3519854545593262,
+      "snippet": "is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matching the query. Using a c"
+    }
+  },
+  {
+    "qid": "q0031",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about B2-13B L2-13B L3-70B L3-8B Q2-7B V-13B M-7B Baichuan2-13B-chat?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00024",
+      "chunk_index": 24,
+      "distance": 1.3464105129241943,
+      "snippet": "ariable is set to 1 if the associated term is present in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weig"
+    }
+  },
+  {
+    "qid": "q0032",
+    "variant": "raw",
+    "question": "What key point is made regarding B2-13B L2-13B L3-70B L3-8B Q2-7B V-13B M-7B Baichuan2-13B-chat?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__raw__00261",
+      "chunk_index": 261,
+      "distance": 1.659337043762207,
+      "snippet": "without introducing inference latency. LoRA also outperforms several other adaptation methods in- cluding adapter, prefix-tuning, and fine-tuning. ColossalAI library [227] provides"
+    }
+  },
+  {
+    "qid": "q0032",
+    "variant": "praline_full",
+    "question": "What key point is made regarding B2-13B L2-13B L3-70B L3-8B Q2-7B V-13B M-7B Baichuan2-13B-chat?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "docu_astro",
+      "chunk_id": "docu_astro__praline_full__00045",
+      "chunk_index": 45,
+      "distance": 1.6805931329727173,
+      "snippet": "meters, we refer to L25. In Eq. (19), ztr is the true redshift, V is the co-moving volume, dΩis the solid angle element, M is the true mass, while gt,tot is given by Eq. (16) and, "
+    }
+  },
+  {
+    "qid": "q0032",
+    "variant": "praline_light",
+    "question": "What key point is made regarding B2-13B L2-13B L3-70B L3-8B Q2-7B V-13B M-7B Baichuan2-13B-chat?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_light__00261",
+      "chunk_index": 261,
+      "distance": 1.6622530221939087,
+      "snippet": "nt all without introducing inference latency. LoRA also outperforms several other adaptation methods in- cluding adapter, prefix-tuning, and fine-tuning. ColossalAI library [227] p"
+    }
+  },
+  {
+    "qid": "q0033",
+    "variant": "raw",
+    "question": "What does the document state about A100 NVIDIA GPU RAM GB GB vllm1 Python?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__raw__00133",
+      "chunk_index": 133,
+      "distance": 1.5519381761550903,
+      "snippet": "Amid the mental health crisis, the Morgan Stanley  Alliance for Children’s Mental Health (the “Alliance”)  is actively addressing the critical challenges of  stress, anxiety and de"
+    }
+  },
+  {
+    "qid": "q0033",
+    "variant": "praline_full",
+    "question": "What does the document state about A100 NVIDIA GPU RAM GB GB vllm1 Python?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00027",
+      "chunk_index": 27,
+      "distance": 1.5577671527862549,
+      "snippet": "is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matching the query. Using a c"
+    }
+  },
+  {
+    "qid": "q0033",
+    "variant": "praline_light",
+    "question": "What does the document state about A100 NVIDIA GPU RAM GB GB vllm1 Python?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00027",
+      "chunk_index": 27,
+      "distance": 1.536476969718933,
+      "snippet": " q = (q1, . . . , qT ) is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matchi"
+    }
+  },
+  {
+    "qid": "q0034",
+    "variant": "raw",
+    "question": "According to the document, what is said about SIGIR ACM USA NY International Development Information Proceedings?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00024",
+      "chunk_index": 24,
+      "distance": 1.3482871055603027,
+      "snippet": "in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weight of term k in document i: bk,i = ½ 0 if term k is pr"
+    }
+  },
+  {
+    "qid": "q0034",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about SIGIR ACM USA NY International Development Information Proceedings?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00027",
+      "chunk_index": 27,
+      "distance": 1.3328485488891602,
+      "snippet": "is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matching the query. Using a c"
+    }
+  },
+  {
+    "qid": "q0034",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about SIGIR ACM USA NY International Development Information Proceedings?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00024",
+      "chunk_index": 24,
+      "distance": 1.3275973796844482,
+      "snippet": "ariable is set to 1 if the associated term is present in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weig"
+    }
+  },
+  {
+    "qid": "q0035",
+    "variant": "raw",
+    "question": "What key point is made regarding cuda12 Example Package Version Figure 36 LLMs 0?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "docu_astro",
+      "chunk_id": "docu_astro__raw__00025",
+      "chunk_index": 25,
+      "distance": 1.53317391872406,
+      "snippet": "0.13 0.88+0.09 −0.07 1.08+0.15 −0.14 0.97+0.09 −0.09 2.08+1.11 −0.90 2.97+0.97 −0.77 [0.10, 0.30) [40, 65) 255 0.25 46 1.96+0.11 −0.12 1.36+0.20 −0.18 1.22+0.12 −0.09 1.06+0.15 −0."
+    }
+  },
+  {
+    "qid": "q0035",
+    "variant": "praline_full",
+    "question": "What key point is made regarding cuda12 Example Package Version Figure 36 LLMs 0?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "docu_astro",
+      "chunk_id": "docu_astro__praline_full__00024",
+      "chunk_index": 24,
+      "distance": 1.5113911628723145,
+      "snippet": "ughout this paper, we considered different Ωm values to model our measurements. For the mass probe measure- ments considered in this work, cosmological dependence arises solely fro"
+    }
+  },
+  {
+    "qid": "q0035",
+    "variant": "praline_light",
+    "question": "What key point is made regarding cuda12 Example Package Version Figure 36 LLMs 0?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "docu_astro",
+      "chunk_id": "docu_astro__praline_light__00024",
+      "chunk_index": 24,
+      "distance": 1.5120660066604614,
+      "snippet": "Throughout this paper, we considered different Ωm values to model our measurements. For the mass probe measure- ments considered in this work, cosmological dependence arises solely"
+    }
+  },
+  {
+    "qid": "q0036",
+    "variant": "raw",
+    "question": "What does the document state about GZC20240840 2024YFB2808802 CPSF Postdoctoral Fellowship National Program Program?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__raw__00239",
+      "chunk_index": 239,
+      "distance": 1.4587881565093994,
+      "snippet": "rom the cybersecurity threats  confronting the firm (Cybersecurity Program).  Our Cybersecurity Program helps protect our  clients, customers, employees, property, products,  servi"
+    }
+  },
+  {
+    "qid": "q0036",
+    "variant": "praline_full",
+    "question": "What does the document state about GZC20240840 2024YFB2808802 CPSF Postdoctoral Fellowship National Program Program?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "RAG_Noise_LLM",
+      "chunk_id": "RAG_Noise_LLM__praline_full__00040",
+      "chunk_index": 40,
+      "distance": 1.4821128845214844,
+      "snippet": "feed- back on this work. This work is supported by the National Key R&D Program of China under Grant No.2024YFB2808802 and Postdoctoral Fellowship Program of CPSF (GZC20240840). Re"
+    }
+  },
+  {
+    "qid": "q0036",
+    "variant": "praline_light",
+    "question": "What does the document state about GZC20240840 2024YFB2808802 CPSF Postdoctoral Fellowship National Program Program?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__praline_light__00217",
+      "chunk_index": 217,
+      "distance": 1.479724645614624,
+      "snippet": "r Cybersecurity Program helps protect our clients, customers, employees, property, products, services and reputation by seeking to preserve the confidentiality, integrity and avail"
+    }
+  },
+  {
+    "qid": "q0037",
+    "variant": "raw",
+    "question": "According to the document, what is said about QA Construction Construction Verification Entailment Generation Instance Testbeds?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "RAG_Noise_LLM",
+      "chunk_id": "RAG_Noise_LLM__raw__00015",
+      "chunk_index": 15,
+      "distance": 1.209169626235962,
+      "snippet": "orm the free-form QA into a multiple-choice QA format by providing several answer options for convenient automatic evaluation (Step 4). All experiments are conducted in a zero-shot"
+    }
+  },
+  {
+    "qid": "q0037",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about QA Construction Construction Verification Entailment Generation Instance Testbeds?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "RAG_Noise_LLM",
+      "chunk_id": "RAG_Noise_LLM__praline_full__00015",
+      "chunk_index": 15,
+      "distance": 1.2284698486328125,
+      "snippet": "free-form QA into a multiple-choice QA format by providing several answer options for convenient automatic evaluation (Step 4). All experiments are conducted in a zero-shot setting"
+    }
+  },
+  {
+    "qid": "q0037",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about QA Construction Construction Verification Entailment Generation Instance Testbeds?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "RAG_Noise_LLM",
+      "chunk_id": "RAG_Noise_LLM__praline_light__00015",
+      "chunk_index": 15,
+      "distance": 1.21034574508667,
+      "snippet": "m the free-form QA into a multiple-choice QA format by providing several answer options for convenient automatic evaluation (Step 4). All experiments are conducted in a zero-shot s"
+    }
+  },
+  {
+    "qid": "q0038",
+    "variant": "raw",
+    "question": "What key point is made regarding Aleksandra Karpukhin Sebastian Vladimir Patrick Petroni Wen-tau Piktus?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__raw__00065",
+      "chunk_index": 65,
+      "distance": 1.5448517799377441,
+      "snippet": "so review the Transformer architecture here. 1) Transformer: in a ground-breaking work [44], Vaswani et al. proposed the Transformer framework, which was orig- inally designed for "
+    }
+  },
+  {
+    "qid": "q0038",
+    "variant": "praline_full",
+    "question": "What key point is made regarding Aleksandra Karpukhin Sebastian Vladimir Patrick Petroni Wen-tau Piktus?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_full__00085",
+      "chunk_index": 85,
+      "distance": 1.52924382686615,
+      "snippet": ", and have a certain number of \"experts\" (e.g. 8), in which each expert is a neural network. In practice, the experts are FFNs, but they can also be more complex networks. A gate n"
+    }
+  },
+  {
+    "qid": "q0038",
+    "variant": "praline_light",
+    "question": "What key point is made regarding Aleksandra Karpukhin Sebastian Vladimir Patrick Petroni Wen-tau Piktus?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00049",
+      "chunk_index": 49,
+      "distance": 1.524366855621338,
+      "snippet": " |Hq ∩Sq(n)| |Sq(n)| (2.21) R(n) = |Hq ∩Sq(n)| |Hq| (2.22) Along the ranking, the variations of P(n) and R(n) are not independent. When n increases, more relevant documents are sel"
+    }
+  },
+  {
+    "qid": "q0039",
+    "variant": "raw",
+    "question": "What does the document state about Sablayrolles Alexandre Bressand Devendra Antoine Blanche Chaplot Florian?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__raw__00004",
+      "chunk_index": 4,
+      "distance": 1.4466149806976318,
+      "snippet": "ponding author. . . . (complex content) From the  interior to the outlet at Chicago, water  flows from Superior to Huron and  Michigan, southward to Erie,  (complex content) . . . "
+    }
+  },
+  {
+    "qid": "q0039",
+    "variant": "praline_full",
+    "question": "What does the document state about Sablayrolles Alexandre Bressand Devendra Antoine Blanche Chaplot Florian?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_full__00004",
+      "chunk_index": 4,
+      "distance": 1.4359395503997803,
+      "snippet": "ponding author. . . . (complex content) From the interior to the outlet at Chicago, water flows from Superior to Huron and Michigan, southward to Erie, (complex content) . . . Retr"
+    }
+  },
+  {
+    "qid": "q0039",
+    "variant": "praline_light",
+    "question": "What does the document state about Sablayrolles Alexandre Bressand Devendra Antoine Blanche Chaplot Florian?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_light__00004",
+      "chunk_index": 4,
+      "distance": 1.4359395503997803,
+      "snippet": "ponding author. . . . (complex content) From the interior to the outlet at Chicago, water flows from Superior to Huron and Michigan, southward to Erie, (complex content) . . . Retr"
+    }
+  },
+  {
+    "qid": "q0040",
+    "variant": "raw",
+    "question": "According to the document, what is said about ISN RGB Experiments Additional Additional Control Table 10?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__raw__00027",
+      "chunk_index": 27,
+      "distance": 1.4007039070129395,
+      "snippet": "9] compresses documents using Query-Focused Summarization (QFS), compressed passages are then passed to LLaMA-3.1-8B-Instruct [36] to generate answers to the queries. calibrating b"
+    }
+  },
+  {
+    "qid": "q0040",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about ISN RGB Experiments Additional Additional Control Table 10?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "RAG_Noise_LLM",
+      "chunk_id": "RAG_Noise_LLM__praline_full__00077",
+      "chunk_index": 77,
+      "distance": 1.4025437831878662,
+      "snippet": "pose a challenge for RAG in LLMs, particularly when the ratio ex- ceeds 0.3. Therefore, we use a default ratio of 0.3 in our main results to objectively assess the impact of harmfu"
+    }
+  },
+  {
+    "qid": "q0040",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about ISN RGB Experiments Additional Additional Control Table 10?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "top1_chunk": {
+      "doc_id": "RAG_Noise_LLM",
+      "chunk_id": "RAG_Noise_LLM__praline_light__00077",
+      "chunk_index": 77,
+      "distance": 1.3949576616287231,
+      "snippet": "e that increasing noise rates pose a challenge for RAG in LLMs, particularly when the ratio ex- ceeds 0.3. Therefore, we use a default ratio of 0.3 in our main results to objective"
+    }
+  },
+  {
+    "qid": "q0041",
+    "variant": "raw",
+    "question": "What key point is made regarding 10 11 11 17 17 18 29 31?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "docu_astro",
+      "chunk_id": "docu_astro__raw__00083",
+      "chunk_index": 83,
+      "distance": 1.6242915391921997,
+      "snippet": " wcg is more directly sensitive to the spatial matter distribution in the infall region. Weak lensing, instead, probes ∆Σt, an enclosed-mass quantity that is less sensitive to the "
+    }
+  },
+  {
+    "qid": "q0041",
+    "variant": "praline_full",
+    "question": "What key point is made regarding 10 11 11 17 17 18 29 31?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00014",
+      "chunk_index": 14,
+      "distance": 1.6560280323028564,
+      "snippet": "rch space so that all the sentences that are unlikely to be written (from a linguistic point of view) have a low probability. The performance of a recognizer depends on the data. S"
+    }
+  },
+  {
+    "qid": "q0041",
+    "variant": "praline_light",
+    "question": "What key point is made regarding 10 11 11 17 17 18 29 31?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00014",
+      "chunk_index": 14,
+      "distance": 1.6517326831817627,
+      "snippet": "constrain the search space so that all the sentences that are unlikely to be written (from a linguistic point of view) have a low probability. The performance of a recognizer depen"
+    }
+  },
+  {
+    "qid": "q0042",
+    "variant": "raw",
+    "question": "What does the document state about CHMF CHMF Gaussian 00019 00024 00024 00038 2019?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00222",
+      "chunk_index": 222,
+      "distance": 1.587345838546753,
+      "snippet": "tment are moderately larger than in the current  baseline. The layer features two components. First,  several countries see a modest increase in investment  in new AI-specific capi"
+    }
+  },
+  {
+    "qid": "q0042",
+    "variant": "praline_full",
+    "question": "What does the document state about CHMF CHMF Gaussian 00019 00024 00024 00038 2019?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00462",
+      "chunk_index": 462,
+      "distance": 1.5476207733154297,
+      "snippet": "irst-order importance for policymakers.1 The chapter addresses four main questions: • How have industrial policies evolved recently? What types of industrial policy instruments hav"
+    }
+  },
+  {
+    "qid": "q0042",
+    "variant": "praline_light",
+    "question": "What does the document state about CHMF CHMF Gaussian 00019 00024 00024 00038 2019?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_light__00462",
+      "chunk_index": 462,
+      "distance": 1.5583620071411133,
+      "snippet": "ormance consequential for the whole economy. To keep the analysis focused and tractable, the chapter centers on the policy effects of IP on domestic outcomes, as those are likely t"
+    }
+  },
+  {
+    "qid": "q0043",
+    "variant": "raw",
+    "question": "According to the document, what is said about DK14 046 052 461 19 23 97 0?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00024",
+      "chunk_index": 24,
+      "distance": 1.3031108379364014,
+      "snippet": "in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weight of term k in document i: bk,i = ½ 0 if term k is pr"
+    }
+  },
+  {
+    "qid": "q0043",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about DK14 046 052 461 19 23 97 0?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00024",
+      "chunk_index": 24,
+      "distance": 1.3005554676055908,
+      "snippet": "f the associated term is present in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weight of term k in docum"
+    }
+  },
+  {
+    "qid": "q0043",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about DK14 046 052 461 19 23 97 0?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00024",
+      "chunk_index": 24,
+      "distance": 1.281548261642456,
+      "snippet": "ariable is set to 1 if the associated term is present in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weig"
+    }
+  },
+  {
+    "qid": "q0044",
+    "variant": "raw",
+    "question": "What key point is made regarding SFB1491 DFG DFG ERC HH Collaborative Consolidator 1495/5-1?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__raw__00065",
+      "chunk_index": 65,
+      "distance": 1.612257719039917,
+      "snippet": "so review the Transformer architecture here. 1) Transformer: in a ground-breaking work [44], Vaswani et al. proposed the Transformer framework, which was orig- inally designed for "
+    }
+  },
+  {
+    "qid": "q0044",
+    "variant": "praline_full",
+    "question": "What key point is made regarding SFB1491 DFG DFG ERC HH Collaborative Consolidator 1495/5-1?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_full__00065",
+      "chunk_index": 65,
+      "distance": 1.6268689632415771,
+      "snippet": "architecture here. 1) Transformer: in a ground-breaking work [44], Vaswani et al. proposed the Transformer framework, which was orig- inally designed for effective parallel computi"
+    }
+  },
+  {
+    "qid": "q0044",
+    "variant": "praline_light",
+    "question": "What key point is made regarding SFB1491 DFG DFG ERC HH Collaborative Consolidator 1495/5-1?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00043",
+      "chunk_index": 43,
+      "distance": 1.725436806678772,
+      "snippet": "∈[0, 1]). When b = 0, the document length is not considered. On the contrary, using b = 1 is equivalent to replacing the number of occurrences of a term (tf) with the fraction of t"
+    }
+  },
+  {
+    "qid": "q0045",
+    "variant": "raw",
+    "question": "What does the document state about L25 S/N 2025 396 22 0 0 1?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00815",
+      "chunk_index": 815,
+      "distance": 0.9009958505630493,
+      "snippet": "ecause of incomplete data. Projections for the euro area are not available  because of data constraints. 1 Excludes the Group of Seven (Canada, France, Germany, Italy, Japan, Unite"
+    }
+  },
+  {
+    "qid": "q0045",
+    "variant": "praline_full",
+    "question": "What does the document state about L25 S/N 2025 396 22 0 0 1?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00114",
+      "chunk_index": 114,
+      "distance": 0.9279659986495972,
+      "snippet": "ction the world economy has traveled. Hence, the forecasts are discussed in comparison with those in the October 2024 WEO, which provides a clearer picture.  WORLD ECONOMIC OUTLOOK"
+    }
+  },
+  {
+    "qid": "q0045",
+    "variant": "praline_light",
+    "question": "What does the document state about L25 S/N 2025 396 22 0 0 1?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_light__00114",
+      "chunk_index": 114,
+      "distance": 0.9157091975212097,
+      "snippet": "5 WEO or in the July 2025 WEO Update may obscure the direction the world economy has traveled. Hence, the forecasts are discussed in comparison with those in the October 2024 WEO, "
+    }
+  },
+  {
+    "qid": "q0046",
+    "variant": "raw",
+    "question": "According to the document, what is said about L25 H0 CDM Consistent Hubble 70 0 1?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "docu_astro",
+      "chunk_id": "docu_astro__raw__00114",
+      "chunk_index": 114,
+      "distance": 1.2609837055206299,
+      "snippet": " page 15 of 17    A&A proofs: manuscript no. aanda Fig. C.1. Comparison between MBMO 200 , derived by L25, and the mass es- timates obtained from the gt modelling presented in this"
+    }
+  },
+  {
+    "qid": "q0046",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about L25 H0 CDM Consistent Hubble 70 0 1?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00024",
+      "chunk_index": 24,
+      "distance": 1.2786349058151245,
+      "snippet": "f the associated term is present in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weight of term k in docum"
+    }
+  },
+  {
+    "qid": "q0046",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about L25 H0 CDM Consistent Hubble 70 0 1?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00024",
+      "chunk_index": 24,
+      "distance": 1.2447574138641357,
+      "snippet": "ariable is set to 1 if the associated term is present in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weig"
+    }
+  },
+  {
+    "qid": "q0047",
+    "variant": "raw",
+    "question": "What key point is made regarding DK14 L25 M200m 495 0 0 1 3?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00716",
+      "chunk_index": 716,
+      "distance": 0.9057131409645081,
+      "snippet": ".2 –0.2 –0.3 –0.1 –0.2 –1.3 –0.4 0.5 –0.4 –0.4 0.3 Euro Area 0.3 0.1 0.4 –0.1 –0.6 –0.6 1.4 –0.1 0.4 0.4 –0.4 –0.1 Germany 0.2 –0.4 0.2 –0.6 –0.4 –1.1 0.8 –1.1 –0.1 –0.7 –1.3 –0.3 "
+    }
+  },
+  {
+    "qid": "q0047",
+    "variant": "praline_full",
+    "question": "What key point is made regarding DK14 L25 M200m 495 0 0 1 3?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00708",
+      "chunk_index": 708,
+      "distance": 0.8985646367073059,
+      "snippet": "0.4 • 1.1 0.8 • 1.1 • 0.1 • 0.7 • 1.3 • 0.3 France • 0.2 0.1 0.0 0.2 0.0 • 1.3 0.7 • 0.1 0.9 1.2 • 0.7 0.2 Italy 0.2 0.0 0.1 • 0.1 0.7 • 0.9 0.0 • 0.5 0.5 0.3 • 0.1 • 0.1 Spain 1.0"
+    }
+  },
+  {
+    "qid": "q0047",
+    "variant": "praline_light",
+    "question": "What key point is made regarding DK14 L25 M200m 495 0 0 1 3?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_light__00708",
+      "chunk_index": 708,
+      "distance": 0.9136441349983215,
+      "snippet": " • 0.1 0.1 • 0.1 Foreign Balance2 Advanced Economies 0.2 0.0 0.1 • 0.1 • 0.2 • 0.2 0.0 • 0.4 0.6 0.0 • 0.2 0.1 United States 0.1 • 0.2 • 0.2 • 0.3 • 0.1 • 0.2 • 1.3 • 0.4 0.5 • 0.4"
+    }
+  },
+  {
+    "qid": "q0048",
+    "variant": "raw",
+    "question": "What does the document state about 1M M200m c200m 1014 1015 Duffy 08 10?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00217",
+      "chunk_index": 217,
+      "distance": 1.5174932479858398,
+      "snippet": "une and July. Imports from China  face the largest tariff hikes relative to the baseline,  close to 30 percentage points, followed by emerging  Asia, the euro area, and Japan, at a"
+    }
+  },
+  {
+    "qid": "q0048",
+    "variant": "praline_full",
+    "question": "What does the document state about 1M M200m c200m 1014 1015 Duffy 08 10?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "docu_astro",
+      "chunk_id": "docu_astro__praline_full__00114",
+      "chunk_index": 114,
+      "distance": 1.521858811378479,
+      "snippet": " zob ∈[0.45, 0.8] (brown squares). reduce the fit accuracy. In this section, we assess the impact of these assumptions on our final results. Several tests were already performed in"
+    }
+  },
+  {
+    "qid": "q0048",
+    "variant": "praline_light",
+    "question": "What does the document state about 1M M200m c200m 1014 1015 Duffy 08 10?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_light__00462",
+      "chunk_index": 462,
+      "distance": 1.4915103912353516,
+      "snippet": "ormance consequential for the whole economy. To keep the analysis focused and tractable, the chapter centers on the policy effects of IP on domestic outcomes, as those are likely t"
+    }
+  },
+  {
+    "qid": "q0049",
+    "variant": "raw",
+    "question": "According to the document, what is said about NWO-M NOVA ERC II Forschungsgemeinschaft University Deutsche Federico?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00027",
+      "chunk_index": 27,
+      "distance": 1.3588873147964478,
+      "snippet": "inary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matching the query. Using a continuous RSV allows the user to be aw"
+    }
+  },
+  {
+    "qid": "q0049",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about NWO-M NOVA ERC II Forschungsgemeinschaft University Deutsche Federico?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00027",
+      "chunk_index": 27,
+      "distance": 1.3415764570236206,
+      "snippet": "is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matching the query. Using a c"
+    }
+  },
+  {
+    "qid": "q0049",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about NWO-M NOVA ERC II Forschungsgemeinschaft University Deutsche Federico?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00027",
+      "chunk_index": 27,
+      "distance": 1.337634563446045,
+      "snippet": " q = (q1, . . . , qT ) is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matchi"
+    }
+  },
+  {
+    "qid": "q0050",
+    "variant": "raw",
+    "question": "What key point is made regarding DK14 L25 BMO NFW 2009 Baltz Oguri Mar-?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "Morgan_Stanley_2023_ESG_Report",
+      "chunk_id": "Morgan_Stanley_2023_ESG_Report__raw__00090",
+      "chunk_index": 90,
+      "distance": 1.6070117950439453,
+      "snippet": "ing more than $1 billion in combined  valuation and raising over $200 million in funding  after participating in the Lab. Previous participants  have used the platform to secure ad"
+    }
+  },
+  {
+    "qid": "q0050",
+    "variant": "praline_full",
+    "question": "What key point is made regarding DK14 L25 BMO NFW 2009 Baltz Oguri Mar-?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_full__00065",
+      "chunk_index": 65,
+      "distance": 1.6471474170684814,
+      "snippet": "architecture here. 1) Transformer: in a ground-breaking work [44], Vaswani et al. proposed the Transformer framework, which was orig- inally designed for effective parallel computi"
+    }
+  },
+  {
+    "qid": "q0050",
+    "variant": "praline_light",
+    "question": "What key point is made regarding DK14 L25 BMO NFW 2009 Baltz Oguri Mar-?",
+    "expected_doc_id": "docu_astro",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_light__00065",
+      "chunk_index": 65,
+      "distance": 1.6280860900878906,
+      "snippet": "eview the Transformer architecture here. 1) Transformer: in a ground-breaking work [44], Vaswani et al. proposed the Transformer framework, which was orig- inally designed for effe"
+    }
+  },
+  {
+    "qid": "q0051",
+    "variant": "raw",
+    "question": "What does the document state about BPM BPM CB CB CG CG CG LG?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00653",
+      "chunk_index": 653,
+      "distance": 0.8634128570556641,
+      "snippet": "86 CG C CB 2023 BPM 5 Eritrea Other 2019 2001 CG C Other 2019 BPM 5 Estonia MoF 2024 . . . CG,LG,SS C CB 2024 BPM 6 Eswatini MoF 2024/25 2001 CG C CB 2024 BPM 6 Ethiopia MoF 2023/2"
+    }
+  },
+  {
+    "qid": "q0051",
+    "variant": "praline_full",
+    "question": "What does the document state about BPM BPM CB CB CG CG CG LG?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00017",
+      "chunk_index": 17,
+      "distance": 1.4800524711608887,
+      "snippet": "6]. This technique is simple but leads to good results. In this case, the documents are segments of a fixed duration, extracted periodically from the speech signal. Once the segmen"
+    }
+  },
+  {
+    "qid": "q0051",
+    "variant": "praline_light",
+    "question": "What does the document state about BPM BPM CB CB CG CG CG LG?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00017",
+      "chunk_index": 17,
+      "distance": 1.4774258136749268,
+      "snippet": "ing window [16, 26]. This technique is simple but leads to good results. In this case, the documents are segments of a fixed duration, extracted periodically from the speech signal"
+    }
+  },
+  {
+    "qid": "q0052",
+    "variant": "raw",
+    "question": "According to the document, what is said about RESILIENCE EMERGING POLICIES CHAPTER MARKET GOOD GOOD LUCK?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00879",
+      "chunk_index": 879,
+      "distance": 1.1588246822357178,
+      "snippet": "successful  implementation and called on governments to stay  agile in monitoring their impact and scaling back or  discontinuing ineffective measures. A few Directors  also stress"
+    }
+  },
+  {
+    "qid": "q0052",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about RESILIENCE EMERGING POLICIES CHAPTER MARKET GOOD GOOD LUCK?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00874",
+      "chunk_index": 874,
+      "distance": 1.242896318435669,
+      "snippet": "nd focus on addressing market failures, targeting areas with the highest potential for positive spillovers and impact on supply-side capacity and job creation, supported by complem"
+    }
+  },
+  {
+    "qid": "q0052",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about RESILIENCE EMERGING POLICIES CHAPTER MARKET GOOD GOOD LUCK?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_light__00875",
+      "chunk_index": 875,
+      "distance": 1.0291856527328491,
+      "snippet": "e measures. A few Directors also stressed the importance of leveraging historical experiences in the conduct of industrial policies.       WORLD ECONOMIC OUTLOOK OCTOBER 2025 IN TH"
+    }
+  },
+  {
+    "qid": "q0053",
+    "variant": "raw",
+    "question": "What key point is made regarding RESILIENCE EMERGING POLICIES CHAPTER MARKET GOOD GOOD LUCK?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00879",
+      "chunk_index": 879,
+      "distance": 1.270110845565796,
+      "snippet": "successful  implementation and called on governments to stay  agile in monitoring their impact and scaling back or  discontinuing ineffective measures. A few Directors  also stress"
+    }
+  },
+  {
+    "qid": "q0053",
+    "variant": "praline_full",
+    "question": "What key point is made regarding RESILIENCE EMERGING POLICIES CHAPTER MARKET GOOD GOOD LUCK?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00874",
+      "chunk_index": 874,
+      "distance": 1.3247849941253662,
+      "snippet": "nd focus on addressing market failures, targeting areas with the highest potential for positive spillovers and impact on supply-side capacity and job creation, supported by complem"
+    }
+  },
+  {
+    "qid": "q0053",
+    "variant": "praline_light",
+    "question": "What key point is made regarding RESILIENCE EMERGING POLICIES CHAPTER MARKET GOOD GOOD LUCK?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_light__00875",
+      "chunk_index": 875,
+      "distance": 1.1186225414276123,
+      "snippet": "e measures. A few Directors also stressed the importance of leveraging historical experiences in the conduct of industrial policies.       WORLD ECONOMIC OUTLOOK OCTOBER 2025 IN TH"
+    }
+  },
+  {
+    "qid": "q0054",
+    "variant": "raw",
+    "question": "What does the document state about Production Costs 11 13 15 17 19 0?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00403",
+      "chunk_index": 403,
+      "distance": 1.2064979076385498,
+      "snippet": " Policy Trade-Offs in Response to Risk-Off Shocks 1. Nominal Exchange Rate Depreciation (Percent) −2 12 0 2 4 6 8 10 Source: IMF staff calculations. Note: The figure presents the m"
+    }
+  },
+  {
+    "qid": "q0054",
+    "variant": "praline_full",
+    "question": "What does the document state about Production Costs 11 13 15 17 19 0?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00405",
+      "chunk_index": 405,
+      "distance": 1.2262146472930908,
+      "snippet": "ning for Emerging Markets with Weak Policy Frameworks 1. Nominal Exchange Rate Depreciation (Percent) 0 12 2 4 6 8 10 Source: IMF staff calculations. Note: The figure presents the "
+    }
+  },
+  {
+    "qid": "q0054",
+    "variant": "praline_light",
+    "question": "What does the document state about Production Costs 11 13 15 17 19 0?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_light__00406",
+      "chunk_index": 406,
+      "distance": 1.2668668031692505,
+      "snippet": "t; GFC = global financial crisis. Quarters 1 3 5 7 9 11 13 15 17 19 1 3 5 7 9 11 13 15 17 19 2. CPI Inflation (Percentage points) 0 0.4 2.0 0.8 1.2 1.6 Quarters 1 3 5 7 9 11 13 15 "
+    }
+  },
+  {
+    "qid": "q0055",
+    "variant": "raw",
+    "question": "According to the document, what is said about Israel8 IMF Source 0 0 0 1 1?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00122",
+      "chunk_index": 122,
+      "distance": 0.6530994176864624,
+      "snippet": "int relative  to the October 2024 WEO and 0.7 percentage  point relative to the January 2025 WEO Update.  The downward revision is mainly a result of greater  policy uncertainty, h"
+    }
+  },
+  {
+    "qid": "q0055",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about Israel8 IMF Source 0 0 0 1 1?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00114",
+      "chunk_index": 114,
+      "distance": 0.6421271562576294,
+      "snippet": "ction the world economy has traveled. Hence, the forecasts are discussed in comparison with those in the October 2024 WEO, which provides a clearer picture.  WORLD ECONOMIC OUTLOOK"
+    }
+  },
+  {
+    "qid": "q0055",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about Israel8 IMF Source 0 0 0 1 1?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_light__00114",
+      "chunk_index": 114,
+      "distance": 0.6582966446876526,
+      "snippet": "5 WEO or in the July 2025 WEO Update may obscure the direction the world economy has traveled. Hence, the forecasts are discussed in comparison with those in the October 2024 WEO, "
+    }
+  },
+  {
+    "qid": "q0056",
+    "variant": "raw",
+    "question": "What key point is made regarding Consumer Industry Infant Prices 11 13 15 17?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00403",
+      "chunk_index": 403,
+      "distance": 1.6316635608673096,
+      "snippet": " Policy Trade-Offs in Response to Risk-Off Shocks 1. Nominal Exchange Rate Depreciation (Percent) −2 12 0 2 4 6 8 10 Source: IMF staff calculations. Note: The figure presents the m"
+    }
+  },
+  {
+    "qid": "q0056",
+    "variant": "praline_full",
+    "question": "What key point is made regarding Consumer Industry Infant Prices 11 13 15 17?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00495",
+      "chunk_index": 495,
+      "distance": 1.6481809616088867,
+      "snippet": "al Trade-Offs Depend on Learning Rate (Baseline in period 1 = 1; time on x-axis) 1. Production Costs 0.4 1.1 0.5 0.6 0.7 0.8 0.9 1.0 1 3 5 7 9 11 13 15 17 19 3. Infant Industry Con"
+    }
+  },
+  {
+    "qid": "q0056",
+    "variant": "praline_light",
+    "question": "What key point is made regarding Consumer Industry Infant Prices 11 13 15 17?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_light__00065",
+      "chunk_index": 65,
+      "distance": 1.6313841342926025,
+      "snippet": "eview the Transformer architecture here. 1) Transformer: in a ground-breaking work [44], Vaswani et al. proposed the Transformer framework, which was orig- inally designed for effe"
+    }
+  },
+  {
+    "qid": "q0057",
+    "variant": "raw",
+    "question": "What does the document state about Inflation Headline 2024 Global 25 26 27 28?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00214",
+      "chunk_index": 214,
+      "distance": 1.1296347379684448,
+      "snippet": "ability that 2026  annual growth will be below 0.8 percent, consistent with a  shallow recession starting in the first quarter of 2026. The prob- ability of a short-lived US recess"
+    }
+  },
+  {
+    "qid": "q0057",
+    "variant": "praline_full",
+    "question": "What does the document state about Inflation Headline 2024 Global 25 26 27 28?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00211",
+      "chunk_index": 211,
+      "distance": 1.128999948501587,
+      "snippet": "rk Muir, and Rafael Portillo. 1The recession risk for 2026 is the probability that 2026 annual growth will be below 0.8 percent, consistent with a shallow recession starting in the"
+    }
+  },
+  {
+    "qid": "q0057",
+    "variant": "praline_light",
+    "question": "What does the document state about Inflation Headline 2024 Global 25 26 27 28?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_light__00211",
+      "chunk_index": 211,
+      "distance": 1.0459997653961182,
+      "snippet": "- butions for global growth and headline inflation. The authors of this box are Jared Bebee, Dirk Muir, and Rafael Portillo. 1The recession risk for 2026 is the probability that 20"
+    }
+  },
+  {
+    "qid": "q0058",
+    "variant": "raw",
+    "question": "According to the document, what is said about INDUSTRIAL RESILIENCE TRADE-OFFS MANAGING CHAPTER PROMOTE GROWTH POLICY?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00879",
+      "chunk_index": 879,
+      "distance": 1.231347918510437,
+      "snippet": "successful  implementation and called on governments to stay  agile in monitoring their impact and scaling back or  discontinuing ineffective measures. A few Directors  also stress"
+    }
+  },
+  {
+    "qid": "q0058",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about INDUSTRIAL RESILIENCE TRADE-OFFS MANAGING CHAPTER PROMOTE GROWTH POLICY?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00492",
+      "chunk_index": 492,
+      "distance": 1.2370080947875977,
+      "snippet": "stein (1995) report a 45 percent cost gap between Brazil and the US in microcomputers in the 1980s; Head (1994) reports a 25 percent cost gap between the US and the United King- do"
+    }
+  },
+  {
+    "qid": "q0058",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about INDUSTRIAL RESILIENCE TRADE-OFFS MANAGING CHAPTER PROMOTE GROWTH POLICY?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_light__00875",
+      "chunk_index": 875,
+      "distance": 1.1184642314910889,
+      "snippet": "e measures. A few Directors also stressed the importance of leveraging historical experiences in the conduct of industrial policies.       WORLD ECONOMIC OUTLOOK OCTOBER 2025 IN TH"
+    }
+  },
+  {
+    "qid": "q0059",
+    "variant": "raw",
+    "question": "What key point is made regarding America5 South 23 0 1 1 1 1?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00709",
+      "chunk_index": 709,
+      "distance": 0.7006874084472656,
+      "snippet": ".3 0.7 1.1 0.5 1.1 1.0 Italy –0.8 1.6 1.0 –0.2 –8.3 9.2 5.5 0.2 0.4 0.7 0.9 0.6 1.7 0.2 1.4 Spain –0.5 3.1 3.2 1.6 –9.0 7.0 4.1 1.6 3.4 3.2 2.1 1.6 4.1 2.4 2.0 Japan 0.4 1.1 0.6 0."
+    }
+  },
+  {
+    "qid": "q0059",
+    "variant": "praline_full",
+    "question": "What key point is made regarding America5 South 23 0 1 1 1 1?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00700",
+      "chunk_index": 700,
+      "distance": 0.7175320386886597,
+      "snippet": ". . . . . . Memorandum Major Advanced Economies 1.1 2.4 2.1 1.7 • 4.2 5.9 2.7 1.8 1.7 1.4 1.6 1.4 1.7 1.3 1.5 Real Total Domestic Demand Advanced Economies 1.2 2.6 2.3 2.1 • 3.9 6."
+    }
+  },
+  {
+    "qid": "q0059",
+    "variant": "praline_light",
+    "question": "What key point is made regarding America5 South 23 0 1 1 1 1?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_light__00701",
+      "chunk_index": 701,
+      "distance": 0.6975072026252747,
+      "snippet": "1.1 0.5 1.1 1.0 Italy • 0.8 1.6 1.0 • 0.2 • 8.3 9.2 5.5 0.2 0.4 0.7 0.9 0.6 1.7 0.2 1.4 Spain • 0.5 3.1 3.2 1.6 • 9.0 7.0 4.1 1.6 3.4 3.2 2.1 1.6 4.1 2.4 2.0 Japan 0.4 1.1 0.6 0.0 "
+    }
+  },
+  {
+    "qid": "q0060",
+    "variant": "raw",
+    "question": "What does the document state about SAR Macao 19 23 54 75 0 1?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "docu_astro",
+      "chunk_id": "docu_astro__raw__00114",
+      "chunk_index": 114,
+      "distance": 1.2418458461761475,
+      "snippet": " page 15 of 17    A&A proofs: manuscript no. aanda Fig. C.1. Comparison between MBMO 200 , derived by L25, and the mass es- timates obtained from the gt modelling presented in this"
+    }
+  },
+  {
+    "qid": "q0060",
+    "variant": "praline_full",
+    "question": "What does the document state about SAR Macao 19 23 54 75 0 1?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "docu_astro",
+      "chunk_id": "docu_astro__praline_full__00039",
+      "chunk_index": 39,
+      "distance": 1.2310760021209717,
+      "snippet": " thermore, as discussed in Sect. 4.6, we assumed Gaussian priors on Ft, β, and γ0. Equation (10) models the matter density distribution at r > r200m, and it is expressed as a power"
+    }
+  },
+  {
+    "qid": "q0060",
+    "variant": "praline_light",
+    "question": "What does the document state about SAR Macao 19 23 54 75 0 1?",
+    "expected_doc_id": "imf_report",
+    "top1_chunk": {
+      "doc_id": "docu_astro",
+      "chunk_id": "docu_astro__praline_light__00039",
+      "chunk_index": 39,
+      "distance": 1.2317469120025635,
+      "snippet": "14. Fur- thermore, as discussed in Sect. 4.6, we assumed Gaussian priors on Ft, β, and γ0. Equation (10) models the matter density distribution at r > r200m, and it is expressed as"
+    }
+  },
+  {
+    "qid": "q0061",
+    "variant": "raw",
+    "question": "According to the document, what is said about 540B MATH MMLU Chinchilla Galactica 20 3% 35?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00024",
+      "chunk_index": 24,
+      "distance": 1.351503610610962,
+      "snippet": "in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weight of term k in document i: bk,i = ½ 0 if term k is pr"
+    }
+  },
+  {
+    "qid": "q0061",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about 540B MATH MMLU Chinchilla Galactica 20 3% 35?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00027",
+      "chunk_index": 27,
+      "distance": 1.3347675800323486,
+      "snippet": "is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matching the query. Using a c"
+    }
+  },
+  {
+    "qid": "q0061",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about 540B MATH MMLU Chinchilla Galactica 20 3% 35?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00024",
+      "chunk_index": 24,
+      "distance": 1.3290445804595947,
+      "snippet": "ariable is set to 1 if the associated term is present in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weig"
+    }
+  },
+  {
+    "qid": "q0062",
+    "variant": "raw",
+    "question": "What key point is made regarding GPT-4 LLAVA LLAVA-Plus Next-GPT Qwen-vl 116 214 215?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__raw__00065",
+      "chunk_index": 65,
+      "distance": 1.6363933086395264,
+      "snippet": "so review the Transformer architecture here. 1) Transformer: in a ground-breaking work [44], Vaswani et al. proposed the Transformer framework, which was orig- inally designed for "
+    }
+  },
+  {
+    "qid": "q0062",
+    "variant": "praline_full",
+    "question": "What key point is made regarding GPT-4 LLAVA LLAVA-Plus Next-GPT Qwen-vl 116 214 215?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_full__00045",
+      "chunk_index": 45,
+      "distance": 1.638002872467041,
+      "snippet": "augmentation 64.41 70.74 58.60 63.62 53.75 59.55 the summarization performance of the teacher model in two scenarios: when only N evidential documents are provided, and when N evid"
+    }
+  },
+  {
+    "qid": "q0062",
+    "variant": "praline_light",
+    "question": "What key point is made regarding GPT-4 LLAVA LLAVA-Plus Next-GPT Qwen-vl 116 214 215?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__praline_light__00045",
+      "chunk_index": 45,
+      "distance": 1.6467993259429932,
+      "snippet": "se documents augmentation 64.41 70.74 58.60 63.62 53.75 59.55 the summarization performance of the teacher model in two scenarios: when only N evidential documents are provided, an"
+    }
+  },
+  {
+    "qid": "q0063",
+    "variant": "raw",
+    "question": "What does the document state about GPT-1 GPT-2 GPT-3 GPT-4 GPT Although APIs close-source?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00222",
+      "chunk_index": 222,
+      "distance": 1.397200584411621,
+      "snippet": "tment are moderately larger than in the current  baseline. The layer features two components. First,  several countries see a modest increase in investment  in new AI-specific capi"
+    }
+  },
+  {
+    "qid": "q0063",
+    "variant": "praline_full",
+    "question": "What does the document state about GPT-1 GPT-2 GPT-3 GPT-4 GPT Although APIs close-source?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00219",
+      "chunk_index": 219,
+      "distance": 1.3525099754333496,
+      "snippet": "er than in the current baseline. The layer features two components. First, several countries see a modest increase in investment in new AI-specific capital (information processing "
+    }
+  },
+  {
+    "qid": "q0063",
+    "variant": "praline_light",
+    "question": "What does the document state about GPT-1 GPT-2 GPT-3 GPT-4 GPT Although APIs close-source?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_light__00030",
+      "chunk_index": 30,
+      "distance": 1.4142630100250244,
+      "snippet": "token detection and masked language modeling. Courtesy of [46]. CODEX, and WebGPT. Although early GPT models, such as GPT-1 and GPT-2, are open-source, recent models, such as GPT-3"
+    }
+  },
+  {
+    "qid": "q0064",
+    "variant": "raw",
+    "question": "According to the document, what is said about GPT-1 GPT-2 GPT-3 GPT-4 InstrucGPT ChatGPT Fig family?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+      "chunk_id": "ACoRN_Noise_Robust_Abstractive_Compression__raw__00035",
+      "chunk_index": 35,
+      "distance": 1.3536680936813354,
+      "snippet": " subset contains at least one evidential document from the offline data augmented test dataset. To assess (ii), we create a new dataset by extracting samples that include all types"
+    }
+  },
+  {
+    "qid": "q0064",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about GPT-1 GPT-2 GPT-3 GPT-4 InstrucGPT ChatGPT Fig family?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00027",
+      "chunk_index": 27,
+      "distance": 1.3426644802093506,
+      "snippet": "is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matching the query. Using a c"
+    }
+  },
+  {
+    "qid": "q0064",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about GPT-1 GPT-2 GPT-3 GPT-4 InstrucGPT ChatGPT Fig family?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00027",
+      "chunk_index": 27,
+      "distance": 1.3387291431427002,
+      "snippet": " q = (q1, . . . , qT ) is the query vector. Contrary to the binary model, the RSV is not binary: the matching measure is continuous, giving better values to documents better matchi"
+    }
+  },
+  {
+    "qid": "q0065",
+    "variant": "raw",
+    "question": "What key point is made regarding GPT-3 Jurassic-1 2-trillion-token Transformer Retrieval- Enhanced 25% Retro?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__raw__00065",
+      "chunk_index": 65,
+      "distance": 1.4827264547348022,
+      "snippet": "so review the Transformer architecture here. 1) Transformer: in a ground-breaking work [44], Vaswani et al. proposed the Transformer framework, which was orig- inally designed for "
+    }
+  },
+  {
+    "qid": "q0065",
+    "variant": "praline_full",
+    "question": "What key point is made regarding GPT-3 Jurassic-1 2-trillion-token Transformer Retrieval- Enhanced 25% Retro?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_full__00065",
+      "chunk_index": 65,
+      "distance": 1.5230522155761719,
+      "snippet": "architecture here. 1) Transformer: in a ground-breaking work [44], Vaswani et al. proposed the Transformer framework, which was orig- inally designed for effective parallel computi"
+    }
+  },
+  {
+    "qid": "q0065",
+    "variant": "praline_light",
+    "question": "What key point is made regarding GPT-3 Jurassic-1 2-trillion-token Transformer Retrieval- Enhanced 25% Retro?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_light__00065",
+      "chunk_index": 65,
+      "distance": 1.4822059869766235,
+      "snippet": "eview the Transformer architecture here. 1) Transformer: in a ground-breaking work [44], Vaswani et al. proposed the Transformer framework, which was orig- inally designed for effe"
+    }
+  },
+  {
+    "qid": "q0066",
+    "variant": "raw",
+    "question": "What does the document state about F1 PARENT- PARENT Knowledge Advanced 149 150 151?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00623",
+      "chunk_index": 623,
+      "distance": 1.5448821783065796,
+      "snippet": "he 42 advanced economies. The seven  largest in terms of GDP based on market exchange  rates—the United States, Japan, Germany, France,  Italy, the United Kingdom, and Canada—const"
+    }
+  },
+  {
+    "qid": "q0066",
+    "variant": "praline_full",
+    "question": "What does the document state about F1 PARENT- PARENT Knowledge Advanced 149 150 151?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00462",
+      "chunk_index": 462,
+      "distance": 1.4893426895141602,
+      "snippet": "irst-order importance for policymakers.1 The chapter addresses four main questions: • How have industrial policies evolved recently? What types of industrial policy instruments hav"
+    }
+  },
+  {
+    "qid": "q0066",
+    "variant": "praline_light",
+    "question": "What does the document state about F1 PARENT- PARENT Knowledge Advanced 149 150 151?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_light__00462",
+      "chunk_index": 462,
+      "distance": 1.5014677047729492,
+      "snippet": "ormance consequential for the whole economy. To keep the analysis focused and tractable, the chapter centers on the policy effects of IP on domestic outcomes, as those are likely t"
+    }
+  },
+  {
+    "qid": "q0067",
+    "variant": "raw",
+    "question": "According to the document, what is said about SE4ML NIPS Engineering Learning Software Workshop Machine Machine?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__raw__00122",
+      "chunk_index": 122,
+      "distance": 1.289628267288208,
+      "snippet": "xts. This might involve creating templates that can be programmatically modified based on a given dataset or context. For example, generating personalized responses based on user d"
+    }
+  },
+  {
+    "qid": "q0067",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about SE4ML NIPS Engineering Learning Software Workshop Machine Machine?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_full__00122",
+      "chunk_index": 122,
+      "distance": 1.196057677268982,
+      "snippet": "an be programmatically modified based on a given dataset or context. For example, generating personalized responses based on user data might use a template that is dynamically fill"
+    }
+  },
+  {
+    "qid": "q0067",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about SE4ML NIPS Engineering Learning Software Workshop Machine Machine?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_light__00122",
+      "chunk_index": 122,
+      "distance": 1.2944046258926392,
+      "snippet": "This might involve creating templates that can be programmatically modified based on a given dataset or context. For example, generating personalized responses based on user data m"
+    }
+  },
+  {
+    "qid": "q0068",
+    "variant": "raw",
+    "question": "What key point is made regarding APE APE Engineering Engineering Automatic Automatic Language Models?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__raw__00133",
+      "chunk_index": 133,
+      "distance": 1.458368182182312,
+      "snippet": " the gen- eration of false or misleading information. • Jailbreaking Rails: Prevent the LLM from generating responses that attempt to bypass its own operational constraints or guid"
+    }
+  },
+  {
+    "qid": "q0068",
+    "variant": "praline_full",
+    "question": "What key point is made regarding APE APE Engineering Engineering Automatic Automatic Language Models?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_full__00133",
+      "chunk_index": 133,
+      "distance": 1.4754337072372437,
+      "snippet": "n. • Jailbreaking Rails: Prevent the LLM from generating responses that attempt to bypass its own operational constraints or guidelines. 8) Automatic Prompt Engineering (APE): Auto"
+    }
+  },
+  {
+    "qid": "q0068",
+    "variant": "praline_light",
+    "question": "What key point is made regarding APE APE Engineering Engineering Automatic Automatic Language Models?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_light__00133",
+      "chunk_index": 133,
+      "distance": 1.4489974975585938,
+      "snippet": "gen- eration of false or misleading information. • Jailbreaking Rails: Prevent the LLM from generating responses that attempt to bypass its own operational constraints or guideline"
+    }
+  },
+  {
+    "qid": "q0069",
+    "variant": "raw",
+    "question": "What does the document state about AUGMENTED LLMS USED ARE HOW LLMs Once generate?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__raw__00010",
+      "chunk_index": 10,
+      "distance": 1.2292994260787964,
+      "snippet": "I presents an overview of state of the art of LLMs, focusing on three LLM families (GPT, LLaMA and PaLM) and other representative models. Section III discusses how LLMs are built. "
+    }
+  },
+  {
+    "qid": "q0069",
+    "variant": "praline_full",
+    "question": "What does the document state about AUGMENTED LLMS USED ARE HOW LLMs Once generate?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_full__00010",
+      "chunk_index": 10,
+      "distance": 1.2314319610595703,
+      "snippet": "esents an overview of state of the art of LLMs, focusing on three LLM families (GPT, LLaMA and PaLM) and other representative models. Section III discusses how LLMs are built. Sect"
+    }
+  },
+  {
+    "qid": "q0069",
+    "variant": "praline_light",
+    "question": "What does the document state about AUGMENTED LLMS USED ARE HOW LLMs Once generate?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "llm_pdf",
+      "chunk_id": "llm_pdf__praline_light__00010",
+      "chunk_index": 10,
+      "distance": 1.2314414978027344,
+      "snippet": "presents an overview of state of the art of LLMs, focusing on three LLM families (GPT, LLaMA and PaLM) and other representative models. Section III discusses how LLMs are built. Se"
+    }
+  },
+  {
+    "qid": "q0070",
+    "variant": "raw",
+    "question": "According to the document, what is said about PERFORMANCE BENCHMARKS PROMINENT LLMS ON LLMs In performance?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00023",
+      "chunk_index": 23,
+      "distance": 1.233623743057251,
+      "snippet": "e set of all unique terms in the database    IDIAP–Com 03-08 9 boolean algebra and has been the ﬁrst retrieval model proposed. The other models are more recent and lead to better p"
+    }
+  },
+  {
+    "qid": "q0070",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about PERFORMANCE BENCHMARKS PROMINENT LLMS ON LLMs In performance?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00023",
+      "chunk_index": 23,
+      "distance": 1.1725859642028809,
+      "snippet": "el is based on 1The lexicon is the set of all unique terms in the database  IDIAP-Com 03-08 9 boolean algebra and has been the first retrieval model proposed. The other models are "
+    }
+  },
+  {
+    "qid": "q0070",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about PERFORMANCE BENCHMARKS PROMINENT LLMS ON LLMs In performance?",
+    "expected_doc_id": "llm_pdf",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00023",
+      "chunk_index": 23,
+      "distance": 1.1899867057800293,
+      "snippet": "[6]. The binary model is based on 1The lexicon is the set of all unique terms in the database    IDIAP-Com 03-08 9 boolean algebra and has been the first retrieval model proposed. "
+    }
+  },
+  {
+    "qid": "q0071",
+    "variant": "raw",
+    "question": "What key point is made regarding MERCHANTABILITY NONINFRINGEMENT PARTICULAR WARRANTIES INCLUDING PROVIDED SOFTWARE WARRANTY?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__raw__00053",
+      "chunk_index": 53,
+      "distance": 1.471587061882019,
+      "snippet": "# obtaining a copy of this software and associated documentation files # (the \"Software\"), to deal in the Software without restriction, # including without limitation the rights to"
+    }
+  },
+  {
+    "qid": "q0071",
+    "variant": "praline_full",
+    "question": "What key point is made regarding MERCHANTABILITY NONINFRINGEMENT PARTICULAR WARRANTIES INCLUDING PROVIDED SOFTWARE WARRANTY?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__praline_full__00053",
+      "chunk_index": 53,
+      "distance": 1.511661410331726,
+      "snippet": "the terms and conditions of the Expat license: # Permission is hereby granted, free of charge, to any person # obtaining a copy of this software and associated documentation files "
+    }
+  },
+  {
+    "qid": "q0071",
+    "variant": "praline_light",
+    "question": "What key point is made regarding MERCHANTABILITY NONINFRINGEMENT PARTICULAR WARRANTIES INCLUDING PROVIDED SOFTWARE WARRANTY?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__praline_light__00053",
+      "chunk_index": 53,
+      "distance": 1.4781858921051025,
+      "snippet": "r 6. Credits    CHAPTER 7 License The pep8 library is provided under the terms and conditions of the Expat license: # Permission is hereby granted, free of charge, to any person # "
+    }
+  },
+  {
+    "qid": "q0072",
+    "variant": "raw",
+    "question": "What does the document state about E111 E112 E113 E114 E115 E116 Replace 277?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00010",
+      "chunk_index": 10,
+      "distance": 1.5383989810943604,
+      "snippet": "transcribes the speech signal into a stream of phonemes or a stream of words. Segmentation splits the stream into segments, called documents. Ideally, each document should be homog"
+    }
+  },
+  {
+    "qid": "q0072",
+    "variant": "praline_full",
+    "question": "What does the document state about E111 E112 E113 E114 E115 E116 Replace 277?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_full__00462",
+      "chunk_index": 462,
+      "distance": 1.4832417964935303,
+      "snippet": "irst-order importance for policymakers.1 The chapter addresses four main questions: • How have industrial policies evolved recently? What types of industrial policy instruments hav"
+    }
+  },
+  {
+    "qid": "q0072",
+    "variant": "praline_light",
+    "question": "What does the document state about E111 E112 E113 E114 E115 E116 Replace 277?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__praline_light__00462",
+      "chunk_index": 462,
+      "distance": 1.522261619567871,
+      "snippet": "ormance consequential for the whole economy. To keep the analysis focused and tractable, the chapter centers on the policy effects of IP on domestic outcomes, as those are likely t"
+    }
+  },
+  {
+    "qid": "q0073",
+    "variant": "raw",
+    "question": "According to the document, what is said about API 2012-06-15 Developer Release Warning dev0 pep8 24?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00023",
+      "chunk_index": 23,
+      "distance": 1.349226951599121,
+      "snippet": "e set of all unique terms in the database    IDIAP–Com 03-08 9 boolean algebra and has been the ﬁrst retrieval model proposed. The other models are more recent and lead to better p"
+    }
+  },
+  {
+    "qid": "q0073",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about API 2012-06-15 Developer Release Warning dev0 pep8 24?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00023",
+      "chunk_index": 23,
+      "distance": 1.3392189741134644,
+      "snippet": "el is based on 1The lexicon is the set of all unique terms in the database  IDIAP-Com 03-08 9 boolean algebra and has been the first retrieval model proposed. The other models are "
+    }
+  },
+  {
+    "qid": "q0073",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about API 2012-06-15 Developer Release Warning dev0 pep8 24?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00024",
+      "chunk_index": 24,
+      "distance": 1.3373128175735474,
+      "snippet": "ariable is set to 1 if the associated term is present in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weig"
+    }
+  },
+  {
+    "qid": "q0074",
+    "variant": "raw",
+    "question": "What key point is made regarding 2009-09-14 Changes Release dev0 pep8 Fixes 25 35?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__raw__00054",
+      "chunk_index": 54,
+      "distance": 1.5024375915527344,
+      "snippet": " # BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN # ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN # CONNECTION WITH THE SOFTWARE OR THE USE "
+    }
+  },
+  {
+    "qid": "q0074",
+    "variant": "praline_full",
+    "question": "What key point is made regarding 2009-09-14 Changes Release dev0 pep8 Fixes 25 35?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__praline_full__00052",
+      "chunk_index": 52,
+      "distance": 1.4850759506225586,
+      "snippet": "ation, Release 1.7.1.dev0 4.4.35 0.3.1 (2009-09-14) • Fixes for comments: do not count them when checking for blank lines between items. • Added setup.py for pypi upload and easy_i"
+    }
+  },
+  {
+    "qid": "q0074",
+    "variant": "praline_light",
+    "question": "What key point is made regarding 2009-09-14 Changes Release dev0 pep8 Fixes 25 35?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__praline_light__00052",
+      "chunk_index": 52,
+      "distance": 1.4560303688049316,
+      "snippet": "he previous issue tracker. 4.4. Changes 25    pep8 documentation, Release 1.7.1.dev0 4.4.35 0.3.1 (2009-09-14) • Fixes for comments: do not count them when checking for blank lines"
+    }
+  },
+  {
+    "qid": "q0075",
+    "variant": "raw",
+    "question": "What does the document state about 2012-04-06 Changes Release dev0 pep8 23 27 0?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "docu_astro",
+      "chunk_id": "docu_astro__raw__00116",
+      "chunk_index": 116,
+      "distance": 1.4137141704559326,
+      "snippet": "that fixing the mass slope of the log c200m −log M200m relation (Eq. 32), denoted as cM and discussed in Sect. 4.6, does not introduce any biases in the mass estimates. The same ho"
+    }
+  },
+  {
+    "qid": "q0075",
+    "variant": "praline_full",
+    "question": "What does the document state about 2012-04-06 Changes Release dev0 pep8 23 27 0?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "docu_astro",
+      "chunk_id": "docu_astro__praline_full__00115",
+      "chunk_index": 115,
+      "distance": 1.4093952178955078,
+      "snippet": "s estimates. The same holds for the intrinsic scatter in the log c200m −log M200m relation, which amounts to about 35% 0.40 0.35 0.30 0.25 0.20 A 0 2 4 6 8 10 12 Density gt wcg 0.4"
+    }
+  },
+  {
+    "qid": "q0075",
+    "variant": "praline_light",
+    "question": "What does the document state about 2012-04-06 Changes Release dev0 pep8 23 27 0?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__praline_light__00052",
+      "chunk_index": 52,
+      "distance": 1.3888707160949707,
+      "snippet": "he previous issue tracker. 4.4. Changes 25    pep8 documentation, Release 1.7.1.dev0 4.4.35 0.3.1 (2009-09-14) • Fixes for comments: do not count them when checking for blank lines"
+    }
+  },
+  {
+    "qid": "q0076",
+    "variant": "raw",
+    "question": "According to the document, what is said about 2014-04-04 Distribute Developer Changes Release dev0 pep8 10?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__raw__00024",
+      "chunk_index": 24,
+      "distance": 1.384867787361145,
+      "snippet": "in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weight of term k in document i: bk,i = ½ 0 if term k is pr"
+    }
+  },
+  {
+    "qid": "q0076",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about 2014-04-04 Distribute Developer Changes Release dev0 pep8 10?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_full__00024",
+      "chunk_index": 24,
+      "distance": 1.380253791809082,
+      "snippet": "f the associated term is present in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weight of term k in docum"
+    }
+  },
+  {
+    "qid": "q0076",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about 2014-04-04 Distribute Developer Changes Release dev0 pep8 10?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00024",
+      "chunk_index": 24,
+      "distance": 1.362034797668457,
+      "snippet": "ariable is set to 1 if the associated term is present in the document and to 0 otherwise: di = (b1,i, . . . , bT,i) (2.4) where T is the dictionary size and bk,i is the binary weig"
+    }
+  },
+  {
+    "qid": "q0077",
+    "variant": "raw",
+    "question": "What key point is made regarding E125 E129 2014-03-26 Changes Report 263 Issue 12?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__raw__00034",
+      "chunk_index": 34,
+      "distance": 1.4568867683410645,
+      "snippet": "e strings. (Issue #220) • Fix false positive E121/E126 with multi-line strings. (Issue #265) • Fix E501 not detected in comments with Python 2.5. • Fix caret position with --show-s"
+    }
+  },
+  {
+    "qid": "q0077",
+    "variant": "praline_full",
+    "question": "What key point is made regarding E125 E129 2014-03-26 Changes Report 263 Issue 12?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__praline_full__00034",
+      "chunk_index": 34,
+      "distance": 1.4935388565063477,
+      "snippet": "ine after parameter equal. (Issue #252) • Fix line number reported for multi-line strings. (Issue #220) • Fix false positive E121/E126 with multi-line strings. (Issue #265) • Fix E"
+    }
+  },
+  {
+    "qid": "q0077",
+    "variant": "praline_light",
+    "question": "What key point is made regarding E125 E129 2014-03-26 Changes Report 263 Issue 12?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__praline_light__00034",
+      "chunk_index": 34,
+      "distance": 1.4911447763442993,
+      "snippet": "ith comments. (Issue #60) • Do not allow newline after parameter equal. (Issue #252) • Fix line number reported for multi-line strings. (Issue #220) • Fix false positive E121/E126 "
+    }
+  },
+  {
+    "qid": "q0078",
+    "variant": "raw",
+    "question": "What does the document state about E711 E712 2013-07-02 Changes Honor Issue 13 34?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__raw__00036",
+      "chunk_index": 36,
+      "distance": 1.209845781326294,
+      "snippet": "e #246) • Fix a false positive E124 for hanging indent. (Issue #254) • Fix a false positive E126 with embedded colon. (Issue #144) • Fix a false positive E126 when indenting with t"
+    }
+  },
+  {
+    "qid": "q0078",
+    "variant": "praline_full",
+    "question": "What does the document state about E711 E712 2013-07-02 Changes Honor Issue 13 34?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__praline_full__00036",
+      "chunk_index": 36,
+      "distance": 1.216993808746338,
+      "snippet": "ide to parse the local configuration if the keyword argument paths is specified. (Issue #246) • Fix a false positive E124 for hanging indent. (Issue #254) • Fix a false positive E1"
+    }
+  },
+  {
+    "qid": "q0078",
+    "variant": "praline_light",
+    "question": "What does the document state about E711 E712 2013-07-02 Changes Honor Issue 13 34?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__praline_light__00036",
+      "chunk_index": 36,
+      "distance": 1.244335651397705,
+      "snippet": "multiple brackets. (Issue #214) • Fix StyleGuide to parse the local configuration if the keyword argument paths is specified. (Issue #246) • Fix a false positive E124 for hanging i"
+    }
+  },
+  {
+    "qid": "q0079",
+    "variant": "raw",
+    "question": "According to the document, what is said about E124 E128 2012-12-18 105 Issue 20 1 3?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__raw__00042",
+      "chunk_index": 42,
+      "distance": 1.214025855064392,
+      "snippet": "d the [pep8] section of tox.ini or setup.cfg if present. (Issue #93 and #141) • Add the Sphinx-based documentation, and publish it on http://pep8.readthedocs.org/. (Issue #105) 4.4"
+    }
+  },
+  {
+    "qid": "q0079",
+    "variant": "praline_full",
+    "question": "According to the document, what is said about E124 E128 2012-12-18 105 Issue 20 1 3?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "pep8",
+      "chunk_id": "pep8__praline_full__00043",
+      "chunk_index": 43,
+      "distance": 1.2435935735702515,
+      "snippet": "--exclude switch for directory paths. (Issue #111) • Use - filename to read from standard input. (Issue #128) 4.4.21 1.3.3 (2012-06-27) • Fix regression with continuation line chec"
+    }
+  },
+  {
+    "qid": "q0079",
+    "variant": "praline_light",
+    "question": "According to the document, what is said about E124 E128 2012-12-18 105 Issue 20 1 3?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "Information_Retrieval_on_Noisy_Text",
+      "chunk_id": "Information_Retrieval_on_Noisy_Text__praline_light__00068",
+      "chunk_index": 68,
+      "distance": 1.2440966367721558,
+      "snippet": "erformance it is supposed to give. Query expansion is a step that aims at modifying the query to make it more effective. However, there is not a single technique to perform query e"
+    }
+  },
+  {
+    "qid": "q0080",
+    "variant": "raw",
+    "question": "What key point is made regarding E302 OK 2009-10-22 Decorators 10 33 0 1?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "imf_report",
+      "chunk_id": "imf_report__raw__00716",
+      "chunk_index": 716,
+      "distance": 1.3739936351776123,
+      "snippet": ".2 –0.2 –0.3 –0.1 –0.2 –1.3 –0.4 0.5 –0.4 –0.4 0.3 Euro Area 0.3 0.1 0.4 –0.1 –0.6 –0.6 1.4 –0.1 0.4 0.4 –0.4 –0.1 Germany 0.2 –0.4 0.2 –0.6 –0.4 –1.1 0.8 –1.1 –0.1 –0.7 –1.3 –0.3 "
+    }
+  },
+  {
+    "qid": "q0080",
+    "variant": "praline_full",
+    "question": "What key point is made regarding E302 OK 2009-10-22 Decorators 10 33 0 1?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "docu_astro",
+      "chunk_id": "docu_astro__praline_full__00079",
+      "chunk_index": 79,
+      "distance": 1.351367473602295,
+      "snippet": "at rsp estimates from wcg are systematically lower than those from the gt modelling, al-  0.10 0.15 0.20 sp / sp zob [0.10, 0.30) gt wcg zob [0.30, 0.45) zob [0.45, 0.80] 0.10 0.15"
+    }
+  },
+  {
+    "qid": "q0080",
+    "variant": "praline_light",
+    "question": "What key point is made regarding E302 OK 2009-10-22 Decorators 10 33 0 1?",
+    "expected_doc_id": "pep8",
+    "top1_chunk": {
+      "doc_id": "docu_astro",
+      "chunk_id": "docu_astro__praline_light__00079",
+      "chunk_index": 79,
+      "distance": 1.3553102016448975,
+      "snippet": "ls of Fig. 3 show that rsp estimates from wcg are systematically lower than those from the gt modelling, al-    0.10 0.15 0.20 sp / sp zob [0.10, 0.30) gt wcg zob [0.30, 0.45) zob "
+    }
+  }
+]

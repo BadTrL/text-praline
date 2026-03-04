@@ -1,0 +1,58 @@
+[
+  {
+    "qid": "q0008",
+    "question": "What key point is made regarding IEEE/CVF CVPR Uncertainty-aware Proceedings Recognition Computer Pattern 2020?",
+    "expected_doc_id": "ACoRN_Noise_Robust_Abstractive_Compression",
+    "raw_mrr": 0.5,
+    "light_mrr": 1.0,
+    "delta_mrr": 0.5
+  },
+  {
+    "qid": "q0040",
+    "question": "According to the document, what is said about ISN RGB Experiments Additional Additional Control Table 10?",
+    "expected_doc_id": "RAG_Noise_LLM",
+    "raw_mrr": 0.0,
+    "light_mrr": 1.0,
+    "delta_mrr": 1.0
+  },
+  {
+    "qid": "q0042",
+    "question": "What does the document state about CHMF CHMF Gaussian 00019 00024 00024 00038 2019?",
+    "expected_doc_id": "docu_astro",
+    "raw_mrr": 0.3333333333333333,
+    "light_mrr": 0.5,
+    "delta_mrr": 0.16666666666666669
+  },
+  {
+    "qid": "q0049",
+    "question": "According to the document, what is said about NWO-M NOVA ERC II Forschungsgemeinschaft University Deutsche Federico?",
+    "expected_doc_id": "docu_astro",
+    "raw_mrr": 0.0,
+    "light_mrr": 0.25,
+    "delta_mrr": 0.25
+  },
+  {
+    "qid": "q0050",
+    "question": "What key point is made regarding DK14 L25 BMO NFW 2009 Baltz Oguri Mar-?",
+    "expected_doc_id": "docu_astro",
+    "raw_mrr": 0.25,
+    "light_mrr": 0.5,
+    "delta_mrr": 0.25
+  },
+  {
+    "qid": "q0063",
+    "question": "What does the document state about GPT-1 GPT-2 GPT-3 GPT-4 GPT Although APIs close-source?",
+    "expected_doc_id": "llm_pdf",
+    "raw_mrr": 0.0,
+    "light_mrr": 1.0,
+    "delta_mrr": 1.0
+  },
+  {
+    "qid": "q0075",
+    "question": "What does the document state about 2012-04-06 Changes Release dev0 pep8 23 27 0?",
+    "expected_doc_id": "pep8",
+    "raw_mrr": 0.5,
+    "light_mrr": 1.0,
+    "delta_mrr": 0.5
+  }
+]

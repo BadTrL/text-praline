@@ -1,0 +1,241 @@
+qid,variant,question,expected_doc_id,mrr,recall@1,recall@5,recall@10,top1_doc,delta_mrr_vs_raw,raw_mrr,raw_recall@1
+q0001,raw,"According to the document, what is said about STATISTICS DATASETS TABLE THREE ODQA TEST OF De?",ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.0,1.0,1
+q0001,praline_full,"According to the document, what is said about STATISTICS DATASETS TABLE THREE ODQA TEST OF De?",ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.0,1.0,1
+q0001,praline_light,"According to the document, what is said about STATISTICS DATASETS TABLE THREE ODQA TEST OF De?",ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.0,1.0,1
+q0002,raw,What key point is made regarding A5000 A6000 NVIDIA NVIDIA GPU RTX RTX GPUs?,ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.0,1.0,1
+q0002,praline_full,What key point is made regarding A5000 A6000 NVIDIA NVIDIA GPU RTX RTX GPUs?,ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.0,1.0,1
+q0002,praline_light,What key point is made regarding A5000 A6000 NVIDIA NVIDIA GPU RTX RTX GPUs?,ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.0,1.0,1
+q0003,raw,What does the document state about ACL Computational Association Linguistics Proceedings Zettlemoyer Comprehen- Supervised?,ACoRN_Noise_Robust_Abstractive_Compression,0.3333333333333333,0,1,1,RAG_Noise_LLM,0.0,0.3333333333333333,0
+q0003,praline_full,What does the document state about ACL Computational Association Linguistics Proceedings Zettlemoyer Comprehen- Supervised?,ACoRN_Noise_Robust_Abstractive_Compression,0.25,0,1,1,RAG_Noise_LLM,-0.08333333333333331,0.3333333333333333,0
+q0003,praline_light,What does the document state about ACL Computational Association Linguistics Proceedings Zettlemoyer Comprehen- Supervised?,ACoRN_Noise_Robust_Abstractive_Compression,0.25,0,1,1,llm_pdf,-0.08333333333333331,0.3333333333333333,0
+q0004,raw,"According to the document, what is said about RAG Comprehensive Revealing Analysis Language 13533 Aladdin Pandora?",ACoRN_Noise_Robust_Abstractive_Compression,0.3333333333333333,0,1,1,Information_Retrieval_on_Noisy_Text,0.0,0.3333333333333333,0
+q0004,praline_full,"According to the document, what is said about RAG Comprehensive Revealing Analysis Language 13533 Aladdin Pandora?",ACoRN_Noise_Robust_Abstractive_Compression,0.5,0,1,1,Information_Retrieval_on_Noisy_Text,0.16666666666666669,0.3333333333333333,0
+q0004,praline_light,"According to the document, what is said about RAG Comprehensive Revealing Analysis Language 13533 Aladdin Pandora?",ACoRN_Noise_Robust_Abstractive_Compression,0.3333333333333333,0,1,1,RAG_Noise_LLM,0.0,0.3333333333333333,0
+q0005,raw,What key point is made regarding NAACL NLP Computational Evidentiality-guided Technologies Association Linguistics Proceedings?,ACoRN_Noise_Robust_Abstractive_Compression,0.5,0,1,1,RAG_Noise_LLM,0.0,0.5,0
+q0005,praline_full,What key point is made regarding NAACL NLP Computational Evidentiality-guided Technologies Association Linguistics Proceedings?,ACoRN_Noise_Robust_Abstractive_Compression,0.3333333333333333,0,1,1,RAG_Noise_LLM,-0.16666666666666669,0.5,0
+q0005,praline_light,What key point is made regarding NAACL NLP Computational Evidentiality-guided Technologies Association Linguistics Proceedings?,ACoRN_Noise_Robust_Abstractive_Compression,0.3333333333333333,0,1,1,RAG_Noise_LLM,-0.16666666666666669,0.5,0
+q0006,raw,What does the document state about ACL Computational Retrieval-Augmented Adversarial Association Linguistics Proceedings Robustness?,ACoRN_Noise_Robust_Abstractive_Compression,0.3333333333333333,0,1,1,llm_pdf,0.0,0.3333333333333333,0
+q0006,praline_full,What does the document state about ACL Computational Retrieval-Augmented Adversarial Association Linguistics Proceedings Robustness?,ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.6666666666666667,0.3333333333333333,0
+q0006,praline_light,What does the document state about ACL Computational Retrieval-Augmented Adversarial Association Linguistics Proceedings Robustness?,ACoRN_Noise_Robust_Abstractive_Compression,0.3333333333333333,0,1,1,RAG_Noise_LLM,0.0,0.3333333333333333,0
+q0007,raw,"According to the document, what is said about ACL Computational Query-Guided Association Compression Information Linguistics Proceedings?",ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.0,1.0,1
+q0007,praline_full,"According to the document, what is said about ACL Computational Query-Guided Association Compression Information Linguistics Proceedings?",ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.0,1.0,1
+q0007,praline_light,"According to the document, what is said about ACL Computational Query-Guided Association Compression Information Linguistics Proceedings?",ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.0,1.0,1
+q0008,raw,What key point is made regarding IEEE/CVF CVPR Uncertainty-aware Proceedings Recognition Computer Pattern 2020?,ACoRN_Noise_Robust_Abstractive_Compression,0.5,0,1,1,imf_report,0.0,0.5,0
+q0008,praline_full,What key point is made regarding IEEE/CVF CVPR Uncertainty-aware Proceedings Recognition Computer Pattern 2020?,ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.5,0.5,0
+q0008,praline_light,What key point is made regarding IEEE/CVF CVPR Uncertainty-aware Proceedings Recognition Computer Pattern 2020?,ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.5,0.5,0
+q0009,raw,What does the document state about RECOMP T5-large PAR NQ Notably 4966 6425 0?,ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.0,1.0,1
+q0009,praline_full,What does the document state about RECOMP T5-large PAR NQ Notably 4966 6425 0?,ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.0,1.0,1
+q0009,praline_light,What does the document state about RECOMP T5-large PAR NQ Notably 4966 6425 0?,ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.0,1.0,1
+q0010,raw,"According to the document, what is said about Flan-T5-large LLaMA-3 QFS 1-8B-Instruct Query-Focused Summarization 29 36?",ACoRN_Noise_Robust_Abstractive_Compression,1.0,1,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.0,1.0,1
+q0010,praline_full,"According to the document, what is said about Flan-T5-large LLaMA-3 QFS 1-8B-Instruct Query-Focused Summarization 29 36?",ACoRN_Noise_Robust_Abstractive_Compression,0.5,0,1,1,Information_Retrieval_on_Noisy_Text,-0.5,1.0,1
+q0010,praline_light,"According to the document, what is said about Flan-T5-large LLaMA-3 QFS 1-8B-Instruct Query-Focused Summarization 29 36?",ACoRN_Noise_Robust_Abstractive_Compression,0.5,0,1,1,Information_Retrieval_on_Noisy_Text,-0.5,1.0,1
+q0011,raw,What key point is made regarding TDT2 IDIAP 03-08 19 20 1 2 2?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0011,praline_full,What key point is made regarding TDT2 IDIAP 03-08 19 20 1 2 2?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0011,praline_light,What key point is made regarding TDT2 IDIAP 03-08 19 20 1 2 2?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0012,raw,What does the document state about TDT2 IDIAP 03-08 Clean 22 Text 1 1?,Information_Retrieval_on_Noisy_Text,0.2,0,1,1,pep8,0.0,0.2,0
+q0012,praline_full,What does the document state about TDT2 IDIAP 03-08 Clean 22 Text 1 1?,Information_Retrieval_on_Noisy_Text,0.0,0,0,0,pep8,-0.2,0.2,0
+q0012,praline_light,What does the document state about TDT2 IDIAP 03-08 Clean 22 Text 1 1?,Information_Retrieval_on_Noisy_Text,0.0,0,0,0,pep8,-0.2,0.2,0
+q0013,raw,"According to the document, what is said about TDT2 TDT2 American Database English 600 1 2?",Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0013,praline_full,"According to the document, what is said about TDT2 TDT2 American Database English 600 1 2?",Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0013,praline_light,"According to the document, what is said about TDT2 TDT2 American Database English 600 1 2?",Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0014,raw,What key point is made regarding TREC-8 TREC-9 TDT2 TREC SDR During 50 evaluation?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0014,praline_full,What key point is made regarding TREC-8 TREC-9 TDT2 TREC SDR During 50 evaluation?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0014,praline_light,What key point is made regarding TREC-8 TREC-9 TDT2 TREC SDR During 50 evaluation?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0015,raw,What does the document state about IDIAP SDR Introduction 03-08 Chapter State 1 2?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0015,praline_full,What does the document state about IDIAP SDR Introduction 03-08 Chapter State 1 2?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0015,praline_light,What does the document state about IDIAP SDR Introduction 03-08 Chapter State 1 2?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0016,raw,"According to the document, what is said about IDIAP Matching Measures 03-08 Ranking Vector Model Space?",Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0016,praline_full,"According to the document, what is said about IDIAP Matching Measures 03-08 Ranking Vector Model Space?",Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0016,praline_light,"According to the document, what is said about IDIAP Matching Measures 03-08 Ranking Vector Model Space?",Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0017,raw,What key point is made regarding IDIAP RSV 03-08 10 q1 1 2 9?,Information_Retrieval_on_Noisy_Text,0.5,0,1,1,imf_report,0.0,0.5,0
+q0017,praline_full,What key point is made regarding IDIAP RSV 03-08 10 q1 1 2 9?,Information_Retrieval_on_Noisy_Text,0.5,0,1,1,imf_report,0.0,0.5,0
+q0017,praline_light,What key point is made regarding IDIAP RSV 03-08 10 q1 1 2 9?,Information_Retrieval_on_Noisy_Text,0.5,0,1,1,imf_report,0.0,0.5,0
+q0018,raw,What does the document state about LCA OW Expansion Analysis Context Rocchio Weight Local?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0018,praline_full,What does the document state about LCA OW Expansion Analysis Context Rocchio Weight Local?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0018,praline_light,What does the document state about LCA OW Expansion Analysis Context Rocchio Weight Local?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0019,raw,"According to the document, what is said about QE QE Parallel 3 3 3 3 4?",Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0019,praline_full,"According to the document, what is said about QE QE Parallel 3 3 3 3 4?",Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0019,praline_light,"According to the document, what is said about QE QE Parallel 3 3 3 3 4?",Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0020,raw,What key point is made regarding IDIAP SDR Conclusions Retrieval Document 03-08 Chapter Future?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0020,praline_full,What key point is made regarding IDIAP SDR Conclusions Retrieval Document 03-08 Chapter Future?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0020,praline_light,What key point is made regarding IDIAP SDR Conclusions Retrieval Document 03-08 Chapter Future?,Information_Retrieval_on_Noisy_Text,1.0,1,1,1,Information_Retrieval_on_Noisy_Text,0.0,1.0,1
+q0021,raw,What does the document state about INTRODUCTION ORGANIZATION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT MEMBERSHIP CAPITAL?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0021,praline_full,What does the document state about INTRODUCTION ORGANIZATION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT MEMBERSHIP CAPITAL?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0021,praline_light,What does the document state about INTRODUCTION ORGANIZATION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT MEMBERSHIP CAPITAL?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0022,raw,"According to the document, what is said about INTRODUCTION SUSTAINABLE APPENDICES DISCLOSURE GOVERNANCE MANAGEMENT LOCATION CAPITAL?",Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0022,praline_full,"According to the document, what is said about INTRODUCTION SUSTAINABLE APPENDICES DISCLOSURE GOVERNANCE MANAGEMENT LOCATION CAPITAL?",Morgan_Stanley_2023_ESG_Report,0.3333333333333333,0,1,1,Information_Retrieval_on_Noisy_Text,-0.6666666666666667,1.0,1
+q0022,praline_light,"According to the document, what is said about INTRODUCTION SUSTAINABLE APPENDICES DISCLOSURE GOVERNANCE MANAGEMENT LOCATION CAPITAL?",Morgan_Stanley_2023_ESG_Report,0.3333333333333333,0,1,1,Information_Retrieval_on_Noisy_Text,-0.6666666666666667,1.0,1
+q0023,raw,What key point is made regarding INTRODUCTION DISCLAIMERS SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0023,praline_full,What key point is made regarding INTRODUCTION DISCLAIMERS SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0023,praline_light,What key point is made regarding INTRODUCTION DISCLAIMERS SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0024,raw,What does the document state about INTRODUCTION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE FINANCE?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0024,praline_full,What does the document state about INTRODUCTION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE FINANCE?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0024,praline_light,What does the document state about INTRODUCTION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE FINANCE?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0025,raw,"According to the document, what is said about INTRODUCTION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE FINANCE?",Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0025,praline_full,"According to the document, what is said about INTRODUCTION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE FINANCE?",Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0025,praline_light,"According to the document, what is said about INTRODUCTION SUSTAINABLE APPENDICES GOVERNANCE MANAGEMENT CAPITAL CLIMATE FINANCE?",Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0026,raw,What key point is made regarding ANALYTICS MEASURING PORTFOLIO POWERED STANLEY IMPACT MORGAN ESG?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0026,praline_full,What key point is made regarding ANALYTICS MEASURING PORTFOLIO POWERED STANLEY IMPACT MORGAN ESG?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0026,praline_light,What key point is made regarding ANALYTICS MEASURING PORTFOLIO POWERED STANLEY IMPACT MORGAN ESG?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0027,raw,What does the document state about CMDS ESG ESG ESG ESG Subcommittee Subcommittees/Working Sustainability?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0027,praline_full,What does the document state about CMDS ESG ESG ESG ESG Subcommittee Subcommittees/Working Sustainability?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0027,praline_light,What does the document state about CMDS ESG ESG ESG ESG Subcommittee Subcommittees/Working Sustainability?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0028,raw,"According to the document, what is said about COMMITMENT CONTINUING INCLUSION Standard30 LGBT LGBT OUR TO?",Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0028,praline_full,"According to the document, what is said about COMMITMENT CONTINUING INCLUSION Standard30 LGBT LGBT OUR TO?",Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0028,praline_light,"According to the document, what is said about COMMITMENT CONTINUING INCLUSION Standard30 LGBT LGBT OUR TO?",Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0029,raw,What key point is made regarding CH4 CO2 N2O NF3 SF6 Hydrofluorocarbons Dioxide Methane?,Morgan_Stanley_2023_ESG_Report,0.5,0,1,1,llm_pdf,0.0,0.5,0
+q0029,praline_full,What key point is made regarding CH4 CO2 N2O NF3 SF6 Hydrofluorocarbons Dioxide Methane?,Morgan_Stanley_2023_ESG_Report,0.5,0,1,1,llm_pdf,0.0,0.5,0
+q0029,praline_light,What key point is made regarding CH4 CO2 N2O NF3 SF6 Hydrofluorocarbons Dioxide Methane?,Morgan_Stanley_2023_ESG_Report,0.5,0,1,1,llm_pdf,0.0,0.5,0
+q0030,raw,What does the document state about REDUCTION SECTOR TARGET LLP Manufacturing Emissions Absolute Deloitte?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0030,praline_full,What does the document state about REDUCTION SECTOR TARGET LLP Manufacturing Emissions Absolute Deloitte?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0030,praline_light,What does the document state about REDUCTION SECTOR TARGET LLP Manufacturing Emissions Absolute Deloitte?,Morgan_Stanley_2023_ESG_Report,1.0,1,1,1,Morgan_Stanley_2023_ESG_Report,0.0,1.0,1
+q0031,raw,"According to the document, what is said about B2-13B L2-13B L3-70B L3-8B Q2-7B V-13B M-7B Baichuan2-13B-chat?",RAG_Noise_LLM,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0031,praline_full,"According to the document, what is said about B2-13B L2-13B L3-70B L3-8B Q2-7B V-13B M-7B Baichuan2-13B-chat?",RAG_Noise_LLM,0.5,0,1,1,Information_Retrieval_on_Noisy_Text,0.5,0.0,0
+q0031,praline_light,"According to the document, what is said about B2-13B L2-13B L3-70B L3-8B Q2-7B V-13B M-7B Baichuan2-13B-chat?",RAG_Noise_LLM,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0032,raw,What key point is made regarding B2-13B L2-13B L3-70B L3-8B Q2-7B V-13B M-7B Baichuan2-13B-chat?,RAG_Noise_LLM,0.0,0,0,0,llm_pdf,0.0,0.0,0
+q0032,praline_full,What key point is made regarding B2-13B L2-13B L3-70B L3-8B Q2-7B V-13B M-7B Baichuan2-13B-chat?,RAG_Noise_LLM,0.0,0,0,0,docu_astro,0.0,0.0,0
+q0032,praline_light,What key point is made regarding B2-13B L2-13B L3-70B L3-8B Q2-7B V-13B M-7B Baichuan2-13B-chat?,RAG_Noise_LLM,0.0,0,0,0,llm_pdf,0.0,0.0,0
+q0033,raw,What does the document state about A100 NVIDIA GPU RAM GB GB vllm1 Python?,RAG_Noise_LLM,0.0,0,0,0,Morgan_Stanley_2023_ESG_Report,0.0,0.0,0
+q0033,praline_full,What does the document state about A100 NVIDIA GPU RAM GB GB vllm1 Python?,RAG_Noise_LLM,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0033,praline_light,What does the document state about A100 NVIDIA GPU RAM GB GB vllm1 Python?,RAG_Noise_LLM,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0034,raw,"According to the document, what is said about SIGIR ACM USA NY International Development Information Proceedings?",RAG_Noise_LLM,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0034,praline_full,"According to the document, what is said about SIGIR ACM USA NY International Development Information Proceedings?",RAG_Noise_LLM,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0034,praline_light,"According to the document, what is said about SIGIR ACM USA NY International Development Information Proceedings?",RAG_Noise_LLM,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0035,raw,What key point is made regarding cuda12 Example Package Version Figure 36 LLMs 0?,RAG_Noise_LLM,0.0,0,0,0,docu_astro,0.0,0.0,0
+q0035,praline_full,What key point is made regarding cuda12 Example Package Version Figure 36 LLMs 0?,RAG_Noise_LLM,0.0,0,0,0,docu_astro,0.0,0.0,0
+q0035,praline_light,What key point is made regarding cuda12 Example Package Version Figure 36 LLMs 0?,RAG_Noise_LLM,0.0,0,0,0,docu_astro,0.0,0.0,0
+q0036,raw,What does the document state about GZC20240840 2024YFB2808802 CPSF Postdoctoral Fellowship National Program Program?,RAG_Noise_LLM,0.5,0,1,1,Morgan_Stanley_2023_ESG_Report,0.0,0.5,0
+q0036,praline_full,What does the document state about GZC20240840 2024YFB2808802 CPSF Postdoctoral Fellowship National Program Program?,RAG_Noise_LLM,1.0,1,1,1,RAG_Noise_LLM,0.5,0.5,0
+q0036,praline_light,What does the document state about GZC20240840 2024YFB2808802 CPSF Postdoctoral Fellowship National Program Program?,RAG_Noise_LLM,0.0,0,0,0,Morgan_Stanley_2023_ESG_Report,-0.5,0.5,0
+q0037,raw,"According to the document, what is said about QA Construction Construction Verification Entailment Generation Instance Testbeds?",RAG_Noise_LLM,1.0,1,1,1,RAG_Noise_LLM,0.0,1.0,1
+q0037,praline_full,"According to the document, what is said about QA Construction Construction Verification Entailment Generation Instance Testbeds?",RAG_Noise_LLM,1.0,1,1,1,RAG_Noise_LLM,0.0,1.0,1
+q0037,praline_light,"According to the document, what is said about QA Construction Construction Verification Entailment Generation Instance Testbeds?",RAG_Noise_LLM,1.0,1,1,1,RAG_Noise_LLM,0.0,1.0,1
+q0038,raw,What key point is made regarding Aleksandra Karpukhin Sebastian Vladimir Patrick Petroni Wen-tau Piktus?,RAG_Noise_LLM,0.0,0,0,0,llm_pdf,0.0,0.0,0
+q0038,praline_full,What key point is made regarding Aleksandra Karpukhin Sebastian Vladimir Patrick Petroni Wen-tau Piktus?,RAG_Noise_LLM,0.0,0,0,0,llm_pdf,0.0,0.0,0
+q0038,praline_light,What key point is made regarding Aleksandra Karpukhin Sebastian Vladimir Patrick Petroni Wen-tau Piktus?,RAG_Noise_LLM,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0039,raw,What does the document state about Sablayrolles Alexandre Bressand Devendra Antoine Blanche Chaplot Florian?,RAG_Noise_LLM,0.0,0,0,0,ACoRN_Noise_Robust_Abstractive_Compression,0.0,0.0,0
+q0039,praline_full,What does the document state about Sablayrolles Alexandre Bressand Devendra Antoine Blanche Chaplot Florian?,RAG_Noise_LLM,0.0,0,0,0,ACoRN_Noise_Robust_Abstractive_Compression,0.0,0.0,0
+q0039,praline_light,What does the document state about Sablayrolles Alexandre Bressand Devendra Antoine Blanche Chaplot Florian?,RAG_Noise_LLM,0.0,0,0,0,ACoRN_Noise_Robust_Abstractive_Compression,0.0,0.0,0
+q0040,raw,"According to the document, what is said about ISN RGB Experiments Additional Additional Control Table 10?",RAG_Noise_LLM,0.0,0,0,0,ACoRN_Noise_Robust_Abstractive_Compression,0.0,0.0,0
+q0040,praline_full,"According to the document, what is said about ISN RGB Experiments Additional Additional Control Table 10?",RAG_Noise_LLM,1.0,1,1,1,RAG_Noise_LLM,1.0,0.0,0
+q0040,praline_light,"According to the document, what is said about ISN RGB Experiments Additional Additional Control Table 10?",RAG_Noise_LLM,1.0,1,1,1,RAG_Noise_LLM,1.0,0.0,0
+q0041,raw,What key point is made regarding 10 11 11 17 17 18 29 31?,docu_astro,1.0,1,1,1,docu_astro,0.0,1.0,1
+q0041,praline_full,What key point is made regarding 10 11 11 17 17 18 29 31?,docu_astro,0.25,0,1,1,Information_Retrieval_on_Noisy_Text,-0.75,1.0,1
+q0041,praline_light,What key point is made regarding 10 11 11 17 17 18 29 31?,docu_astro,0.25,0,1,1,Information_Retrieval_on_Noisy_Text,-0.75,1.0,1
+q0042,raw,What does the document state about CHMF CHMF Gaussian 00019 00024 00024 00038 2019?,docu_astro,0.3333333333333333,0,1,1,imf_report,0.0,0.3333333333333333,0
+q0042,praline_full,What does the document state about CHMF CHMF Gaussian 00019 00024 00024 00038 2019?,docu_astro,0.5,0,1,1,imf_report,0.16666666666666669,0.3333333333333333,0
+q0042,praline_light,What does the document state about CHMF CHMF Gaussian 00019 00024 00024 00038 2019?,docu_astro,0.5,0,1,1,imf_report,0.16666666666666669,0.3333333333333333,0
+q0043,raw,"According to the document, what is said about DK14 046 052 461 19 23 97 0?",docu_astro,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0043,praline_full,"According to the document, what is said about DK14 046 052 461 19 23 97 0?",docu_astro,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0043,praline_light,"According to the document, what is said about DK14 046 052 461 19 23 97 0?",docu_astro,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0044,raw,What key point is made regarding SFB1491 DFG DFG ERC HH Collaborative Consolidator 1495/5-1?,docu_astro,0.16666666666666666,0,0,1,llm_pdf,0.0,0.16666666666666666,0
+q0044,praline_full,What key point is made regarding SFB1491 DFG DFG ERC HH Collaborative Consolidator 1495/5-1?,docu_astro,0.5,0,1,1,llm_pdf,0.33333333333333337,0.16666666666666666,0
+q0044,praline_light,What key point is made regarding SFB1491 DFG DFG ERC HH Collaborative Consolidator 1495/5-1?,docu_astro,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,-0.16666666666666666,0.16666666666666666,0
+q0045,raw,What does the document state about L25 S/N 2025 396 22 0 0 1?,docu_astro,0.5,0,1,1,imf_report,0.0,0.5,0
+q0045,praline_full,What does the document state about L25 S/N 2025 396 22 0 0 1?,docu_astro,0.5,0,1,1,imf_report,0.0,0.5,0
+q0045,praline_light,What does the document state about L25 S/N 2025 396 22 0 0 1?,docu_astro,0.5,0,1,1,imf_report,0.0,0.5,0
+q0046,raw,"According to the document, what is said about L25 H0 CDM Consistent Hubble 70 0 1?",docu_astro,1.0,1,1,1,docu_astro,0.0,1.0,1
+q0046,praline_full,"According to the document, what is said about L25 H0 CDM Consistent Hubble 70 0 1?",docu_astro,0.5,0,1,1,Information_Retrieval_on_Noisy_Text,-0.5,1.0,1
+q0046,praline_light,"According to the document, what is said about L25 H0 CDM Consistent Hubble 70 0 1?",docu_astro,0.5,0,1,1,Information_Retrieval_on_Noisy_Text,-0.5,1.0,1
+q0047,raw,What key point is made regarding DK14 L25 M200m 495 0 0 1 3?,docu_astro,0.5,0,1,1,imf_report,0.0,0.5,0
+q0047,praline_full,What key point is made regarding DK14 L25 M200m 495 0 0 1 3?,docu_astro,0.5,0,1,1,imf_report,0.0,0.5,0
+q0047,praline_light,What key point is made regarding DK14 L25 M200m 495 0 0 1 3?,docu_astro,0.5,0,1,1,imf_report,0.0,0.5,0
+q0048,raw,What does the document state about 1M M200m c200m 1014 1015 Duffy 08 10?,docu_astro,0.3333333333333333,0,1,1,imf_report,0.0,0.3333333333333333,0
+q0048,praline_full,What does the document state about 1M M200m c200m 1014 1015 Duffy 08 10?,docu_astro,1.0,1,1,1,docu_astro,0.6666666666666667,0.3333333333333333,0
+q0048,praline_light,What does the document state about 1M M200m c200m 1014 1015 Duffy 08 10?,docu_astro,0.3333333333333333,0,1,1,imf_report,0.0,0.3333333333333333,0
+q0049,raw,"According to the document, what is said about NWO-M NOVA ERC II Forschungsgemeinschaft University Deutsche Federico?",docu_astro,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0049,praline_full,"According to the document, what is said about NWO-M NOVA ERC II Forschungsgemeinschaft University Deutsche Federico?",docu_astro,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0049,praline_light,"According to the document, what is said about NWO-M NOVA ERC II Forschungsgemeinschaft University Deutsche Federico?",docu_astro,0.25,0,1,1,Information_Retrieval_on_Noisy_Text,0.25,0.0,0
+q0050,raw,What key point is made regarding DK14 L25 BMO NFW 2009 Baltz Oguri Mar-?,docu_astro,0.25,0,1,1,Morgan_Stanley_2023_ESG_Report,0.0,0.25,0
+q0050,praline_full,What key point is made regarding DK14 L25 BMO NFW 2009 Baltz Oguri Mar-?,docu_astro,0.5,0,1,1,llm_pdf,0.25,0.25,0
+q0050,praline_light,What key point is made regarding DK14 L25 BMO NFW 2009 Baltz Oguri Mar-?,docu_astro,0.5,0,1,1,llm_pdf,0.25,0.25,0
+q0051,raw,What does the document state about BPM BPM CB CB CG CG CG LG?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0051,praline_full,What does the document state about BPM BPM CB CB CG CG CG LG?,imf_report,0.5,0,1,1,Information_Retrieval_on_Noisy_Text,-0.5,1.0,1
+q0051,praline_light,What does the document state about BPM BPM CB CB CG CG CG LG?,imf_report,0.5,0,1,1,Information_Retrieval_on_Noisy_Text,-0.5,1.0,1
+q0052,raw,"According to the document, what is said about RESILIENCE EMERGING POLICIES CHAPTER MARKET GOOD GOOD LUCK?",imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0052,praline_full,"According to the document, what is said about RESILIENCE EMERGING POLICIES CHAPTER MARKET GOOD GOOD LUCK?",imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0052,praline_light,"According to the document, what is said about RESILIENCE EMERGING POLICIES CHAPTER MARKET GOOD GOOD LUCK?",imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0053,raw,What key point is made regarding RESILIENCE EMERGING POLICIES CHAPTER MARKET GOOD GOOD LUCK?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0053,praline_full,What key point is made regarding RESILIENCE EMERGING POLICIES CHAPTER MARKET GOOD GOOD LUCK?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0053,praline_light,What key point is made regarding RESILIENCE EMERGING POLICIES CHAPTER MARKET GOOD GOOD LUCK?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0054,raw,What does the document state about Production Costs 11 13 15 17 19 0?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0054,praline_full,What does the document state about Production Costs 11 13 15 17 19 0?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0054,praline_light,What does the document state about Production Costs 11 13 15 17 19 0?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0055,raw,"According to the document, what is said about Israel8 IMF Source 0 0 0 1 1?",imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0055,praline_full,"According to the document, what is said about Israel8 IMF Source 0 0 0 1 1?",imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0055,praline_light,"According to the document, what is said about Israel8 IMF Source 0 0 0 1 1?",imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0056,raw,What key point is made regarding Consumer Industry Infant Prices 11 13 15 17?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0056,praline_full,What key point is made regarding Consumer Industry Infant Prices 11 13 15 17?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0056,praline_light,What key point is made regarding Consumer Industry Infant Prices 11 13 15 17?,imf_report,0.5,0,1,1,llm_pdf,-0.5,1.0,1
+q0057,raw,What does the document state about Inflation Headline 2024 Global 25 26 27 28?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0057,praline_full,What does the document state about Inflation Headline 2024 Global 25 26 27 28?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0057,praline_light,What does the document state about Inflation Headline 2024 Global 25 26 27 28?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0058,raw,"According to the document, what is said about INDUSTRIAL RESILIENCE TRADE-OFFS MANAGING CHAPTER PROMOTE GROWTH POLICY?",imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0058,praline_full,"According to the document, what is said about INDUSTRIAL RESILIENCE TRADE-OFFS MANAGING CHAPTER PROMOTE GROWTH POLICY?",imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0058,praline_light,"According to the document, what is said about INDUSTRIAL RESILIENCE TRADE-OFFS MANAGING CHAPTER PROMOTE GROWTH POLICY?",imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0059,raw,What key point is made regarding America5 South 23 0 1 1 1 1?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0059,praline_full,What key point is made regarding America5 South 23 0 1 1 1 1?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0059,praline_light,What key point is made regarding America5 South 23 0 1 1 1 1?,imf_report,1.0,1,1,1,imf_report,0.0,1.0,1
+q0060,raw,What does the document state about SAR Macao 19 23 54 75 0 1?,imf_report,0.5,0,1,1,docu_astro,0.0,0.5,0
+q0060,praline_full,What does the document state about SAR Macao 19 23 54 75 0 1?,imf_report,0.5,0,1,1,docu_astro,0.0,0.5,0
+q0060,praline_light,What does the document state about SAR Macao 19 23 54 75 0 1?,imf_report,0.5,0,1,1,docu_astro,0.0,0.5,0
+q0061,raw,"According to the document, what is said about 540B MATH MMLU Chinchilla Galactica 20 3% 35?",llm_pdf,0.5,0,1,1,Information_Retrieval_on_Noisy_Text,0.0,0.5,0
+q0061,praline_full,"According to the document, what is said about 540B MATH MMLU Chinchilla Galactica 20 3% 35?",llm_pdf,0.3333333333333333,0,1,1,Information_Retrieval_on_Noisy_Text,-0.16666666666666669,0.5,0
+q0061,praline_light,"According to the document, what is said about 540B MATH MMLU Chinchilla Galactica 20 3% 35?",llm_pdf,0.5,0,1,1,Information_Retrieval_on_Noisy_Text,0.0,0.5,0
+q0062,raw,What key point is made regarding GPT-4 LLAVA LLAVA-Plus Next-GPT Qwen-vl 116 214 215?,llm_pdf,1.0,1,1,1,llm_pdf,0.0,1.0,1
+q0062,praline_full,What key point is made regarding GPT-4 LLAVA LLAVA-Plus Next-GPT Qwen-vl 116 214 215?,llm_pdf,0.5,0,1,1,ACoRN_Noise_Robust_Abstractive_Compression,-0.5,1.0,1
+q0062,praline_light,What key point is made regarding GPT-4 LLAVA LLAVA-Plus Next-GPT Qwen-vl 116 214 215?,llm_pdf,0.5,0,1,1,ACoRN_Noise_Robust_Abstractive_Compression,-0.5,1.0,1
+q0063,raw,What does the document state about GPT-1 GPT-2 GPT-3 GPT-4 GPT Although APIs close-source?,llm_pdf,0.0,0,0,0,imf_report,0.0,0.0,0
+q0063,praline_full,What does the document state about GPT-1 GPT-2 GPT-3 GPT-4 GPT Although APIs close-source?,llm_pdf,0.0,0,0,0,imf_report,0.0,0.0,0
+q0063,praline_light,What does the document state about GPT-1 GPT-2 GPT-3 GPT-4 GPT Although APIs close-source?,llm_pdf,1.0,1,1,1,llm_pdf,1.0,0.0,0
+q0064,raw,"According to the document, what is said about GPT-1 GPT-2 GPT-3 GPT-4 InstrucGPT ChatGPT Fig family?",llm_pdf,0.3333333333333333,0,1,1,ACoRN_Noise_Robust_Abstractive_Compression,0.0,0.3333333333333333,0
+q0064,praline_full,"According to the document, what is said about GPT-1 GPT-2 GPT-3 GPT-4 InstrucGPT ChatGPT Fig family?",llm_pdf,0.3333333333333333,0,1,1,Information_Retrieval_on_Noisy_Text,0.0,0.3333333333333333,0
+q0064,praline_light,"According to the document, what is said about GPT-1 GPT-2 GPT-3 GPT-4 InstrucGPT ChatGPT Fig family?",llm_pdf,0.3333333333333333,0,1,1,Information_Retrieval_on_Noisy_Text,0.0,0.3333333333333333,0
+q0065,raw,What key point is made regarding GPT-3 Jurassic-1 2-trillion-token Transformer Retrieval- Enhanced 25% Retro?,llm_pdf,1.0,1,1,1,llm_pdf,0.0,1.0,1
+q0065,praline_full,What key point is made regarding GPT-3 Jurassic-1 2-trillion-token Transformer Retrieval- Enhanced 25% Retro?,llm_pdf,1.0,1,1,1,llm_pdf,0.0,1.0,1
+q0065,praline_light,What key point is made regarding GPT-3 Jurassic-1 2-trillion-token Transformer Retrieval- Enhanced 25% Retro?,llm_pdf,1.0,1,1,1,llm_pdf,0.0,1.0,1
+q0066,raw,What does the document state about F1 PARENT- PARENT Knowledge Advanced 149 150 151?,llm_pdf,0.5,0,1,1,imf_report,0.0,0.5,0
+q0066,praline_full,What does the document state about F1 PARENT- PARENT Knowledge Advanced 149 150 151?,llm_pdf,0.5,0,1,1,imf_report,0.0,0.5,0
+q0066,praline_light,What does the document state about F1 PARENT- PARENT Knowledge Advanced 149 150 151?,llm_pdf,0.5,0,1,1,imf_report,0.0,0.5,0
+q0067,raw,"According to the document, what is said about SE4ML NIPS Engineering Learning Software Workshop Machine Machine?",llm_pdf,1.0,1,1,1,llm_pdf,0.0,1.0,1
+q0067,praline_full,"According to the document, what is said about SE4ML NIPS Engineering Learning Software Workshop Machine Machine?",llm_pdf,1.0,1,1,1,llm_pdf,0.0,1.0,1
+q0067,praline_light,"According to the document, what is said about SE4ML NIPS Engineering Learning Software Workshop Machine Machine?",llm_pdf,1.0,1,1,1,llm_pdf,0.0,1.0,1
+q0068,raw,What key point is made regarding APE APE Engineering Engineering Automatic Automatic Language Models?,llm_pdf,1.0,1,1,1,llm_pdf,0.0,1.0,1
+q0068,praline_full,What key point is made regarding APE APE Engineering Engineering Automatic Automatic Language Models?,llm_pdf,1.0,1,1,1,llm_pdf,0.0,1.0,1
+q0068,praline_light,What key point is made regarding APE APE Engineering Engineering Automatic Automatic Language Models?,llm_pdf,1.0,1,1,1,llm_pdf,0.0,1.0,1
+q0069,raw,What does the document state about AUGMENTED LLMS USED ARE HOW LLMs Once generate?,llm_pdf,1.0,1,1,1,llm_pdf,0.0,1.0,1
+q0069,praline_full,What does the document state about AUGMENTED LLMS USED ARE HOW LLMs Once generate?,llm_pdf,1.0,1,1,1,llm_pdf,0.0,1.0,1
+q0069,praline_light,What does the document state about AUGMENTED LLMS USED ARE HOW LLMs Once generate?,llm_pdf,1.0,1,1,1,llm_pdf,0.0,1.0,1
+q0070,raw,"According to the document, what is said about PERFORMANCE BENCHMARKS PROMINENT LLMS ON LLMs In performance?",llm_pdf,0.5,0,1,1,Information_Retrieval_on_Noisy_Text,0.0,0.5,0
+q0070,praline_full,"According to the document, what is said about PERFORMANCE BENCHMARKS PROMINENT LLMS ON LLMs In performance?",llm_pdf,0.5,0,1,1,Information_Retrieval_on_Noisy_Text,0.0,0.5,0
+q0070,praline_light,"According to the document, what is said about PERFORMANCE BENCHMARKS PROMINENT LLMS ON LLMs In performance?",llm_pdf,0.5,0,1,1,Information_Retrieval_on_Noisy_Text,0.0,0.5,0
+q0071,raw,What key point is made regarding MERCHANTABILITY NONINFRINGEMENT PARTICULAR WARRANTIES INCLUDING PROVIDED SOFTWARE WARRANTY?,pep8,1.0,1,1,1,pep8,0.0,1.0,1
+q0071,praline_full,What key point is made regarding MERCHANTABILITY NONINFRINGEMENT PARTICULAR WARRANTIES INCLUDING PROVIDED SOFTWARE WARRANTY?,pep8,1.0,1,1,1,pep8,0.0,1.0,1
+q0071,praline_light,What key point is made regarding MERCHANTABILITY NONINFRINGEMENT PARTICULAR WARRANTIES INCLUDING PROVIDED SOFTWARE WARRANTY?,pep8,1.0,1,1,1,pep8,0.0,1.0,1
+q0072,raw,What does the document state about E111 E112 E113 E114 E115 E116 Replace 277?,pep8,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0072,praline_full,What does the document state about E111 E112 E113 E114 E115 E116 Replace 277?,pep8,0.0,0,0,0,imf_report,0.0,0.0,0
+q0072,praline_light,What does the document state about E111 E112 E113 E114 E115 E116 Replace 277?,pep8,0.0,0,0,0,imf_report,0.0,0.0,0
+q0073,raw,"According to the document, what is said about API 2012-06-15 Developer Release Warning dev0 pep8 24?",pep8,0.25,0,1,1,Information_Retrieval_on_Noisy_Text,0.0,0.25,0
+q0073,praline_full,"According to the document, what is said about API 2012-06-15 Developer Release Warning dev0 pep8 24?",pep8,0.3333333333333333,0,1,1,Information_Retrieval_on_Noisy_Text,0.08333333333333331,0.25,0
+q0073,praline_light,"According to the document, what is said about API 2012-06-15 Developer Release Warning dev0 pep8 24?",pep8,0.25,0,1,1,Information_Retrieval_on_Noisy_Text,0.0,0.25,0
+q0074,raw,What key point is made regarding 2009-09-14 Changes Release dev0 pep8 Fixes 25 35?,pep8,1.0,1,1,1,pep8,0.0,1.0,1
+q0074,praline_full,What key point is made regarding 2009-09-14 Changes Release dev0 pep8 Fixes 25 35?,pep8,1.0,1,1,1,pep8,0.0,1.0,1
+q0074,praline_light,What key point is made regarding 2009-09-14 Changes Release dev0 pep8 Fixes 25 35?,pep8,1.0,1,1,1,pep8,0.0,1.0,1
+q0075,raw,What does the document state about 2012-04-06 Changes Release dev0 pep8 23 27 0?,pep8,0.5,0,1,1,docu_astro,0.0,0.5,0
+q0075,praline_full,What does the document state about 2012-04-06 Changes Release dev0 pep8 23 27 0?,pep8,0.25,0,1,1,docu_astro,-0.25,0.5,0
+q0075,praline_light,What does the document state about 2012-04-06 Changes Release dev0 pep8 23 27 0?,pep8,1.0,1,1,1,pep8,0.5,0.5,0
+q0076,raw,"According to the document, what is said about 2014-04-04 Distribute Developer Changes Release dev0 pep8 10?",pep8,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0076,praline_full,"According to the document, what is said about 2014-04-04 Distribute Developer Changes Release dev0 pep8 10?",pep8,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0076,praline_light,"According to the document, what is said about 2014-04-04 Distribute Developer Changes Release dev0 pep8 10?",pep8,0.0,0,0,0,Information_Retrieval_on_Noisy_Text,0.0,0.0,0
+q0077,raw,What key point is made regarding E125 E129 2014-03-26 Changes Report 263 Issue 12?,pep8,1.0,1,1,1,pep8,0.0,1.0,1
+q0077,praline_full,What key point is made regarding E125 E129 2014-03-26 Changes Report 263 Issue 12?,pep8,1.0,1,1,1,pep8,0.0,1.0,1
+q0077,praline_light,What key point is made regarding E125 E129 2014-03-26 Changes Report 263 Issue 12?,pep8,1.0,1,1,1,pep8,0.0,1.0,1
+q0078,raw,What does the document state about E711 E712 2013-07-02 Changes Honor Issue 13 34?,pep8,1.0,1,1,1,pep8,0.0,1.0,1
+q0078,praline_full,What does the document state about E711 E712 2013-07-02 Changes Honor Issue 13 34?,pep8,1.0,1,1,1,pep8,0.0,1.0,1
+q0078,praline_light,What does the document state about E711 E712 2013-07-02 Changes Honor Issue 13 34?,pep8,1.0,1,1,1,pep8,0.0,1.0,1
+q0079,raw,"According to the document, what is said about E124 E128 2012-12-18 105 Issue 20 1 3?",pep8,1.0,1,1,1,pep8,0.0,1.0,1
+q0079,praline_full,"According to the document, what is said about E124 E128 2012-12-18 105 Issue 20 1 3?",pep8,1.0,1,1,1,pep8,0.0,1.0,1
+q0079,praline_light,"According to the document, what is said about E124 E128 2012-12-18 105 Issue 20 1 3?",pep8,0.5,0,1,1,Information_Retrieval_on_Noisy_Text,-0.5,1.0,1
+q0080,raw,What key point is made regarding E302 OK 2009-10-22 Decorators 10 33 0 1?,pep8,0.0,0,0,0,imf_report,0.0,0.0,0
+q0080,praline_full,What key point is made regarding E302 OK 2009-10-22 Decorators 10 33 0 1?,pep8,0.0,0,0,0,docu_astro,0.0,0.0,0
+q0080,praline_light,What key point is made regarding E302 OK 2009-10-22 Decorators 10 33 0 1?,pep8,0.0,0,0,0,docu_astro,0.0,0.0,0

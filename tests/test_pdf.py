@@ -12,6 +12,19 @@ def _extract_pdf_text(pdf_path: pathlib.Path) -> str:
     return pdfminer.extract_text(str(pdf_path)) or ""
 
 
+def _extract_pdf_pages(pdf_path: pathlib.Path, max_pages: int = 40) -> list[str]:
+    pdfminer = pytest.importorskip(
+        "pdfminer.high_level",
+        reason="pdfminer.six is required for PDF extraction tests. Install with: pip install pdfminer.six",
+    )
+    pages: list[str] = []
+    for idx in range(max_pages):
+        page_text = pdfminer.extract_text(str(pdf_path), page_numbers=[idx]) or ""
+        if page_text.strip():
+            pages.append(page_text)
+    return pages
+
+
 def test_praline_on_complex_scientific_pdf():
     pdf_path = pathlib.Path("tests/corpus/docu_astro.pdf")
     if not pdf_path.exists():
@@ -51,3 +64,26 @@ def test_praline_on_complex_scientific_pdf():
 
     # --- Idempotence (very important for a “standard”) ---
     assert cleaned == praline(cleaned)
+
+
+def test_footer_removed_on_real_pdf_blocks():
+    pdf_path = pathlib.Path("rag_testing/corpus/Morgan_Stanley_2023_ESG_Report.pdf")
+    if not pdf_path.exists():
+        pytest.skip(f"Missing fixture: {pdf_path}.")
+
+    pages = _extract_pdf_pages(pdf_path, max_pages=40)
+    if len(pages) < 6:
+        pytest.skip("Not enough extracted pages to validate footer repetition.")
+
+    raw = "\n\n\n".join(pages)
+    needle = "MORGAN STANLEY | 2023 ESG REPORT"
+    raw_count = raw.count(needle)
+    assert (
+        raw_count >= 10
+    ), "Expected repeated footer not found often enough in raw text."
+
+    cleaned = praline(raw, normalize_extracted=True, drop_repeated_lines="on")
+    cleaned_count = cleaned.count(needle)
+
+    assert cleaned_count < raw_count
+    assert cleaned_count <= 2
